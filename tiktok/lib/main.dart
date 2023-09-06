@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:tiktok/0_create_story_page.dart';
+import 'package:tiktok/0_discover_page.dart';
+import 'package:tiktok/0_inbox_page.dart';
+import 'package:tiktok/0_profile_page.dart';
+import '0_home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,6 +30,13 @@ class RootPage extends StatefulWidget {
 
 class _RootPageState extends State<RootPage> {
   int currentPage = 0;
+  final pages = [
+    const HomePage(),
+    const DiscoverPage(),
+    const CreateStoryPage(),
+    const InboxPage(),
+    const ProfilePage(),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +45,7 @@ class _RootPageState extends State<RootPage> {
         backgroundColor: Colors.black,
         titleTextStyle: const TextStyle(color: Colors.white),
       ),
-      body: const HomePage(),
+      body: pages[currentPage],
       bottomNavigationBar: NavigationBar(
         destinations: const [
           NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
