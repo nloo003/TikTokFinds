@@ -48,29 +48,6 @@ class _RootPageState extends State<RootPage> {
         currentIndex: currentPage,
         onTap: onTabTapped,
       ),
-    );
-  }
-}
-
-class Header extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      title: Row(
-        children: [
-          const Text('Tiktok'),
-          Spacer(),
-          IconButton(
-            icon: Icon(
-              Icons.search,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              // Add search action here
-            },
-          ),
-        ],
-      ),
       backgroundColor: Colors.black,
       titleTextStyle: const TextStyle(color: Colors.white),
     );
