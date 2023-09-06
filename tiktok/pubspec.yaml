@@ -30,6 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  video_player: ^2.2.18
 
 
   # The following adds the Cupertino Icons font to your application.
