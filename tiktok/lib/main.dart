@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:tiktok/0_create_story_page.dart';
-import 'package:tiktok/0_discover_page.dart';
-import 'package:tiktok/0_inbox_page.dart';
-import 'package:tiktok/0_profile_page.dart';
-import '0_home_page.dart';
+import 'package:tiktok/03_create_story_page.dart';
+import 'package:tiktok/02_discover_page.dart';
+import 'package:tiktok/04_inbox_page.dart';
+import 'package:tiktok/05_0_profile_page_self.dart';
+import 'package:tiktok/01_home_page.dart';
+import 'package:tiktok/05_1_profile_page_others.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,17 +35,12 @@ class _RootPageState extends State<RootPage> {
     const HomePage(),
     const DiscoverPage(),
     const CreateStoryPage(),
-    const InboxPage(),
-    const ProfilePage(),
+    const ProfilePageOthers(),
+    const ProfilePageSelf(),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Tiktok'),
-        backgroundColor: Colors.black,
-        titleTextStyle: const TextStyle(color: Colors.white),
-      ),
       body: pages[currentPage],
       bottomNavigationBar: NavigationBar(
         destinations: const [
