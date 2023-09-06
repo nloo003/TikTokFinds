@@ -41,15 +41,31 @@ class _RootPageState extends State<RootPage> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(kToolbarHeight),
-        child: Header(), // Wrap Header with PreferredSize
+        child: AppBar(
+          title: Row(
+            children: [
+              const Text('Tiktok'),
+              Spacer(),
+              IconButton(
+                icon: Icon(
+                  Icons.search,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  // Add your search action here
+                },
+              ),
+            ],
+          ),
+          backgroundColor: Colors.black,
+          titleTextStyle: const TextStyle(color: Colors.white),
+        ),
       ),
       body: pages[currentPage],
       bottomNavigationBar: CustomBottomNavigationBar(
         currentIndex: currentPage,
         onTap: onTabTapped,
       ),
-      backgroundColor: Colors.black,
-      titleTextStyle: const TextStyle(color: Colors.white),
     );
   }
 }
@@ -85,7 +101,7 @@ class HomePage extends StatelessWidget {
           width: double.infinity,
           height: double.infinity,
         ),
-        // right side
+        // Icons at the right side
         Align(
           alignment: Alignment.bottomRight,
           child: Padding(
@@ -142,7 +158,7 @@ class HomePage extends StatelessWidget {
             ),
           ),
         ),
-        // bottom left corner
+        // Text at the bottom left corner
         Align(
           alignment: Alignment.bottomLeft,
           child: Padding(
