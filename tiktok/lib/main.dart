@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:tiktok/03_create_story_page.dart';
+import 'package:tiktok/02_discover_page.dart';
+import 'package:tiktok/04_inbox_page.dart';
+import 'package:tiktok/05_0_profile_page_self.dart';
+import 'package:tiktok/01_home_page.dart';
+import 'package:tiktok/05_1_profile_page_others.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,46 +31,31 @@ class RootPage extends StatefulWidget {
 
 class _RootPageState extends State<RootPage> {
   int currentPage = 0;
-  final List<Widget> pages = [
-    HomePage(),
-    ProfilePage(),
+  final pages = [
+    const HomePage(),
+    const DiscoverPage(),
+    const CreateStoryPage(),
+    const ProfilePageOthers(),
+    const ProfilePageSelf(),
   ];
-
-  void onTabTapped(int index) {
-    setState(() {
-      currentPage = index;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(kToolbarHeight),
-        child: AppBar(
-          title: Row(
-            children: [
-              const Text('Tiktok'),
-              Spacer(),
-              IconButton(
-                icon: Icon(
-                  Icons.search,
-                  color: Colors.white,
-                ),
-                onPressed: () {
-                  // Add your search action here
-                },
-              ),
-            ],
-          ),
-          backgroundColor: Colors.black,
-          titleTextStyle: const TextStyle(color: Colors.white),
-        ),
-      ),
       body: pages[currentPage],
-      bottomNavigationBar: CustomBottomNavigationBar(
-        currentIndex: currentPage,
-        onTap: onTabTapped,
+      bottomNavigationBar: NavigationBar(
+        destinations: const [
+          NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
+          NavigationDestination(icon: Icon(Icons.search), label: 'Discover'),
+          NavigationDestination(icon: Icon(Icons.plus_one), label: 'New'),
+          NavigationDestination(icon: Icon(Icons.inbox), label: 'Inbox'),
+          NavigationDestination(icon: Icon(Icons.man), label: 'Profile'),
+        ],
+        onDestinationSelected: (int index) {
+          setState(() {
+            currentPage = index;
+          });
+        },
+        selectedIndex: currentPage,
       ),
     );
   }
