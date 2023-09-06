@@ -33,9 +33,13 @@ class _RootPageState extends State<RootPage> {
         backgroundColor: Colors.black,
         titleTextStyle: const TextStyle(color: Colors.white),
       ),
+      body: const HomePage(),
       bottomNavigationBar: NavigationBar(
         destinations: const [
           NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
+          NavigationDestination(icon: Icon(Icons.search), label: 'Discover'),
+          NavigationDestination(icon: Icon(Icons.plus_one), label: 'New'),
+          NavigationDestination(icon: Icon(Icons.inbox), label: 'Inbox'),
           NavigationDestination(icon: Icon(Icons.man), label: 'Profile'),
         ],
         onDestinationSelected: (int index) {
