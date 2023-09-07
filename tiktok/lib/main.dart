@@ -47,13 +47,15 @@ class _RootPageState extends State<RootPage> {
       body: pages[currentPage],
       bottomNavigationBar: NavigationBar(
         destinations: const [
-          NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
-          NavigationDestination(icon: Icon(Icons.search), label: 'Discover'),
-          NavigationDestination(icon: Icon(Icons.plus_one), label: 'New'),
-          NavigationDestination(icon: Icon(Icons.inbox), label: 'Inbox'),
+          NavigationDestination(icon: Icon(Icons.home_outlined), label: 'Home'),
           NavigationDestination(
-              icon: Icon(Icons.card_giftcard_outlined), label: 'Wishlist'),
-          NavigationDestination(icon: Icon(Icons.man), label: 'Profile'),
+              icon: Icon(Icons.search_outlined), label: 'Discover'),
+          NavigationDestination(
+              icon: Icon(Icons.plus_one_outlined), label: 'New'),
+          NavigationDestination(
+              icon: Icon(Icons.inbox_outlined), label: 'Inbox'),
+          NavigationDestination(
+              icon: Icon(Icons.person_outline), label: 'Profile'),
         ],
         onDestinationSelected: (int index) {
           setState(() {
@@ -62,6 +64,34 @@ class _RootPageState extends State<RootPage> {
         },
         selectedIndex: currentPage,
       ),
+    );
+  }
+}
+class CustomBottomNavigationBar extends StatelessWidget {
+  final int currentIndex;
+  final ValueChanged<int> onTap;
+
+  CustomBottomNavigationBar({required this.currentIndex, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavigationBar(
+      items: const [
+        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+        BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+      ],
+      currentIndex: currentIndex,
+      onTap: onTap,
+    );
+  }
+}
+
+class ProfilePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // profile page implementation
+    return Center(
+      child: Text('Profile Screen'),
     );
   }
 }

@@ -3,19 +3,16 @@ import 'package:tiktok/06_wishlist_page.dart';
 
 class HomePage extends StatelessWidget {
   bool isLiked = false;
-
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        // image content
         Image.network(
           'https://images.unsplash.com/photo-1529973625058-a665431328fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80',
           fit: BoxFit.cover,
           width: double.infinity,
           height: double.infinity,
         ),
-        // bottom right side
         Align(
           alignment: Alignment.bottomRight,
           child: Padding(
@@ -24,7 +21,7 @@ class HomePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 IconButton(
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.person_add,
                     color: Colors.white,
                   ),
@@ -33,17 +30,16 @@ class HomePage extends StatelessWidget {
                   },
                 ),
                 IconButton(
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.favorite_border,
-                    color: isLiked ? Colors.red : Colors.white,
+                    color: Colors.white,
                   ),
                   onPressed: () {
                     // like action
-                    isLiked = !isLiked;
                   },
                 ),
                 IconButton(
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.comment,
                     color: Colors.white,
                   ),
@@ -52,7 +48,7 @@ class HomePage extends StatelessWidget {
                   },
                 ),
                 IconButton(
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.share,
                     color: Colors.white,
                   ),
@@ -61,7 +57,7 @@ class HomePage extends StatelessWidget {
                   },
                 ),
                 IconButton(
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.person,
                     color: Colors.white,
                   ),
@@ -73,19 +69,20 @@ class HomePage extends StatelessWidget {
             ),
           ),
         ),
-        // bottom left corner
-        Align(
+        // Text at the bottom left corner
+        const Align(
           alignment: Alignment.bottomLeft,
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(16.0),
             child: Align(
-              alignment: Alignment.bottomLeft,
+              alignment: Alignment.bottomLeft, // Align text to the bottom left
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment:
+                    MainAxisAlignment.end, // Align text to the bottom
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 4.0),
+                    padding: EdgeInsets.only(bottom: 4.0),
                     child: Text(
                       '@mkiats',
                       style: TextStyle(

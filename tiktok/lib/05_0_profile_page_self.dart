@@ -8,6 +8,7 @@ class ProfilePageSelf extends StatefulWidget {
 }
 
 class _ProfilePageSelfState extends State<ProfilePageSelf> {
+  String username = "username";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,9 +19,9 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
             onTap: () {
               debugPrint("Username clicked");
             },
-            child: const Text(
-              "Username",
-              style: TextStyle(color: Colors.white),
+            child: Text(
+              username,
+              style: const TextStyle(color: Colors.white),
             ),
           ),
         ),
@@ -49,8 +50,42 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
         ],
         backgroundColor: Colors.black,
       ),
-      body: const Center(
-        child: Text('profile_self'),
+      body: Stack(
+        children: [
+          Column(
+            children: [
+              const Image(
+                image: AssetImage("tiktok\assets\test_chicken.png"),
+              ),
+              Row(children: [
+                Text(username),
+                const Icon(Icons.qr_code),
+              ]),
+              const Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                    child: Column(
+                      children: [Text("123"), Text("Following")],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                    child: Column(
+                      children: [Text("456"), Text("Followers")],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                    child: Column(
+                      children: [Text("789"), Text("Likes")],
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
