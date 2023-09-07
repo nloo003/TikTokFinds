@@ -1,8 +1,10 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:tiktok/06_wishlist_page.dart';
 
 class HomePage extends StatelessWidget {
-  bool isLiked = false;
+  final bool isLiked = false;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -70,10 +72,10 @@ class HomePage extends StatelessWidget {
           ),
         ),
         // Text at the bottom left corner
-        const Align(
+        Align(
           alignment: Alignment.bottomLeft,
           child: Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: Align(
               alignment: Alignment.bottomLeft, // Align text to the bottom left
               child: Column(
@@ -81,7 +83,7 @@ class HomePage extends StatelessWidget {
                     MainAxisAlignment.end, // Align text to the bottom
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.only(bottom: 4.0),
                     child: Text(
                       '@mkiats',
@@ -92,8 +94,8 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 4.0),
+                  const Padding(
+                    padding: EdgeInsets.only(bottom: 4.0),
                     child: Text(
                       'its the time of the year! 🎅🎄 #christmas #santa #gifts #snow',
                       style: TextStyle(
@@ -102,8 +104,8 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 4.0),
+                  const Padding(
+                    padding: EdgeInsets.only(bottom: 4.0),
                     child: Text(
                       '🎵 All I Want For Christmas Is You',
                       style: TextStyle(
@@ -117,11 +119,11 @@ class HomePage extends StatelessWidget {
                       // redirect to the Wishlist page here
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => WishlistPage(),
+                          builder: (context) => const WishlistPage(),
                         ),
                       );
                     },
-                    child: Text(
+                    child: const Text(
                       '🎁 Wishlist',
                       style: TextStyle(
                         color: Colors.white,

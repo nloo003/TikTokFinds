@@ -1,3 +1,4 @@
+// ignore_for_file: file_names
 import 'package:flutter/material.dart';
 
 class WishlistPage extends StatefulWidget {
@@ -12,20 +13,20 @@ class _WishlistPageState extends State<WishlistPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Your Wishlist',
           style: TextStyle(
             color: Colors.white, // Text color
           ),
         ),
         backgroundColor: Colors.black,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.black, // Icon color
         ),
       ),
       body: Container(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
+        padding: const EdgeInsets.all(16.0),
+        child: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             WishlistItem(
@@ -65,7 +66,7 @@ class WishlistItem extends StatelessWidget {
   final String itemDescription;
   final String itemImage;
 
-  WishlistItem({
+  const WishlistItem({super.key, 
     required this.itemName,
     required this.itemDescription,
     required this.itemImage,
@@ -74,7 +75,7 @@ class WishlistItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 16.0),
+      margin: const EdgeInsets.only(bottom: 16.0),
       child: Row(
         children: [
           Container(
@@ -88,21 +89,21 @@ class WishlistItem extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(width: 16.0),
+          const SizedBox(width: 16.0),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 itemName,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 4.0),
+              const SizedBox(height: 4.0),
               Text(
                 itemDescription,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 14.0,
                   color: Colors.grey,
                 ),

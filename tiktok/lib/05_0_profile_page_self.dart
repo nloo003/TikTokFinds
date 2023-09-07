@@ -1,3 +1,4 @@
+// ignore_for_file: file_names
 import 'package:flutter/material.dart';
 
 class ProfilePageSelf extends StatefulWidget {
@@ -55,7 +56,7 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
           Column(
             children: [
               const Image(
-                image: AssetImage("tiktok\assets\test_chicken.png"),
+                image: AssetImage("assets\test_chicken.png"),
               ),
               Row(children: [
                 Text(username),
