@@ -39,7 +39,7 @@ class _RootPageState extends State<RootPage> {
     const CreateStoryPage(),
     const InboxPage(),
     WishlistPage(),
-    const ProfilePageOthers(),
+    // const ProfilePageOthers(),
     const ProfilePageSelf(),
   ];
   @override
