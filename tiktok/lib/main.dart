@@ -13,7 +13,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
 }
 
 class RootPage extends StatefulWidget {
-  const RootPage({Key? key});
+  const RootPage({Key? key}) : super(key: key);
 
   @override
   State<RootPage> createState() => _RootPageState();
@@ -38,7 +38,7 @@ class _RootPageState extends State<RootPage> {
     const DiscoverPage(),
     const CreateStoryPage(),
     const InboxPage(),
-    WishlistPage(),
+    const WishlistPage(),
     // const ProfilePageOthers(),
     const ProfilePageSelf(),
   ];
