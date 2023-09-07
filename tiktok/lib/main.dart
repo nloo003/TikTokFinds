@@ -36,9 +36,10 @@ class _RootPageState extends State<RootPage> {
     HomePage(),
     const DiscoverPage(),
     const CreateStoryPage(),
+    const InboxPage(),
+    WishlistPage(),
     const ProfilePageOthers(),
     const ProfilePageSelf(),
-    const WishlistPage(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -50,6 +51,8 @@ class _RootPageState extends State<RootPage> {
           NavigationDestination(icon: Icon(Icons.search), label: 'Discover'),
           NavigationDestination(icon: Icon(Icons.plus_one), label: 'New'),
           NavigationDestination(icon: Icon(Icons.inbox), label: 'Inbox'),
+          NavigationDestination(
+              icon: Icon(Icons.card_giftcard_outlined), label: 'Wishlist'),
           NavigationDestination(icon: Icon(Icons.man), label: 'Profile'),
         ],
         onDestinationSelected: (int index) {
