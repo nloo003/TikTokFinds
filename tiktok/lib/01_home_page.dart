@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 IconButton(
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.person_add,
                     color: Colors.white,
                   ),
@@ -44,7 +44,7 @@ class HomePage extends StatelessWidget {
                   },
                 ),
                 IconButton(
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.comment,
                     color: Colors.white,
                   ),
@@ -53,7 +53,7 @@ class HomePage extends StatelessWidget {
                   },
                 ),
                 IconButton(
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.share,
                     color: Colors.white,
                   ),
@@ -62,7 +62,7 @@ class HomePage extends StatelessWidget {
                   },
                 ),
                 IconButton(
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.person,
                     color: Colors.white,
                   ),
@@ -85,8 +85,8 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 4.0),
+                  const Padding(
+                    padding: EdgeInsets.only(bottom: 4.0),
                     child: Text(
                       '@mkiats',
                       style: TextStyle(
@@ -96,8 +96,8 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 4.0),
+                  const Padding(
+                    padding: EdgeInsets.only(bottom: 4.0),
                     child: Text(
                       'its the time of the year! 🎅🎄 #christmas #santa #gifts #snow',
                       style: TextStyle(
@@ -106,8 +106,8 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 4.0),
+                  const Padding(
+                    padding: EdgeInsets.only(bottom: 4.0),
                     child: Text(
                       '🎵 All I Want For Christmas Is You',
                       style: TextStyle(
@@ -121,11 +121,11 @@ class HomePage extends StatelessWidget {
                       // redirect to the Wishlist page here
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => WishlistPage(),
+                          builder: (context) => const WishlistPage(),
                         ),
                       );
                     },
-                    child: Text(
+                    child: const Text(
                       '🎁 Wishlist',
                       style: TextStyle(
                         color: Colors.white,

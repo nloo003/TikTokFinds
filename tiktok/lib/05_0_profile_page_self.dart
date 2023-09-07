@@ -191,8 +191,9 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                     child: const Icon(Icons.favorite_outline)),
               ],
             ),
-            SizedBox(
-              child: Center(
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 25),
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
