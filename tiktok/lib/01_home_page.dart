@@ -5,6 +5,8 @@ import 'package:tiktok/06_wishlist_page.dart';
 
 class HomePage extends StatelessWidget {
   final bool isLiked = false;
+
+  const HomePage({super.key});
   @override
   Widget build(BuildContext context) {
     return Stack(
