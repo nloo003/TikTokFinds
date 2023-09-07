@@ -5,6 +5,7 @@ import 'package:tiktok/04_inbox_page.dart';
 import 'package:tiktok/05_0_profile_page_self.dart';
 import 'package:tiktok/01_home_page.dart';
 import 'package:tiktok/05_1_profile_page_others.dart';
+import 'package:tiktok/06_wishlist_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,6 +36,8 @@ class _RootPageState extends State<RootPage> {
     HomePage(),
     const DiscoverPage(),
     const CreateStoryPage(),
+    const InboxPage(),
+    WishlistPage(),
     const ProfilePageOthers(),
     const ProfilePageSelf(),
   ];
@@ -64,7 +67,6 @@ class _RootPageState extends State<RootPage> {
     );
   }
 }
-
 class CustomBottomNavigationBar extends StatelessWidget {
   final int currentIndex;
   final ValueChanged<int> onTap;
