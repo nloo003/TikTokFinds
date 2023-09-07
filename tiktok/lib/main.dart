@@ -1,5 +1,4 @@
 // ignore_for_file: unused_import
-
 import 'package:flutter/material.dart';
 import 'package:tiktok/03_create_story_page.dart';
 import 'package:tiktok/02_discover_page.dart';
@@ -14,7 +13,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +25,7 @@ class MyApp extends StatelessWidget {
 }
 
 class RootPage extends StatefulWidget {
-  const RootPage({Key? key}) : super(key: key);
+  const RootPage({Key? key});
 
   @override
   State<RootPage> createState() => _RootPageState();
@@ -35,11 +34,11 @@ class RootPage extends StatefulWidget {
 class _RootPageState extends State<RootPage> {
   int currentPage = 0;
   final pages = [
-    const HomePage(),
+    HomePage(),
     const DiscoverPage(),
     const CreateStoryPage(),
-    // const InboxPage(),
-    const WishlistPage(),
+    const InboxPage(),
+    WishlistPage(),
     const ProfilePageOthers(),
     const ProfilePageSelf(),
   ];
@@ -49,7 +48,7 @@ class _RootPageState extends State<RootPage> {
       body: pages[currentPage],
       bottomNavigationBar: NavigationBar(
         destinations: const [
-          NavigationDestination(icon: Icon(Icons.home_outlined), label: 'Home'),
+          NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
           NavigationDestination(icon: Icon(Icons.search), label: 'Discover'),
           NavigationDestination(icon: Icon(Icons.plus_one), label: 'New'),
           NavigationDestination(icon: Icon(Icons.inbox), label: 'Inbox'),
