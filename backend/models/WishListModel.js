@@ -82,6 +82,10 @@ wishListSchema.statics.getWishListsByUserId = async function(req){
     return wishlists
 }
 
+wishListSchema.statics.getAllWishLists = async function(req){
+    const allWishLists = await this.find({}).sort({createdAt:-1})
+    return allWishLists
+}
 
 
 module.exports = mongoose.model('wishList', wishListSchema)

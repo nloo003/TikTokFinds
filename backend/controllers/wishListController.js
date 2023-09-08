@@ -40,10 +40,21 @@ const addItemToWishList = async(req,res) => {
     }
 }
 
+const getAllWishLists = async(req,res) => {
+    try{
+        const allWishLists = await WishList.getAllWishLists(req)
+        res.status(200).json(allWishLists)
+
+    } catch(error){
+        res.status(404).json(error)
+    }
+}
+
 
 module.exports = {
     createWishList,
     addItemToWishList,
     getWishListById,
-    getWishListsByUserId
+    getWishListsByUserId,
+    getAllWishLists
 }

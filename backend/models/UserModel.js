@@ -27,16 +27,20 @@ const userSchema = new Schema({
 },{timestamps:true})
 
 userSchema.statics.createUser = async function(req){
-    const { name,handle, following, followers, likes} = req.body
+    let { name,handle, following, followers, likes} = req.body
     let emptyFields = []
 
     if(!name) emptyFields.push("name")
     if (!handle) emptyFields.push("handle")
-    if (!following) emptyFields.push("following")
-    if (!followers) emptyFields.push("followers")
     if (!likes) emptyFields.push("likes")
     if(emptyFields.length > 0){
         throw Error("Please fill in all fields: " + emptyFields)
+    }
+    if (!following){
+        following = []
+    }
+    if (!followers){
+        followers = []
     }
     const user= await this.create({ name,handle,following,followers,likes,listOfWishLists:[]})
     return user
