@@ -117,14 +117,14 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {
-                      // redirect to the Wishlist page here
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const WishlistPage(),
-                        ),
-                      );
-                    },
+                    // onTap: () {
+                    //   // redirect to the Wishlist page here
+                    //   Navigator.of(context).push(
+                    //     MaterialPageRoute(
+                    //       builder: (context) => WishlistPage(),
+                    //     ),
+                    //   );
+                    // },
                     child: const Text(
                       '🎁 Wishlist',
                       style: TextStyle(
