@@ -40,7 +40,7 @@ class _RootPageState extends State<RootPage> {
     const DiscoverPage(),
     const FriendPageFactory(),
     // const InboxPage(),
-    const WishlistPage(),
+    // const WishlistPage(),
     const ProfilePageOthers(),
     const ProfilePageSelf(),
   ];
@@ -79,12 +79,6 @@ class _RootPageState extends State<RootPage> {
                   color: Colors.white70,
                 ),
                 label: 'Inbox'),
-            NavigationDestination(
-                icon: Icon(
-                  Icons.card_giftcard_outlined,
-                  color: Colors.white70,
-                ),
-                label: 'Wishlist'),
             NavigationDestination(
                 icon: Icon(
                   Icons.man,

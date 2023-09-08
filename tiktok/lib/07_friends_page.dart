@@ -1,6 +1,10 @@
 // ignore_for_file: file_names
 
+import 'package:http/http.dart' as http;
+import 'dart:math';
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:tiktok/model/user_model.dart';
 import 'package:tiktok/widgets/back_icon.dart';
 
 class User {
@@ -18,13 +22,49 @@ class FriendPageFactory extends StatefulWidget {
 }
 
 class _FriendPageFactoryState extends State<FriendPageFactory> {
+  
+  String initialUserId = "64faace4f139f050c81cdab1";
+  UserModel? testUser = null;
+
+  //To be Deleted
   List<User> users = [
     const User(username: "Meng Kiat", handle: "mkiats"),
     const User(username: "Nicky", handle: "NLOO"),
     const User(username: "Tharun", handle: "DARUN")
   ];
 
-  String username = "mkiats";
+  Future<UserModel> getUsers(String id) async {
+    try {
+      var url = Uri.parse("http://10.0.2.2::4000/api/user/profile/:$id");
+      final response = await http.get(url);
+
+      if (response.statusCode == 200){
+        final List<dynamic> responseData = jsonDecode(response.body);
+
+        final <UserModel> data = responseData.map(((json) =>  UserModel.fromJson(json))).toList();
+
+        return data;
+      }
+      else {
+        debugPrint('Request failed with status: ${response.statusCode}');
+        return [];
+      }
+    } catch (e) {
+      debugPrint('Error: $e');
+      return []; // Return an empty list in case of an exception
+    }
+    }
+    void initState() {
+      super.initState();
+      getUsers(initialUserId).then((items) {
+        setState(() {
+          testUser = List.from(items);
+        });
+      });
+    }
+  }
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
