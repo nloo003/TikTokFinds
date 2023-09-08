@@ -1,4 +1,3 @@
-// ignore_for_file: unused_import
 import 'package:flutter/material.dart';
 import 'package:tiktok/03_create_story_page.dart';
 import 'package:tiktok/02_discover_page.dart';
@@ -7,13 +6,14 @@ import 'package:tiktok/05_0_profile_page_self.dart';
 import 'package:tiktok/01_home_page.dart';
 import 'package:tiktok/05_1_profile_page_others.dart';
 import 'package:tiktok/06_wishlist_page.dart';
+import 'package:tiktok/06_1_wishlists_page.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
 }
 
 class RootPage extends StatefulWidget {
-  const RootPage({Key? key}) : super(key: key);
+  const RootPage({Key? key});
 
   @override
   State<RootPage> createState() => _RootPageState();
@@ -38,9 +38,10 @@ class _RootPageState extends State<RootPage> {
     const DiscoverPage(),
     const CreateStoryPage(),
     const InboxPage(),
-    const WishlistPage(),
+    // WishlistPage(),
+    const WishlistsPage(),
     const ProfilePageOthers(),
-    // const ProfilePageSelf(),
+    const ProfilePageSelf(),
   ];
   @override
   Widget build(BuildContext context) {
