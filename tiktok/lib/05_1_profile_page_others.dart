@@ -9,6 +9,7 @@ class ProfilePageOthers extends StatefulWidget {
 }
 
 class _ProfilePageOthersState extends State<ProfilePageOthers> {
+  String username = "random friend";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
