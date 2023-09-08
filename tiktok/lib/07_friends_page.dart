@@ -1,9 +1,10 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, unused_import
 
 import 'package:http/http.dart' as http;
 import 'dart:math';
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:tiktok/05_1_profile_page_others.dart';
 import 'package:tiktok/model/user_model.dart';
 import 'package:tiktok/widgets/back_icon.dart';
 
@@ -138,8 +139,15 @@ class _FriendPageFactoryState extends State<FriendPageFactory> {
                       child: ListTile(
                         title: Text(user.name),
                         subtitle: Text(user.handle),
-                        trailing:
-                            const Icon(Icons.notifications_active_outlined),
+                        trailing: const Icon(Icons.notifications_outlined),
+                        leading: GestureDetector(onTap: () {
+                          Navigator.of(context).push(
+                        MaterialPageRoute(builder: (BuildContext context) {
+                          return const ProfilePageOthers();
+                        }),
+                      );
+                        },
+                        child: const Icon(Icons.plus_one_outlined)),
                       ),
                     );
                   }),

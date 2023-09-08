@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:tiktok/03_create_story_page.dart';
 import 'package:tiktok/02_discover_page.dart';
@@ -38,10 +40,10 @@ class _RootPageState extends State<RootPage> {
   final pages = [
     HomePage(),
     const DiscoverPage(),
-    const CreateStoryPage(),
-    const InboxPage(),
+    // const CreateStoryPage(),
+    // const InboxPage(),
     // WishlistPage(),
-    const WishlistsPage(),
+    // const WishlistsPage(),
     const FriendPageFactory(),
     // const InboxPage(),
     // const WishlistPage(),

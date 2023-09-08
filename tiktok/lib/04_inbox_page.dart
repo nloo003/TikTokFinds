@@ -12,7 +12,7 @@ class _InboxPageState extends State<InboxPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: const Center(
         child: Text('inbox'),
       ),
       bottomNavigationBar: NavigationBar(

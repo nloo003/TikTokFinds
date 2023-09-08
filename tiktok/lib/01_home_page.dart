@@ -1,4 +1,4 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, unused_import
 import 'package:flutter/material.dart';
 import 'package:tiktok/06_wishlist_page.dart';
 
@@ -98,17 +98,17 @@ class HomePage extends StatelessWidget {
             ),
           ),
           // bottom left corner
-          Align(
+          const Align(
             alignment: Alignment.bottomLeft,
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: EdgeInsets.all(16.0),
               child: Align(
                 alignment: Alignment.bottomLeft,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.only(bottom: 4.0),
                       child: Text(
                         '@mkiats',
@@ -119,7 +119,7 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.only(bottom: 4.0),
                       child: Text(
                         'its the time of the year! 🎅🎄 #christmas #santa #gifts #snow',
@@ -129,7 +129,7 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.only(bottom: 4.0),
                       child: Text(
                         '🎵 All I Want For Christmas Is You',
@@ -139,22 +139,22 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                     ),
-                  ),
-                  GestureDetector(
-                    // onTap: () {
-                    //   // redirect to the Wishlist page here
-                    //   Navigator.of(context).push(
-                    //     MaterialPageRoute(
-                    //       builder: (context) => WishlistPage(),
-                    //     ),
-                    //   );
-                    // },
-                    child: const Text(
-                      '🎁 Wishlist',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14.0,
-                    ),
+                  
+                  // GestureDetector(
+                  //   onTap: () {
+                  //     // redirect to the Wishlist page here
+                  //     Navigator.of(context).push(
+                  //       MaterialPageRoute(
+                  //         builder: (context) => WishlistPage(),
+                  //       ),
+                  //     );
+                  //   },
+                  //   child: const Text(
+                  //     '🎁 Wishlist',
+                  //     style: TextStyle(
+                  //       color: Colors.white,
+                  //       fontSize: 14.0,
+                  //   ),))
                   ],
                 ),
               ),

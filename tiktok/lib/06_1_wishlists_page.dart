@@ -1,4 +1,7 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
+import 'package:tiktok/widgets/back_icon.dart';
 
 // Define a class to represent a wishlist item
 class WishlistItemModel {
@@ -61,16 +64,15 @@ class _WishlistsPageState extends State<WishlistsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        automaticallyImplyLeading: false,
+        leading: const BackIcon(),
+        title: const Text(
           'Your Wishlists',
           style: TextStyle(
             color: Colors.white,
           ),
         ),
         backgroundColor: Colors.black,
-        iconTheme: IconThemeData(
-          color: Colors.black,
-        ),
         actions: [
           IconButton(
             icon: const Icon(
@@ -96,17 +98,17 @@ class _WishlistsPageState extends State<WishlistsPage> {
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
                   wishlistName,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
               Container(
-                padding: EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16.0),
                 child: ListView.builder(
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: wishlist.length,
                   itemBuilder: (context, index) {
                     final item = wishlist[index];
@@ -140,7 +142,7 @@ class WishlistItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 16.0),
+      margin: const EdgeInsets.only(bottom: 16.0),
       child: Row(
         children: [
           Container(
@@ -154,21 +156,21 @@ class WishlistItem extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(width: 16.0),
+          const SizedBox(width: 16.0),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 itemName,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 4.0),
+              const SizedBox(height: 4.0),
               Text(
                 itemDescription,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 14.0,
                   color: Colors.grey,
                 ),

@@ -190,7 +190,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
                       ),
                     ],
                   ),
-                  trailing: Text(
+                  trailing: const Text(
                     'saveCount'
                   ),
                   leading: SizedBox(
