@@ -22,11 +22,14 @@ const wishListSchema = new Schema({
     creatorName:{
         type:String,
         required: true
+    },
+    wishListImage:{
+        type:String
     }
 },{timestamps:true})
 
 wishListSchema.statics.createWishList = async function(req){
-    const { name, description,creatorId, creatorName} = req.body
+    let { name, description,creatorId, creatorName, wishListImage} = req.body
     let emptyFields = []
 
     if(!name) emptyFields.push("name")
@@ -36,13 +39,15 @@ wishListSchema.statics.createWishList = async function(req){
     if(emptyFields.length > 0){
         throw Error("Please fill in all fields: " + emptyFields)
     }
-    const wishList = await this.create({ name, description,creatorId, creatorName, items:[]})
+    if (!wishListImage){
+        wishListImage = ""
+    }
+    const wishList = await this.create({ name, description,creatorId, creatorName, items:[], wishListImage})
     return wishList
 }
 
 wishListSchema.statics.addItem = async function(req){
-    const {wishListId, itemId, itemName, itemPrice} = req.body
-    console.log(req.body)
+    const {wishListId, itemId, itemName, itemPrice, itemImage} = req.body
     if (!mongoose.Types.ObjectId.isValid(wishListId)){
         throw Error("Invalid wish list ID")
     }
@@ -53,7 +58,7 @@ wishListSchema.statics.addItem = async function(req){
     if (!wishList){
         throw Error("No such wishList")
     }
-    wishList["items"].push({itemId, itemName, itemPrice})
+    wishList["items"].push({itemId, itemName, itemPrice, itemImage})
     const updatedWishList = await wishList.save()
     return updatedWishList
 }

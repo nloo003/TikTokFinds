@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
+import 'package:tiktok/06_wishlist_page.dart';
 
 class ProfilePageSelf extends StatefulWidget {
   const ProfilePageSelf({super.key});
@@ -137,7 +138,13 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 5, 5, 0),
                   child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (BuildContext context) {
+                            return const WishlistPage();
+                          }),
+                        );
+                      },
                       style: ButtonStyle(
                           backgroundColor:
                               MaterialStateProperty.all(Colors.blueGrey)),
