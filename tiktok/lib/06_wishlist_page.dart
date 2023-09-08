@@ -1,14 +1,16 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
+import '06_1_wishlists_page.dart';
 
-class WishlistPage extends StatefulWidget {
-  const WishlistPage({super.key});
+class WishlistItemsPage extends StatefulWidget {
+  final List<WishlistItem> wishListItemsListObj;
+  const WishlistItemsPage({super.key, required this.wishListItemsListObj});
 
   @override
-  State<WishlistPage> createState() => _WishlistPageState();
+  State<WishlistItemsPage> createState() => _WishlistItemsPageState();
 }
 
-class _WishlistPageState extends State<WishlistPage> {
+class _WishlistItemsPageState extends State<WishlistItemsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,36 +31,45 @@ class _WishlistPageState extends State<WishlistPage> {
         widthFactor: 1,
         child: Container(
           padding: const EdgeInsets.all(16.0),
-          child: const Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              WishlistItem(
-                itemName: 'Keyboard',
-                itemDescription:
-                    'Mechanical, Tactile switches, Ergonomic, Wireless',
-                itemImage:
-                    'https://images.unsplash.com/photo-1595044426077-d36d9236d54a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                WishlistItem(
+                    itemName: widget.wishListItemsListObj[0].itemName,
+                    itemDescription:
+                        widget.wishListItemsListObj[0].itemDescription,
+                    itemImage: widget.wishListItemsListObj[0].itemImage),
+                WishlistItem(
+                    itemName: widget.wishListItemsListObj[1].itemName,
+                    itemDescription:
+                        widget.wishListItemsListObj[1].itemDescription,
+                    itemImage: widget.wishListItemsListObj[1].itemImage),
+              ]
+              // WishlistItem(
+              //   itemName: 'Keyboard',
+              //   itemDescription:
+              //       'Mechanical, Tactile switches, Ergonomic, Wireless',
+              //   itemImage:
+              //       'https://images.unsplash.com/photo-1595044426077-d36d9236d54a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+              // ),
+              // WishlistItem(
+              //   itemName: 'Shampoo',
+              //   itemDescription: 'Natural ingredients, Everyday use',
+              //   itemImage:
+              //       'https://images.unsplash.com/photo-1629196869698-2ce173dacc24?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80',
+              // ),
+              // WishlistItem(
+              //   itemName: 'Coffee beans',
+              //   itemDescription: 'Arabica, Roasted',
+              //   itemImage:
+              //       'https://images.unsplash.com/photo-1625021659159-f63f546d74a7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80',
+              // ),
+              // WishlistItem(
+              //   itemName: 'Diffuser',
+              //   itemDescription: 'Essential oil diffuser, Scented oil diffuser',
+              //   itemImage:
+              //       'https://images.unsplash.com/photo-1625480493029-abd01cd6061d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
               ),
-              WishlistItem(
-                itemName: 'Shampoo',
-                itemDescription: 'Natural ingredients, Everyday use',
-                itemImage:
-                    'https://images.unsplash.com/photo-1629196869698-2ce173dacc24?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80',
-              ),
-              WishlistItem(
-                itemName: 'Coffee beans',
-                itemDescription: 'Arabica, Roasted',
-                itemImage:
-                    'https://images.unsplash.com/photo-1625021659159-f63f546d74a7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80',
-              ),
-              WishlistItem(
-                itemName: 'Diffuser',
-                itemDescription: 'Essential oil diffuser, Scented oil diffuser',
-                itemImage:
-                    'https://images.unsplash.com/photo-1625480493029-abd01cd6061d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-              ),
-            ],
-          ),
         ),
       ),
     );
