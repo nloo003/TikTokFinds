@@ -23,11 +23,14 @@ const userSchema = new Schema({
     likes:{
         type: Number,
         required: true
+    },
+    profilePicUrl:{
+        type: String
     }
 },{timestamps:true})
 
 userSchema.statics.createUser = async function(req){
-    let { name,handle, following, followers, likes} = req.body
+    let { name,handle, following, followers, likes ,profilePicUrl} = req.body
     let emptyFields = []
 
     if(!name) emptyFields.push("name")
@@ -42,7 +45,11 @@ userSchema.statics.createUser = async function(req){
     if (!followers){
         followers = []
     }
-    const user= await this.create({ name,handle,following,followers,likes,listOfWishLists:[]})
+
+    if(!profilePicUrl){
+        profilePicUrl = ""
+    }
+    const user= await this.create({ name,handle,following,followers,likes,listOfWishLists:[], profilePicUrl})
     return user
 }
 
