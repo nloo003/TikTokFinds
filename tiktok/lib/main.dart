@@ -6,6 +6,7 @@ import 'package:tiktok/04_inbox_page.dart';
 import 'package:tiktok/05_0_profile_page_self.dart';
 import 'package:tiktok/01_home_page.dart';
 import 'package:tiktok/05_1_profile_page_others.dart';
+import 'package:tiktok/06_1_wishlists_page.dart';
 import 'package:tiktok/06_wishlist_page.dart';
 
 void main() {
@@ -39,8 +40,8 @@ class _RootPageState extends State<RootPage> {
     const CreateStoryPage(),
     const InboxPage(),
     const WishlistPage(),
-    const ProfilePageOthers(),
-    // const ProfilePageSelf(),
+    // const ProfilePageOthers(),
+    const ProfilePageSelf(),
   ];
   @override
   Widget build(BuildContext context) {
