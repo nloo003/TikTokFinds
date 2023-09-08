@@ -7,138 +7,156 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        // image content
-        Image.network(
-          'https://images.unsplash.com/photo-1529973625058-a665431328fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80',
-          fit: BoxFit.cover,
-          width: double.infinity,
-          height: double.infinity,
-        ),
-        // bottom right side
-        Align(
-          alignment: Alignment.bottomRight,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                IconButton(
-                  icon: const Icon(
-                    Icons.person_add,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {
-                    // person add action
-                  },
-                ),
-                IconButton(
-                  icon: Icon(
-                    Icons.favorite_border,
-                    color: isLiked ? Colors.red : Colors.white,
-                  ),
-                  onPressed: () {
-                    // like action
-                    isLiked = !isLiked;
-                  },
-                ),
-                IconButton(
-                  icon: const Icon(
-                    Icons.comment,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {
-                    // comment action
-                  },
-                ),
-                IconButton(
-                  icon: const Icon(
-                    Icons.share,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {
-                    // share action
-                  },
-                ),
-                IconButton(
-                  icon: const Icon(
-                    Icons.person,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {
-                    // view profile action
-                  },
-                ),
-              ],
+    return Scaffold(
+      body: Stack(
+        children: [
+          // image content
+          Image.network(
+            'https://images.unsplash.com/photo-1529973625058-a665431328fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80',
+            fit: BoxFit.cover,
+            width: double.infinity,
+            height: double.infinity,
+          ),
+          Positioned(
+            top: 0,
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(15, 25, 0, 0),
+                child: Row(children: [
+                  GestureDetector(
+                    child: const Icon(
+                      Icons.live_tv_outlined,
+                      color: Colors.white,
+                    ),
+                  )
+                ]),
+              ),
             ),
           ),
-        ),
-        // bottom left corner
-        Align(
-          alignment: Alignment.bottomLeft,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Align(
-              alignment: Alignment.bottomLeft,
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(bottom: 4.0),
-                    child: Text(
-                      '@mkiats',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16.0,
-                      ),
+                  IconButton(
+                    icon: const Icon(
+                      Icons.person_add,
+                      color: Colors.white,
                     ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(bottom: 4.0),
-                    child: Text(
-                      'its the time of the year! 🎅🎄 #christmas #santa #gifts #snow',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14.0,
-                      ),
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(bottom: 4.0),
-                    child: Text(
-                      '🎵 All I Want For Christmas Is You',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14.0,
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      // redirect to the Wishlist page here
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const WishlistPage(),
-                        ),
-                      );
+                    onPressed: () {
+                      // TODO: person add action
                     },
-                    child: const Text(
-                      '🎁 Wishlist',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14.0,
-                      ),
+                  ),
+                  IconButton(
+                    icon: Icon(
+                      Icons.favorite_border,
+                      color: isLiked ? Colors.red : Colors.white,
                     ),
+                    onPressed: () {
+                      // like action
+                      isLiked = !isLiked;
+                    },
+                  ),
+                  IconButton(
+                    icon: const Icon(
+                      Icons.comment,
+                      color: Colors.white,
+                    ),
+                    onPressed: () {
+                      // comment action
+                    },
+                  ),
+                  IconButton(
+                    icon: const Icon(
+                      Icons.share,
+                      color: Colors.white,
+                    ),
+                    onPressed: () {
+                      // share action
+                    },
+                  ),
+                  IconButton(
+                    icon: const Icon(
+                      Icons.person,
+                      color: Colors.white,
+                    ),
+                    onPressed: () {
+                      // view profile action
+                    },
                   ),
                 ],
               ),
             ),
           ),
-        ),
-      ],
+          // bottom left corner
+          Align(
+            alignment: Alignment.bottomLeft,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Align(
+                alignment: Alignment.bottomLeft,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(bottom: 4.0),
+                      child: Text(
+                        '@mkiats',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16.0,
+                        ),
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(bottom: 4.0),
+                      child: Text(
+                        'its the time of the year! 🎅🎄 #christmas #santa #gifts #snow',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14.0,
+                        ),
+                      ),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(bottom: 4.0),
+                      child: Text(
+                        '🎵 All I Want For Christmas Is You',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14.0,
+                        ),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        // redirect to the Wishlist page here
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const WishlistPage(),
+                          ),
+                        );
+                      },
+                      child: const Text(
+                        '🎁 Wishlist',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14.0,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

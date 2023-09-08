@@ -37,10 +37,10 @@ class _RootPageState extends State<RootPage> {
     HomePage(),
     const DiscoverPage(),
     const CreateStoryPage(),
-    const InboxPage(),
+    // const InboxPage(),
     const WishlistPage(),
     const ProfilePageOthers(),
-    // const ProfilePageSelf(),
+    const ProfilePageSelf(),
   ];
   @override
   Widget build(BuildContext context) {
