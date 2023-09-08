@@ -94,12 +94,11 @@ class _DiscoverPageState extends State<DiscoverPage> {
                     Navigator.pop(context); // Add navigation logic here
                   },
                 ),
-                const SizedBox(width: 5.0), // Gap between back button and search bar
+                const SizedBox(
+                    width: 5.0), // Gap between back button and search bar
                 Expanded(
                   child: Container(
-                    constraints: const BoxConstraints(
-                      maxHeight: 40.0
-                    ),
+                    constraints: const BoxConstraints(maxHeight: 40.0),
                     child: Center(
                       child: TextField(
                         controller: textController,
@@ -138,19 +137,15 @@ class _DiscoverPageState extends State<DiscoverPage> {
                 ),
                 const SizedBox(width: 10.0),
                 TextButton(
-                  onPressed: () {
-                    // debugPrint('Click on Search');
-                    // query = '';
-                  },
-                  child: const Text(
-                    'Search',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16.0,
-                      color: Color.fromARGB(255, 249, 85, 85)
-                    )
-                  )
-                )
+                    onPressed: () {
+                      // debugPrint('Click on Search');
+                      // query = '';
+                    },
+                    child: const Text('Search',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16.0,
+                            color: Color.fromARGB(255, 249, 85, 85))))
               ],
             ),
           ),

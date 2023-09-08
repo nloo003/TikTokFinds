@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
+import 'package:tiktok/widgets/back_icon.dart';
 
 class WishlistPage extends StatefulWidget {
   const WishlistPage({super.key});
@@ -20,9 +21,8 @@ class _WishlistPageState extends State<WishlistPage> {
           ),
         ),
         backgroundColor: Colors.black,
-        iconTheme: const IconThemeData(
-          color: Colors.black, // Icon color
-        ),
+        automaticallyImplyLeading: false,
+        leading: const BackIcon(),
       ),
       body: FractionallySizedBox(
         heightFactor: 1,
