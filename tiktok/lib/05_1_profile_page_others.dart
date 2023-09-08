@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
+import 'package:tiktok/widgets/back_icon.dart';
 
 class ProfilePageOthers extends StatefulWidget {
   const ProfilePageOthers({super.key});
@@ -15,7 +16,7 @@ class _ProfilePageOthersState extends State<ProfilePageOthers> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        leading: const Icon(Icons.arrow_back_ios),
+        leading: const BackIcon(),
         centerTitle: true,
         title: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),

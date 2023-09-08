@@ -7,6 +7,7 @@ import 'package:tiktok/05_0_profile_page_self.dart';
 import 'package:tiktok/01_home_page.dart';
 import 'package:tiktok/05_1_profile_page_others.dart';
 import 'package:tiktok/06_wishlist_page.dart';
+import 'package:tiktok/07_friends_page.dart';
 import 'package:tiktok/widgets/upload_icon.dart';
 
 void main() {
@@ -37,7 +38,7 @@ class _RootPageState extends State<RootPage> {
   final pages = [
     HomePage(),
     const DiscoverPage(),
-    const CreateStoryPage(),
+    const FriendPageFactory(),
     // const InboxPage(),
     const WishlistPage(),
     const ProfilePageOthers(),
