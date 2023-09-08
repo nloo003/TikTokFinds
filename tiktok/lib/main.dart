@@ -37,9 +37,9 @@ class _RootPageState extends State<RootPage> {
     HomePage(),
     const DiscoverPage(),
     const CreateStoryPage(),
-    const InboxPage(),
+    // const InboxPage(),
     const WishlistPage(),
-    // const ProfilePageOthers(),
+    const ProfilePageOthers(),
     const ProfilePageSelf(),
   ];
   @override
