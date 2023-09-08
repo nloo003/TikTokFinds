@@ -1,5 +1,7 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
+import 'dart:math';
+import 'model/wishlist_model.dart';
 
 class DiscoverPage extends StatefulWidget {
   const DiscoverPage({super.key});
@@ -10,20 +12,31 @@ class DiscoverPage extends StatefulWidget {
 
 class _DiscoverPageState extends State<DiscoverPage> {
 
-  static List<String> initDisplayList = ["hi", "hello"];
-  String word = "";
+  List<String> hintTextList = ["iPhone 11 pro case", "Travel adapter", ];
+  static List<WishlistModel> wishlistList = [
+    WishlistModel("atitle", "adesc", "acreatorId", "acreatorName", "https://images.unsplash.com/photo-1529973625058-a665431328fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"),
+    WishlistModel("btitle", "bdesc", "bcreatorId", "bcreatorName", "https://images.unsplash.com/photo-1529973625058-a665431328fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"),
+    WishlistModel("ctitle", "cdesc", "ccreatorId", "ccreatorName", "https://images.unsplash.com/photo-1529973625058-a665431328fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"),
+  ];
+  List<WishlistModel> displayList = List.from(wishlistList);
+  final _random = Random();
+  String hintWord = "";
+  bool hintWordSet = false;
 
-  void updateWord(String value) {
+  void updateList(String value) {
     setState(() {
-      // displayList = mainList.where((element) => 
-      //   element.toLowerCase().contains(value.toLowerCase())).toList();
-      word = value;
+      displayList = wishlistList.where((element) => 
+        element.name!.toLowerCase().contains(value.toLowerCase())).toList();
     });
-    debugPrint(word);
   }
 
   @override
   Widget build(BuildContext context) {
+    if (!hintWordSet){
+      hintWord = hintTextList[_random.nextInt(hintTextList.length)];
+      hintWordSet = true;
+    }
+
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -45,18 +58,25 @@ class _DiscoverPageState extends State<DiscoverPage> {
                     ),
                     child: Center(
                       child: TextField(
-                        onChanged: (value) => updateWord(value),
-                        enableInteractiveSelection: false,
+                        onChanged: (value) => updateList(value),
                         decoration: InputDecoration(
-                          prefixIcon: const Icon(Icons.search),
+                          prefixIcon: const Icon(
+                            Icons.search,
+                            color: Colors.grey,
+                          ),
                           border: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.grey, width: 2.0),
                             borderRadius: BorderRadius.circular(8.0),
                           ),
-                          contentPadding: const EdgeInsets.symmetric(vertical: 5.0),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.grey, width: 2.0),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          contentPadding: const EdgeInsets.only(top: 5.0),
+                          hintText: hintWord,
                         ),
                         textAlignVertical: TextAlignVertical.center,
                         cursorColor: const Color.fromARGB(255, 249, 85, 85),
-                          // Add your search logic here
                       ),
                     ),
                   ),
@@ -79,70 +99,39 @@ class _DiscoverPageState extends State<DiscoverPage> {
               ],
             ),
           ),
-          const Expanded(
-            child: Column(
-              children: [
-                SizedBox(height: 10.0),
-                Row(
-                  children: [
-                    SizedBox(width: 15.0),
-                    Text(
-                      'You may like',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20.0,
-                        color: Colors.black
-                      )
-                    ),
-                  ],
+          const SizedBox(height: 20.0),
+          Expanded(
+            child: ListView.builder(
+              padding: const EdgeInsets.only(left: 10.0),
+              itemCount: displayList.length,
+              itemBuilder: (context, index) => ListTile(
+                contentPadding: const EdgeInsets.all(8.0),
+                title: Text(
+                  displayList[index].name!,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 16.0, 
+                  ),
                 ),
-                SizedBox(height: 10.0,),
-                Row(
-                  children: [
-                    SizedBox(width: 20.0),
-                    Text(
-                      '•  ',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18.0,
-                        color: Colors.black
-                      )
-                    ),
-                    Text(
-                      'iPhone 11 pro case',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18.0,
-                        color: Colors.black
-                      )
-                    ),
-                  ],
+                subtitle: Text(
+                  displayList[index].description!,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-                SizedBox(height: 10.0,),
-                Row(
-                  children: [
-                    SizedBox(width: 20.0),
-                    Text(
-                      '•  ',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18.0,
-                        color: Colors.black
-                      )
-                    ),
-                    Text(
-                      'Travel adapter',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18.0,
-                        color: Colors.black
-                      )
-                    ),
-                  ],
+                trailing: Text(
+                  displayList[index].creatorName!
                 ),
-                SizedBox(height: 10.0,),
-              ],
-            )
+                leading: SizedBox(
+                  width: 60,
+                  height: 60,
+                  child: Image.network(
+                    displayList[index].imageUrl!,
+                    fit: BoxFit.cover,
+                  ),
+                )
+              ),
+            ),
           ),
         ],
       ),
