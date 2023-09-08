@@ -22,48 +22,42 @@ class FriendPageFactory extends StatefulWidget {
 }
 
 class _FriendPageFactoryState extends State<FriendPageFactory> {
-  
   String initialUserId = "64faace4f139f050c81cdab1";
-  UserModel? testUser = null;
+  UserModel user = const UserModel("Meng Kiat", "mkiats", ["following"],
+      ["followers"], 123321, "abcdefghijkl", "createdAt", "updatedAt", 123321);
 
-  //To be Deleted
-  List<User> users = [
-    const User(username: "Meng Kiat", handle: "mkiats"),
-    const User(username: "Nicky", handle: "NLOO"),
-    const User(username: "Tharun", handle: "DARUN")
-  ];
+  List<UserModel> userList = [];
 
-  Future<UserModel> getUsers(String id) async {
-    try {
-      var url = Uri.parse("http://10.0.2.2::4000/api/user/profile/:$id");
-      final response = await http.get(url);
+  // Future<UserModel> getUsers(String id) async {
+  //   try {
+  //     var url = Uri.parse("http://10.0.2.2::4000/api/user/profile/:$id");
+  //     final response = await http.get(url);
 
-      if (response.statusCode == 200){
-        final List<dynamic> responseData = jsonDecode(response.body);
+  //     if (response.statusCode == 200){
+  //       final List<dynamic> responseData = jsonDecode(response.body);
 
-        final <UserModel> data = responseData.map(((json) =>  UserModel.fromJson(json))).toList();
+  //       final <UserModel> data = responseData.map(((json) =>  UserModel.fromJson(json))).toList();
 
-        return data;
-      }
-      else {
-        debugPrint('Request failed with status: ${response.statusCode}');
-        return [];
-      }
-    } catch (e) {
-      debugPrint('Error: $e');
-      return []; // Return an empty list in case of an exception
-    }
-    }
-    void initState() {
-      super.initState();
-      getUsers(initialUserId).then((items) {
-        setState(() {
-          testUser = List.from(items);
-        });
-      });
-    }
-  }
-  
+  //       return data;
+  //     }
+  //     else {
+  //       debugPrint('Request failed with status: ${response.statusCode}');
+  //       return [];
+  //     }
+  //   } catch (e) {
+  //     debugPrint('Error: $e');
+  //     return []; // Return an empty list in case of an exception
+  //   }
+  //   }
+  //   void initState() {
+  //     super.initState();
+  //     getUsers(initialUserId).then((items) {
+  //       setState(() {
+  //         testUser = List.from(items);
+  //       });
+  //     });
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +66,7 @@ class _FriendPageFactoryState extends State<FriendPageFactory> {
         automaticallyImplyLeading: false,
         leading: const BackIcon(),
         backgroundColor: Colors.black,
-        title: Text(username),
+        title: Text(user.name),
         centerTitle: true,
         actions: [
           Padding(
@@ -137,12 +131,12 @@ class _FriendPageFactoryState extends State<FriendPageFactory> {
             ),
             Expanded(
               child: ListView.builder(
-                  itemCount: users.length,
+                  itemCount: userList.length,
                   itemBuilder: (context, index) {
-                    final user = users[index];
+                    final user = userList[index];
                     return Card(
                       child: ListTile(
-                        title: Text(user.username),
+                        title: Text(user.name),
                         subtitle: Text(user.handle),
                         trailing:
                             const Icon(Icons.notifications_active_outlined),
