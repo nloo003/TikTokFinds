@@ -123,16 +123,16 @@ class _ProfilePageOthersState extends State<ProfilePageOthers> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(Colors.blueGrey)),
-                    child: const Text("Edit Profile"),
-                  ),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
+                //   child: ElevatedButton(
+                //     onPressed: () {},
+                //     style: ButtonStyle(
+                //         backgroundColor:
+                //             MaterialStateProperty.all(Colors.blueGrey)),
+                //     child: const Text("Edit Profile"),
+                //   ),
+                // ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(5, 5, 5, 0),
                   child: ElevatedButton(
@@ -140,7 +140,7 @@ class _ProfilePageOthersState extends State<ProfilePageOthers> {
                     style: ButtonStyle(
                         backgroundColor:
                             MaterialStateProperty.all(Colors.blueGrey)),
-                    child: const Text("Add Friends"),
+                    child: const Text("+ Add Friend"),
                   ),
                 ),
                 Padding(
@@ -150,7 +150,7 @@ class _ProfilePageOthersState extends State<ProfilePageOthers> {
                         Navigator.of(context).push(
                           MaterialPageRoute(builder: (BuildContext context) {
                             return const WishlistsPage(
-                              // Pass userId as argument NICKY 
+                              // Pass userId as argument NICKY
                               userId: "",
                               indivList: false,
                               wishlistId: "",
@@ -165,36 +165,36 @@ class _ProfilePageOthersState extends State<ProfilePageOthers> {
                 )
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.blueGrey),
-                    foregroundColor: MaterialStateProperty.all(Colors.white),
-                    minimumSize:
-                        MaterialStateProperty.all<Size>(const Size(20, 20))),
-                child: const Text("+ Add Bio",
-                    style: TextStyle(
-                        fontSize: 12, overflow: TextOverflow.visible)),
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                  child: OutlinedButton(
-                    style: const ButtonStyle(alignment: Alignment.center),
-                    onPressed: () {},
-                    child: const Row(children: [
-                      Icon(Icons.photo),
-                      Text("Add Yours", style: TextStyle(fontSize: 12)),
-                    ]),
-                  ),
-                ),
-              ],
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+            //   child: ElevatedButton(
+            //     onPressed: () {},
+            //     style: ButtonStyle(
+            //         backgroundColor: MaterialStateProperty.all(Colors.blueGrey),
+            //         foregroundColor: MaterialStateProperty.all(Colors.white),
+            //         minimumSize:
+            //             MaterialStateProperty.all<Size>(const Size(20, 20))),
+            //     child: const Text("+ Add Bio",
+            //         style: TextStyle(
+            //             fontSize: 12, overflow: TextOverflow.visible)),
+            //   ),
+            // ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     Padding(
+            //       padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+            //       child: OutlinedButton(
+            //         style: const ButtonStyle(alignment: Alignment.center),
+            //         onPressed: () {},
+            //         child: const Row(children: [
+            //           Icon(Icons.photo),
+            //           Text("Add Yours", style: TextStyle(fontSize: 12)),
+            //         ]),
+            //       ),
+            //     ),
+            //   ],
+            // ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -211,32 +211,32 @@ class _ProfilePageOthersState extends State<ProfilePageOthers> {
                     child: const Icon(Icons.favorite_outline)),
               ],
             ),
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 25),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.picture_in_picture_alt_outlined,
-                        color: Colors.white,
-                      ),
-                      const SizedBox(
-                        child: Text(
-                            "Share a fun video you've recorded recently",
-                            style: TextStyle(color: Colors.white)),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: const Text(
-                          "Upload",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                    ]),
-              ),
-            )
+            // Center(
+            //   child: Padding(
+            //     padding: const EdgeInsets.symmetric(vertical: 25),
+            //     child: Column(
+            //         mainAxisAlignment: MainAxisAlignment.center,
+            //         crossAxisAlignment: CrossAxisAlignment.center,
+            //         children: [
+            //           const Icon(
+            //             Icons.picture_in_picture_alt_outlined,
+            //             color: Colors.white,
+            //           ),
+            //           const SizedBox(
+            //             child: Text(
+            //                 "Share a fun video you've recorded recently",
+            //                 style: TextStyle(color: Colors.white)),
+            //           ),
+            //           ElevatedButton(
+            //             onPressed: () {},
+            //             child: const Text(
+            //               "Upload",
+            //               style: TextStyle(color: Colors.white),
+            //             ),
+            //           ),
+            //         ]),
+            //   ),
+            // )
           ]),
         ),
       ),
