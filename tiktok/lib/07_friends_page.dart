@@ -66,7 +66,7 @@ class _FriendPageFactoryState extends State<FriendPageFactory> {
         automaticallyImplyLeading: false,
         leading: const BackIcon(),
         backgroundColor: Colors.black,
-        title: Text(user.name),
+        title: Text(user.name!),
         centerTitle: true,
         actions: [
           Padding(
@@ -136,8 +136,8 @@ class _FriendPageFactoryState extends State<FriendPageFactory> {
                     final user = userList[index];
                     return Card(
                       child: ListTile(
-                        title: Text(user.name),
-                        subtitle: Text(user.handle),
+                        title: Text(user.name!),
+                        subtitle: Text(user.handle!),
                         trailing: const Icon(Icons.notifications_outlined),
                         leading: GestureDetector(onTap: () {
                           Navigator.of(context).push(

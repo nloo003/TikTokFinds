@@ -75,7 +75,7 @@ class _ProfilePageOthersState extends State<ProfilePageOthers> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  user.handle,
+                  user.handle!,
                   style: const TextStyle(color: Colors.white),
                 ),
                 const Icon(
@@ -91,7 +91,7 @@ class _ProfilePageOthersState extends State<ProfilePageOthers> {
                   padding: const EdgeInsets.fromLTRB(5, 15, 20, 5),
                   child: Column(
                     children: [
-                      Text(user.following.length.toString(),
+                      Text(user.following!.length.toString(),
                           style: const TextStyle(color: Colors.white)),
                       const Text("Following",
                           style: TextStyle(color: Colors.white))
@@ -102,7 +102,7 @@ class _ProfilePageOthersState extends State<ProfilePageOthers> {
                   padding: const EdgeInsets.fromLTRB(5, 15, 5, 5),
                   child: Column(
                     children: [
-                      Text(user.followers.length.toString(),
+                      Text(user.followers!.length.toString(),
                           style: const TextStyle(color: Colors.white)),
                       const Text("Followers",
                           style: TextStyle(color: Colors.white))

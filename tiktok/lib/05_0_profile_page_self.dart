@@ -14,7 +14,7 @@ class ProfilePageSelf extends StatefulWidget {
 }
 
 class _ProfilePageSelfState extends State<ProfilePageSelf> {
-  String userId = '64fbec2d3c612b13b658d6cd';
+  String userId = '64fbf5b43c612b13b658d6eb';
   UserModel user = UserModel("", "", "", [], [], 0, "");
   
   @override
@@ -39,7 +39,7 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
               debugPrint("Username clicked");
             },
             child: Text(
-              user.name,
+              user.name!,
               style: const TextStyle(color: Colors.white),
             ),
           ),
@@ -88,7 +88,7 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  user.handle,
+                  user.handle!,
                   style: const TextStyle(color: Colors.white),
                 ),
                 const Icon(
@@ -112,7 +112,7 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                     },
                     child: Column(
                       children: [
-                        Text(user.following.length.toString(),
+                        Text(user.following!.length.toString(),
                             style: const TextStyle(color: Colors.white)),
                         const Text("Following",
                             style: TextStyle(color: Colors.white))
@@ -132,7 +132,7 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                     },
                     child: Column(
                       children: [
-                        Text(user.followers.length.toString(),
+                        Text(user.followers!.length.toString(),
                             style: const TextStyle(color: Colors.white)),
                         const Text("Followers",
                             style: TextStyle(color: Colors.white))
