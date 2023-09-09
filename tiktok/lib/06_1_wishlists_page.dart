@@ -4,6 +4,7 @@ import 'package:tiktok/widgets/back_icon.dart';
 import 'model/item_model.dart';
 import 'model/wishlist_model.dart';
 import 'model/api.dart';
+import 'model/user_model.dart';
 
 // Define a class to represent a wishlist item
 class WishlistItemModel {
@@ -73,6 +74,7 @@ class _WishlistsPageState extends State<WishlistsPage> {
   /////////////////////////////////////////////////////////////
 
   List<WishlistModel> allWishlist = [];
+  WishlistModel indivWishlist = WishlistModel("", "", "", [], "", "", "");
 
   @override
   void initState() {
@@ -89,17 +91,121 @@ class _WishlistsPageState extends State<WishlistsPage> {
   Widget build(BuildContext context) {
     debugPrint(widget.wishlistId);
     
+    // If only want to display an individual list
     if (widget.indivList != null && widget.indivList == true) {
       for(WishlistModel wishlist in allWishlist) {
           if (wishlist.id == widget.wishlistId) {
-            WishlistModel indivWishlist = wishlist;
+            indivWishlist = wishlist;
             break;
           }
       }
 
-      return Scaffold();
+      return Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          leading: const BackIcon(),
+          title: Row(
+            children: [
+              // Image
+              Text(
+                "",
+                style: const TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+          backgroundColor: Colors.black,
+        ),
+        body: ListView.builder(
+          itemCount: allWishlist.length,
+          itemBuilder: (context, index) {
+            final wishlist = allWishlist[index];
+            final wishlistName = wishlist.name;
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 100,
+                        height: 100,
+                        child: Image.network(
+                          // indivWishlist.wishListImage!,
+                          'https://images.unsplash.com/photo-1529973625058-a665431328fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      SizedBox(width: 10.0),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Public List",
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          SizedBox(height: 10.0),
+                          Text(
+                            wishlistName!,
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 15.0),
+                          Row(
+                            children: [
+                              CircleAvatar(
+                                radius: 10,
+                                backgroundImage: NetworkImage(
+                                  'https://images.unsplash.com/photo-1529973625058-a665431328fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80',
+                                ),
+                              ),
+                              SizedBox(width: 10.0,),
+                              Text( // LINK TO PROFILE
+                                indivWishlist.creatorName!,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(16.0),
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: wishlist.items!.length,
+                    itemBuilder: (context, index) {
+                      final item = wishlist.items![index];
+                      return WishlistItem(
+                        itemId: item.itemId,
+                        itemName: item.itemName,
+                        itemPrice: item.itemPrice,
+                        // itemDescription: item.itemDescription,
+                        itemImage: item.itemImage,
+                      );
+                    },
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
+      );
     }
-    else {}
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -212,9 +318,9 @@ class WishlistItem extends StatelessWidget {
               ),
               const SizedBox(height: 4.0),
               Text(
-                itemPrice.toString(),
+                "\$${itemPrice.toString()}",
                 style: const TextStyle(
-                  fontSize: 14.0,
+                  fontSize: 16.0,
                   color: Colors.grey,
                 ),
               ),

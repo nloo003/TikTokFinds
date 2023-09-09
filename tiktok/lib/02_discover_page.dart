@@ -138,7 +138,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
                     MaterialPageRoute(
                       builder: (context) => WishlistsPage(
                         userId: displayList[index].creatorId,
-                        indivList: false,
+                        indivList: true,
                         wishlistId: displayList[index].id,
                       ),
                     ),
