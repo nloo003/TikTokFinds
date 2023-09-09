@@ -1,5 +1,6 @@
 // ignore_for_file: file_names, use_key_in_widget_constructors, prefer_const_constructors_in_immutables
 import 'package:flutter/material.dart';
+import 'package:tiktok/model/item_model.dart';
 import 'package:tiktok/widgets/back_icon.dart';
 import 'model/wishlist_model.dart';
 import 'model/api.dart';
