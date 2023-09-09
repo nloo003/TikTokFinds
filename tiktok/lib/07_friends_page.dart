@@ -20,9 +20,20 @@ class FriendPage extends StatefulWidget {
 class _FriendPageState extends State<FriendPage> {
   List<UserModel> userList = [];
 
+  Future<UserModel> fetchData(String userId) async {
+    try {
+      UserModel tempUser;
+      tempUser = await getUser(userId);
+      debugPrint(tempUser.name);
+      return tempUser;
+    } catch (e) {
+      debugPrint("fetch data failed: $userId");
+      throw Error();
+    }
+  }
+
   String userId = '64fbf5b43c612b13b658d6eb';
   UserModel user = const UserModel("", "", "", [], [], 0, "");
-
   @override
   void initState() {
     super.initState();
@@ -32,6 +43,22 @@ class _FriendPageState extends State<FriendPage> {
         user = item;
       });
     });
+
+    // for (int i = 0; i < widget.userIdList.length; i++) {
+    //   debugPrint("For loop start");
+    //   setState(() {
+    //     getUser(widget.userIdList[i]).then((value) {
+    //       userList.add(value);
+    //     });
+    //   });
+
+    //   // getUser(widget.userIdList[i]).then((item) {
+    //   //   debugPrint("GetUser");
+    //   //   setState(() async {
+    //   //     userList!.add(item);
+    //   //   });
+    //   // });
+    // }
   }
 
   @override
@@ -111,25 +138,9 @@ class _FriendPageState extends State<FriendPage> {
                     debugPrint(widget.userIdList.toString());
                     debugPrint(widget.userIdList.length.toString());
 
-                    for (int i = 0; i < widget.userIdList.length; i++) {
-                      debugPrint("For loop start");
-                      setState(() async {
-                        getUser(widget.userIdList[i]).then((value) {
-                          userList!.add(value);
-                        });
-                      });
-
-                      // getUser(widget.userIdList[i]).then((item) {
-                      //   debugPrint("GetUser");
-                      //   setState(() async {
-                      //     userList!.add(item);
-                      //   });
-                      // });
-                    }
-
-                    debugPrint(userList![0].name);
+                    debugPrint(userList[0].name);
                     debugPrint("done");
-                    UserModel newPerson = userList![index];
+                    UserModel newPerson = userList[index];
                     return Card(
                       child: ListTile(
                         title: Text(newPerson.name),
