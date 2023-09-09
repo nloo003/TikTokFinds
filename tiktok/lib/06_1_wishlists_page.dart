@@ -80,7 +80,7 @@ class _WishlistsPageState extends State<WishlistsPage> {
   void initState() {
     super.initState();
     // Call the fetchData function when the widget is initialized
-    getWishList().then((items) {
+    getUserWishList(widget.userId!).then((items) {
       setState(() {
         allWishlist = items;
       });
@@ -206,6 +206,7 @@ class _WishlistsPageState extends State<WishlistsPage> {
       );
     }
 
+    // Display all user wishlists
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,

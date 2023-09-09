@@ -51,3 +51,25 @@ Future<List<WishlistModel>> getUserWishList(String userId) async {
       return []; // Return an empty list in case of an exception
     }
   }
+
+Future<UserModel> getUser(String userId) async {
+    try {
+      var url = Uri.parse('http://10.0.2.2:4000/api/user/profile/${userId}');
+      final response = await http.get(url);
+
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> responseData = jsonDecode(response.body);
+
+        final UserModel user = UserModel.fromJson(responseData);
+
+        return user;
+      }
+      else {
+        // debugPrint('Request failed with status: ${response.statusCode}');
+        throw Exception('Failed to load user');
+      }
+    } catch (e) {
+      // debugPrint('Error: $e');
+      throw Exception('Error: $e');
+    }
+  }

@@ -7,3 +7,7 @@ GET http://localhost:4000/api/wishList/all
 GET http://localhost:4000/api/wishList/userWishLists/64fb3ccf9f51d4f056ff5298
 
 ###
+
+GET http://localhost:4000/api/user/profile/64fb3ccf9f51d4f056ff5298
+
+###
