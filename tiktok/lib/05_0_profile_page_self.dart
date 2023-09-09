@@ -14,9 +14,10 @@ class ProfilePageSelf extends StatefulWidget {
 }
 
 class _ProfilePageSelfState extends State<ProfilePageSelf> {
-  String userId = '64fbec2d3c612b13b658d6cd';
+  // String userId = '64fbec2d3c612b13b658d6cd';
+  String userId = '64fbf5b43c612b13b658d6eb';
   UserModel user = UserModel("", "", "", [], [], 0, "");
-  
+
   @override
   void initState() {
     super.initState();
@@ -186,7 +187,7 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                         Navigator.of(context).push(
                           MaterialPageRoute(builder: (BuildContext context) {
                             return const WishlistsPage(
-                              // Pass userId as argument NICKY 
+                              // Pass userId as argument NICKY
                               userId: "",
                               indivList: false,
                               wishlistId: "",
