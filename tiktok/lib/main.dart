@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:tiktok/03_create_story_page.dart';
 import 'package:tiktok/02_discover_page.dart';
@@ -7,6 +9,8 @@ import 'package:tiktok/01_home_page.dart';
 import 'package:tiktok/05_1_profile_page_others.dart';
 import 'package:tiktok/06_wishlist_page.dart';
 import 'package:tiktok/06_1_wishlists_page.dart';
+import 'package:tiktok/07_friends_page.dart';
+import 'package:tiktok/widgets/upload_icon.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,10 +40,13 @@ class _RootPageState extends State<RootPage> {
   final pages = [
     HomePage(),
     const DiscoverPage(),
-    const CreateStoryPage(),
-    const InboxPage(),
+    // const CreateStoryPage(),
+    // const InboxPage(),
     // WishlistPage(),
-    const WishlistsPage(),
+    // const WishlistsPage(),
+    const FriendPageFactory(),
+    // const InboxPage(),
+    // const WishlistPage(),
     const ProfilePageOthers(),
     const ProfilePageSelf(),
   ];
@@ -47,22 +54,51 @@ class _RootPageState extends State<RootPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: pages[currentPage],
-      bottomNavigationBar: NavigationBar(
-        destinations: const [
-          NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
-          NavigationDestination(icon: Icon(Icons.search), label: 'Discover'),
-          NavigationDestination(icon: Icon(Icons.plus_one), label: 'New'),
-          NavigationDestination(icon: Icon(Icons.inbox), label: 'Inbox'),
-          NavigationDestination(
-              icon: Icon(Icons.card_giftcard_outlined), label: 'Wishlist'),
-          NavigationDestination(icon: Icon(Icons.man), label: 'Profile'),
-        ],
-        onDestinationSelected: (int index) {
-          setState(() {
-            currentPage = index;
-          });
-        },
-        selectedIndex: currentPage,
+      bottomNavigationBar: NavigationBarTheme(
+        data: NavigationBarThemeData(
+            labelTextStyle: MaterialStateProperty.all(
+                const TextStyle(color: Colors.white70))),
+        child: NavigationBar(
+          backgroundColor: Colors.black,
+          destinations: const [
+            NavigationDestination(
+              icon: Icon(
+                Icons.home,
+                color: Colors.white70,
+              ),
+              label: 'Home',
+            ),
+            NavigationDestination(
+                icon: Icon(
+                  Icons.search,
+                  color: Colors.white70,
+                ),
+                label: 'Discover'),
+            NavigationDestination(
+                icon: InkWell(
+                  child: UploadIcon(),
+                ),
+                label: 'New'),
+            NavigationDestination(
+                icon: Icon(
+                  Icons.inbox,
+                  color: Colors.white70,
+                ),
+                label: 'Inbox'),
+            NavigationDestination(
+                icon: Icon(
+                  Icons.man,
+                  color: Colors.white70,
+                ),
+                label: 'Profile'),
+          ],
+          onDestinationSelected: (int index) {
+            setState(() {
+              currentPage = index;
+            });
+          },
+          selectedIndex: currentPage,
+        ),
       ),
     );
   }

@@ -1,5 +1,9 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
+import 'package:tiktok/widgets/back_icon.dart';
+
+import '06_1_wishlists_page.dart';
+import 'model/user_model.dart';
 
 class ProfilePageOthers extends StatefulWidget {
   const ProfilePageOthers({super.key});
@@ -9,13 +13,14 @@ class ProfilePageOthers extends StatefulWidget {
 }
 
 class _ProfilePageOthersState extends State<ProfilePageOthers> {
-  String username = "random friend";
+  UserModel user = UserModel("", "", "", [], [], 0, "");
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        leading: const Icon(Icons.arrow_back_ios),
+        leading: const BackIcon(),
         centerTitle: true,
         title: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
@@ -23,9 +28,9 @@ class _ProfilePageOthersState extends State<ProfilePageOthers> {
             onTap: () {
               debugPrint("Username clicked");
             },
-            child: const Text(
-              "Username",
-              style: TextStyle(color: Colors.white),
+            child: Text(
+              user.name.toString(),
+              style: const TextStyle(color: Colors.white),
             ),
           ),
         ),
@@ -70,7 +75,7 @@ class _ProfilePageOthersState extends State<ProfilePageOthers> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  username,
+                  user.handle,
                   style: const TextStyle(color: Colors.white),
                 ),
                 const Icon(
@@ -79,28 +84,32 @@ class _ProfilePageOthersState extends State<ProfilePageOthers> {
                 ),
               ],
             ),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsets.fromLTRB(5, 15, 20, 5),
+                  padding: const EdgeInsets.fromLTRB(5, 15, 20, 5),
                   child: Column(
                     children: [
-                      Text("123", style: TextStyle(color: Colors.white)),
-                      Text("Following", style: TextStyle(color: Colors.white))
+                      Text(user.following.length.toString(),
+                          style: const TextStyle(color: Colors.white)),
+                      const Text("Following",
+                          style: TextStyle(color: Colors.white))
                     ],
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(5, 15, 5, 5),
+                  padding: const EdgeInsets.fromLTRB(5, 15, 5, 5),
                   child: Column(
                     children: [
-                      Text("456", style: TextStyle(color: Colors.white)),
-                      Text("Followers", style: TextStyle(color: Colors.white))
+                      Text(user.followers.length.toString(),
+                          style: const TextStyle(color: Colors.white)),
+                      const Text("Followers",
+                          style: TextStyle(color: Colors.white))
                     ],
                   ),
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.fromLTRB(15, 20, 5, 5),
                   child: Column(
                     children: [
@@ -137,7 +146,18 @@ class _ProfilePageOthersState extends State<ProfilePageOthers> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 5, 5, 0),
                   child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (BuildContext context) {
+                            return const WishlistsPage(
+                              // Pass userId as argument NICKY 
+                              userId: "",
+                              indivList: false,
+                              wishlistId: "",
+                            );
+                          }),
+                        );
+                      },
                       style: ButtonStyle(
                           backgroundColor:
                               MaterialStateProperty.all(Colors.blueGrey)),

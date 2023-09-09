@@ -1,5 +1,13 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, unused_import
 import 'package:flutter/material.dart';
+import '06_wishlist_page.dart';
+import 'dart:math';
+import 'model/wishlist_model.dart';
+import 'model/item_model.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import '06_1_wishlists_page.dart';
+import 'model/api.dart';
 
 class DiscoverPage extends StatefulWidget {
   const DiscoverPage({super.key});
@@ -10,20 +18,47 @@ class DiscoverPage extends StatefulWidget {
 
 class _DiscoverPageState extends State<DiscoverPage> {
 
-  static List<String> initDisplayList = ["hi", "hello"];
-  String word = "";
+  List<String> hintTextList = ["iPhone 11 pro case", "Travel adapter", ];
+  List<WishlistModel> wishlistList = [];
+  List<WishlistModel> displayList = [];
+  final _random = Random();
+  String hintWord = "";
+  String searchWord = "";
+  bool hintWordSet = false;
+  TextEditingController textController = TextEditingController();
+  String imageUrl = 'https://images.unsplash.com/photo-1529973625058-a665431328fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80';
 
-  void updateWord(String value) {
+  void updateList(String value) {
     setState(() {
-      // displayList = mainList.where((element) => 
-      //   element.toLowerCase().contains(value.toLowerCase())).toList();
-      word = value;
+      displayList = wishlistList.where((element) => 
+        element.name!.toLowerCase().contains(value.toLowerCase())).toList();
     });
-    debugPrint(word);
+    searchWord = value;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // Call the fetchData function when the widget is initialized
+    getWishList().then((items) {
+      setState(() {
+        wishlistList = items;
+        displayList = List.from(wishlistList);
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    if (!hintWordSet) {
+      hintWord = hintTextList[_random.nextInt(hintTextList.length)];
+      hintWordSet = true;
+    }
+
+    // if(wishlistList.isNotEmpty) {
+    //   displayList = List.from(wishlistList);
+    // }
+
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -37,112 +72,121 @@ class _DiscoverPageState extends State<DiscoverPage> {
                     Navigator.pop(context); // Add navigation logic here
                   },
                 ),
-                const SizedBox(width: 5.0), // Gap between back button and search bar
+                const SizedBox(
+                    width: 5.0), // Gap between back button and search bar
                 Expanded(
                   child: Container(
-                    constraints: const BoxConstraints(
-                      maxHeight: 40.0
-                    ),
+                    constraints: const BoxConstraints(maxHeight: 40.0),
                     child: Center(
                       child: TextField(
-                        onChanged: (value) => updateWord(value),
-                        enableInteractiveSelection: false,
+                        controller: textController,
+                        onChanged: (value) => updateList(value),
                         decoration: InputDecoration(
-                          prefixIcon: const Icon(Icons.search),
+                          prefixIcon: const Icon(
+                            Icons.search,
+                            color: Colors.grey,
+                          ),
+                          suffixIcon: searchWord.isNotEmpty ? IconButton(
+                            icon: const Icon(
+                              Icons.clear,
+                              color: Colors.grey,
+                            ),
+                            onPressed: () {
+                              textController.clear();
+                              updateList('');
+                            },
+                          ) : null,
                           border: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.grey, width: 2.0),
                             borderRadius: BorderRadius.circular(8.0),
                           ),
-                          contentPadding: const EdgeInsets.symmetric(vertical: 5.0),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.grey, width: 2.0),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          contentPadding: const EdgeInsets.only(top: 5.0),
+                          hintText: hintWord,
                         ),
                         textAlignVertical: TextAlignVertical.center,
                         cursorColor: const Color.fromARGB(255, 249, 85, 85),
-                          // Add your search logic here
                       ),
                     ),
                   ),
                 ),
                 const SizedBox(width: 10.0),
                 TextButton(
-                  onPressed: () {
-                    // debugPrint('Click on Search');
-                    // query = '';
-                  },
-                  child: const Text(
-                    'Search',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16.0,
-                      color: Color.fromARGB(255, 249, 85, 85)
-                    )
-                  )
-                )
+                    onPressed: () {
+                      // debugPrint('Click on Search');
+                      // query = '';
+                    },
+                    child: const Text('Search',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16.0,
+                            color: Color.fromARGB(255, 249, 85, 85))))
               ],
             ),
           ),
-          const Expanded(
-            child: Column(
-              children: [
-                SizedBox(height: 10.0),
-                Row(
-                  children: [
-                    SizedBox(width: 15.0),
-                    Text(
-                      'You may like',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20.0,
-                        color: Colors.black
-                      )
+          const SizedBox(height: 5.0),
+          Expanded(
+            child: ListView.builder(
+              padding: const EdgeInsets.only(left: 10.0),
+              itemCount: displayList.length,
+              itemBuilder: (context, index) => GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => WishlistsPage(
+                        userId: displayList[index].creatorId,
+                        indivList: true,
+                        wishlistId: displayList[index].id,
+                      ),
                     ),
-                  ],
+                  );
+                  debugPrint("clicked");
+                },
+                child: ListTile(
+                  contentPadding: const EdgeInsets.all(8.0),
+                  title: Text(
+                    displayList[index].name!,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17.0, 
+                    ),
+                  ),
+                  subtitle: Row(
+                    children: [
+                      CircleAvatar(
+                        radius: 10,
+                        backgroundImage: NetworkImage(
+                          // displayList[index].wishListImage!,
+                          imageUrl
+                        ),
+                      ),
+                      const SizedBox(width: 5.0,),
+                      Text(
+                        displayList[index].creatorName!,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  trailing: const Text(
+                    'saveCount'
+                  ),
+                  leading: SizedBox(
+                    width: 60,
+                    height: 60,
+                    child: Image.network(
+                      imageUrl,
+                      // displayList[index].wishListImage!,
+                      fit: BoxFit.cover,
+                    ),
+                  )
                 ),
-                SizedBox(height: 10.0,),
-                Row(
-                  children: [
-                    SizedBox(width: 20.0),
-                    Text(
-                      '•  ',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18.0,
-                        color: Colors.black
-                      )
-                    ),
-                    Text(
-                      'iPhone 11 pro case',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18.0,
-                        color: Colors.black
-                      )
-                    ),
-                  ],
-                ),
-                SizedBox(height: 10.0,),
-                Row(
-                  children: [
-                    SizedBox(width: 20.0),
-                    Text(
-                      '•  ',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18.0,
-                        color: Colors.black
-                      )
-                    ),
-                    Text(
-                      'Travel adapter',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18.0,
-                        color: Colors.black
-                      )
-                    ),
-                  ],
-                ),
-                SizedBox(height: 10.0,),
-              ],
-            )
+              )  
+            ),
           ),
         ],
       ),

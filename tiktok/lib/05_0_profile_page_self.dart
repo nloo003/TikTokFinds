@@ -1,5 +1,10 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, unused_import
 import 'package:flutter/material.dart';
+import 'package:tiktok/06_1_wishlists_page.dart';
+import 'package:tiktok/06_wishlist_page.dart';
+import 'package:tiktok/07_friends_page.dart';
+import 'package:tiktok/model/api.dart';
+import 'package:tiktok/model/user_model.dart';
 
 class ProfilePageSelf extends StatefulWidget {
   const ProfilePageSelf({super.key});
@@ -9,7 +14,21 @@ class ProfilePageSelf extends StatefulWidget {
 }
 
 class _ProfilePageSelfState extends State<ProfilePageSelf> {
-  String username = "@mkiats";
+  // String userId = '64fbec2d3c612b13b658d6cd';
+  String userId = '64fbf5b43c612b13b658d6eb';
+  UserModel user = UserModel("", "", "", [], [], 0, "");
+
+  @override
+  void initState() {
+    super.initState();
+    // Call the fetchData function when the widget is initialized
+    getUser(userId).then((item) {
+      setState(() {
+        user = item;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +40,7 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
               debugPrint("Username clicked");
             },
             child: Text(
-              username,
+              user.name,
               style: const TextStyle(color: Colors.white),
             ),
           ),
@@ -70,7 +89,7 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  username,
+                  user.handle,
                   style: const TextStyle(color: Colors.white),
                 ),
                 const Icon(
@@ -79,34 +98,61 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                 ),
               ],
             ),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsets.fromLTRB(5, 15, 20, 5),
-                  child: Column(
-                    children: [
-                      Text("123", style: TextStyle(color: Colors.white)),
-                      Text("Following", style: TextStyle(color: Colors.white))
-                    ],
+                  padding: const EdgeInsets.fromLTRB(5, 15, 20, 5),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (BuildContext context) {
+                          return const FriendPageFactory();
+                        }),
+                      );
+                    },
+                    child: Column(
+                      children: [
+                        Text(user.following.length.toString(),
+                            style: const TextStyle(color: Colors.white)),
+                        const Text("Following",
+                            style: TextStyle(color: Colors.white))
+                      ],
+                    ),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(5, 15, 5, 5),
-                  child: Column(
-                    children: [
-                      Text("456", style: TextStyle(color: Colors.white)),
-                      Text("Followers", style: TextStyle(color: Colors.white))
-                    ],
+                  padding: const EdgeInsets.fromLTRB(5, 15, 5, 5),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (BuildContext context) {
+                          return const FriendPageFactory();
+                        }),
+                      );
+                    },
+                    child: Column(
+                      children: [
+                        Text(user.followers.length.toString(),
+                            style: const TextStyle(color: Colors.white)),
+                        const Text("Followers",
+                            style: TextStyle(color: Colors.white))
+                      ],
+                    ),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(15, 20, 5, 5),
-                  child: Column(
-                    children: [
-                      Text("789", style: TextStyle(color: Colors.white)),
-                      Text("Likes", style: TextStyle(color: Colors.white))
-                    ],
+                  padding: const EdgeInsets.fromLTRB(15, 20, 5, 5),
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: Column(
+                      children: [
+                        Text(user.likes.toString(),
+                            style: const TextStyle(color: Colors.white)),
+                        const Text("Likes",
+                            style: TextStyle(color: Colors.white))
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -137,7 +183,18 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 5, 5, 0),
                   child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (BuildContext context) {
+                            return const WishlistsPage(
+                              // Pass userId as argument NICKY
+                              userId: "",
+                              indivList: false,
+                              wishlistId: "",
+                            );
+                          }),
+                        );
+                      },
                       style: ButtonStyle(
                           backgroundColor:
                               MaterialStateProperty.all(Colors.blueGrey)),

@@ -1,3 +1,4 @@
+// ignore_for_file: file_names
 // import 'package:flutter/material.dart';
 
 // class WishlistItemModel {
@@ -15,7 +16,7 @@
 // class Wishlist {
 //   final String name;
 //   final List<WishlistItemModel> items;
-
+  
 //   Wishlist({
 //     required this.name,
 //     required this.items,
