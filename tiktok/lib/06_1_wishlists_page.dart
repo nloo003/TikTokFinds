@@ -41,7 +41,7 @@ class _WishlistsPageState extends State<WishlistsPage> {
   List<WishlistModel> allWishlist = [];
   WishlistModel indivWishlist = WishlistModel("", "", "", [], "", "", "");
   ItemModel iter_item = ItemModel("", "", 0.0, "", "");
-  UserModel user = UserModel("id", "", "handle", [], [], 0.0, "profilePicUrl");
+  UserModel user = UserModel("id", "", "handle", [], [], '0', "profilePicUrl");
 
   @override
   void initState() {

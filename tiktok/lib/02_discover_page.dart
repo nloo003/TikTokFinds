@@ -27,6 +27,8 @@ class _DiscoverPageState extends State<DiscoverPage> {
   bool hintWordSet = false;
   TextEditingController textController = TextEditingController();
   String imageUrl = 'https://images.unsplash.com/photo-1529973625058-a665431328fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80';
+  List<int> numList = [43, 2, 33, 44];
+  int num = 0;
 
   void updateList(String value) {
     setState(() {
@@ -53,6 +55,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
     if (!hintWordSet) {
       hintWord = hintTextList[_random.nextInt(hintTextList.length)];
       hintWordSet = true;
+      num = numList[_random.nextInt(numList.length)];
     }
 
     // if(wishlistList.isNotEmpty) {
@@ -156,14 +159,14 @@ class _DiscoverPageState extends State<DiscoverPage> {
                   ),
                   subtitle: Row(
                     children: [
-                      CircleAvatar(
-                        radius: 10,
-                        backgroundImage: NetworkImage(
-                          // displayList[index].wishListImage!,
-                          imageUrl
-                        ),
-                      ),
-                      const SizedBox(width: 5.0,),
+                      // CircleAvatar(
+                      //   radius: 10,
+                      //   backgroundImage: NetworkImage(
+                      //     // displayList[index].wishListImage!,
+                      //     imageUrl
+                      //   ),
+                      // ),
+                      // const SizedBox(width: 5.0,),
                       Text(
                         displayList[index].creatorName!,
                         style: const TextStyle(
@@ -172,8 +175,17 @@ class _DiscoverPageState extends State<DiscoverPage> {
                       ),
                     ],
                   ),
-                  trailing: const Text(
-                    'saveCount'
+                  trailing: Column(
+                    children: [
+                      const SizedBox(height: 8.0),
+                      const Icon(
+                        Icons.turned_in_not_sharp,
+                        color: Colors.grey,
+                      ),
+                      Text(
+                        (num*index + index*2 + 1).toString(),
+                      ),
+                    ],
                   ),
                   leading: SizedBox(
                     width: 60,

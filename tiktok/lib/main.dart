@@ -45,7 +45,7 @@ class _RootPageState extends State<RootPage> {
     // const InboxPage(),
     // WishlistPage(),
     // const WishlistsPage(),
-    // const FriendPageFactory(),
+    // const FriendPageState(userId: ""),
     const InboxPage(),
     // const WishlistPage(),
     const ProfilePageOthers(userId: "64fbf5b43c612b13b658d6eb"),
