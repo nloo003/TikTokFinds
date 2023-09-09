@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:tiktok/05_1_profile_page_others.dart';
 import 'package:tiktok/model/user_model.dart';
 import 'package:tiktok/widgets/back_icon.dart';
+import 'package:tiktok/model/api.dart';
 
 class FriendPage extends StatefulWidget {
   final List<String> userListId;
@@ -17,12 +18,19 @@ class FriendPage extends StatefulWidget {
 }
 
 class _FriendPageState extends State<FriendPage> {
-  void @override
+  String userId = '64fbec2d3c612b13b658d6cd';
+  UserModel user = const UserModel("", "", "", [], [], 0, "");
+
+  @override
   void initState() {
     super.initState();
-    
+    // Call the fetchData function when the widget is initialized
+    getUser(userId).then((item) {
+      setState(() {
+        user = item;
+      });
+    });
   }
-  UserModel user = const UserModel("", "", "", [], [], 0, "");
 
   @override
   Widget build(BuildContext context) {
@@ -98,11 +106,22 @@ class _FriendPageState extends State<FriendPage> {
               child: ListView.builder(
                   itemCount: widget.userListId.length,
                   itemBuilder: (context, index) {
-                    final user = userList[index];
+                    List<UserModel> userList = [];
+                    widget.userListId.forEach((id) {
+                      UserModel person =
+                          const UserModel("", "", "", [], [], 0, "");
+                      getUser(id).then((item) {
+                        setState(() {
+                          person = item;
+                        });
+                      });
+                      userList.add(person);
+                    });
+                    UserModel newPerson = userList[index];
                     return Card(
                       child: ListTile(
-                        title: Text(user.name),
-                        subtitle: Text(user.handle),
+                        title: Text(newPerson.name),
+                        subtitle: Text(newPerson.handle),
                         trailing: const Icon(Icons.notifications_outlined),
                         leading: GestureDetector(
                             onTap: () {
