@@ -110,7 +110,9 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(builder: (BuildContext context) {
-                          return HomePage(); //FriendPageFactory(); //TODO
+                          return FriendPage(
+                            userListId: user.following,
+                          ); //TODO
                         }),
                       );
                     },
@@ -130,7 +132,9 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(builder: (BuildContext context) {
-                          return HomePage(); //FriendPageFactory(); //TODO
+                          return FriendPage(
+                            userListId: user.followers,
+                          );
                         }),
                       );
                     },
