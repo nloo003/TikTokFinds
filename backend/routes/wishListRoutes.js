@@ -20,7 +20,8 @@ router.post('/add', addItemToWishList)
 router.post('/', createWishList)
 
 router.get('/all', getAllWishLists)
-    
+
+
  
 
 module.exports = router
