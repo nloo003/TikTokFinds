@@ -16,51 +16,28 @@ class User {
 }
 
 class FriendPageFactory extends StatefulWidget {
-  const FriendPageFactory({super.key});
+  // const FriendPageFactory({super.key});
+  final String? userId;
+
+  const FriendPageFactory({
+    Key? key,
+    required this.userId
+  }) : super(key: key);
 
   @override
   State<FriendPageFactory> createState() => _FriendPageFactoryState();
 }
 
 class _FriendPageFactoryState extends State<FriendPageFactory> {
-  String initialUserId = "64faace4f139f050c81cdab1";
+  String initialUserId = "64fbf5b43c612b13b658d6eb";
   UserModel user = UserModel("", "", "", [], [], 0, "");
 
   List<UserModel> userList = [];
 
-  // Future<UserModel> getUsers(String id) async {
-  //   try {
-  //     var url = Uri.parse("http://10.0.2.2::4000/api/user/profile/:$id");
-  //     final response = await http.get(url);
-
-  //     if (response.statusCode == 200){
-  //       final List<dynamic> responseData = jsonDecode(response.body);
-
-  //       final <UserModel> data = responseData.map(((json) =>  UserModel.fromJson(json))).toList();
-
-  //       return data;
-  //     }
-  //     else {
-  //       debugPrint('Request failed with status: ${response.statusCode}');
-  //       return [];
-  //     }
-  //   } catch (e) {
-  //     debugPrint('Error: $e');
-  //     return []; // Return an empty list in case of an exception
-  //   }
-  //   }
-  //   void initState() {
-  //     super.initState();
-  //     getUsers(initialUserId).then((items) {
-  //       setState(() {
-  //         testUser = List.from(items);
-  //       });
-  //     });
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
+    debugPrint(widget.userId);
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
