@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import
+// ignore_for_file: unused_import, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
 import 'package:tiktok/03_create_story_page.dart';
@@ -44,8 +44,8 @@ class _RootPageState extends State<RootPage> {
     // const InboxPage(),
     // WishlistPage(),
     // const WishlistsPage(),
-    const FriendPageFactory(),
-    // const InboxPage(),
+    // const FriendPageFactory(),
+    const InboxPage(),
     // const WishlistPage(),
     const ProfilePageOthers(),
     const ProfilePageSelf(),

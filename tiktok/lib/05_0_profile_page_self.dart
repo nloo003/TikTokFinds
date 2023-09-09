@@ -1,10 +1,14 @@
 // ignore_for_file: file_names, unused_import
 import 'package:flutter/material.dart';
+import 'package:tiktok/01_home_page.dart';
 import 'package:tiktok/06_1_wishlists_page.dart';
 import 'package:tiktok/06_wishlist_page.dart';
 import 'package:tiktok/07_friends_page.dart';
 import 'package:tiktok/model/api.dart';
 import 'package:tiktok/model/user_model.dart';
+import 'package:http/http.dart' as http;
+import 'dart:math';
+import 'dart:convert';
 
 class ProfilePageSelf extends StatefulWidget {
   const ProfilePageSelf({super.key});
@@ -16,7 +20,7 @@ class ProfilePageSelf extends StatefulWidget {
 class _ProfilePageSelfState extends State<ProfilePageSelf> {
   String userId = '64fbf5b43c612b13b658d6eb';
   UserModel user = UserModel("", "", "", [], [], 0, "");
-  
+
   @override
   void initState() {
     super.initState();
@@ -106,7 +110,9 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(builder: (BuildContext context) {
-                          return const FriendPageFactory();
+                          return FriendPage(
+                            userIdList: user.following!,
+                          ); //TODO
                         }),
                       );
                     },
@@ -126,7 +132,9 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(builder: (BuildContext context) {
-                          return const FriendPageFactory();
+                          return FriendPage(
+                            userIdList: user.followers!,
+                          );
                         }),
                       );
                     },
@@ -186,7 +194,7 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                         Navigator.of(context).push(
                           MaterialPageRoute(builder: (BuildContext context) {
                             return const WishlistsPage(
-                              // Pass userId as argument NICKY 
+                              // Pass userId as argument NICKY
                               userId: "",
                               indivList: false,
                               wishlistId: "",
