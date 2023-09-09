@@ -8,27 +8,21 @@ import 'package:tiktok/05_1_profile_page_others.dart';
 import 'package:tiktok/model/user_model.dart';
 import 'package:tiktok/widgets/back_icon.dart';
 
-class FriendPageFactory extends StatefulWidget {
+class FriendPage extends StatefulWidget {
   final List<String> userListId;
-  const FriendPageFactory({required this.userListId, super.key});
+  const FriendPage({required this.userListId, super.key});
 
   @override
-  State<FriendPageFactory> createState() => _FriendPageFactoryState();
+  State<FriendPage> createState() => _FriendPageState();
 }
 
-class _FriendPageFactoryState extends State<FriendPageFactory> {
-  List<String> userList = context.
-  UserModel user = const UserModel(
-      "Meng Kiat",
-      "mkiats",
-      ["following"],
-      ["followers"],
-      1233,
-      "_id",
-      "ProfilePicURL",
-      "created_at",
-      "UpdatedAt",
-      123321);
+class _FriendPageState extends State<FriendPage> {
+  void @override
+  void initState() {
+    super.initState();
+    
+  }
+  UserModel user = const UserModel("", "", "", [], [], 0, "");
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +96,7 @@ class _FriendPageFactoryState extends State<FriendPageFactory> {
             ),
             Expanded(
               child: ListView.builder(
-                  itemCount: userListId.length,
+                  itemCount: widget.userListId.length,
                   itemBuilder: (context, index) {
                     final user = userList[index];
                     return Card(

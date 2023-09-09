@@ -1,4 +1,3 @@
-import 'item_model.dart';
 import 'user_model.dart';
 import 'wishlist_model.dart';
 import 'package:http/http.dart' as http;
@@ -30,7 +29,7 @@ Future<List<WishlistModel>> getWishList() async {
 
 Future<List<WishlistModel>> getUserWishList(String userId) async {
     try {
-      var url = Uri.parse('http://10.0.2.2:4000/api/wishList/userWishLists/${userId}');
+      var url = Uri.parse('http://10.0.2.2:4000/api/wishList/userWishLists/$userId');
       final response = await http.get(url);
 
       if (response.statusCode == 200) {
@@ -54,7 +53,7 @@ Future<List<WishlistModel>> getUserWishList(String userId) async {
 
 Future<UserModel> getUser(String userId) async {
     try {
-      var url = Uri.parse('http://10.0.2.2:4000/api/user/profile/${userId}');
+      var url = Uri.parse('http://10.0.2.2:4000/api/user/profile/$userId');
       final response = await http.get(url);
 
       if (response.statusCode == 200) {

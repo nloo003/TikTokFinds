@@ -1,5 +1,6 @@
 // ignore_for_file: file_names, unused_import
 import 'package:flutter/material.dart';
+import 'package:tiktok/01_home_page.dart';
 import 'package:tiktok/06_1_wishlists_page.dart';
 import 'package:tiktok/06_wishlist_page.dart';
 import 'package:tiktok/07_friends_page.dart';
@@ -18,8 +19,8 @@ class ProfilePageSelf extends StatefulWidget {
 
 class _ProfilePageSelfState extends State<ProfilePageSelf> {
   String userId = '64fbec2d3c612b13b658d6cd';
-  UserModel user = UserModel("", "", "", [], [], 0, "");
-  
+  UserModel user = const UserModel("", "", "", [], [], 0, "");
+
   @override
   void initState() {
     super.initState();
@@ -109,7 +110,7 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(builder: (BuildContext context) {
-                          return const FriendPageFactory(user.following);
+                          return HomePage(); //FriendPageFactory(); //TODO
                         }),
                       );
                     },
@@ -129,7 +130,7 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(builder: (BuildContext context) {
-                          return const FriendPageFactory(user.followers);
+                          return HomePage(); //FriendPageFactory(); //TODO
                         }),
                       );
                     },

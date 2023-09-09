@@ -1,10 +1,8 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, use_key_in_widget_constructors, prefer_const_constructors_in_immutables
 import 'package:flutter/material.dart';
 import 'package:tiktok/widgets/back_icon.dart';
-import 'model/item_model.dart';
 import 'model/wishlist_model.dart';
 import 'model/api.dart';
-import 'model/user_model.dart';
 
 // Define a class to represent a wishlist item
 class WishlistItemModel {
@@ -104,12 +102,12 @@ class _WishlistsPageState extends State<WishlistsPage> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           leading: const BackIcon(),
-          title: Row(
+          title: const Row(
             children: [
               // Image
               Text(
                 "",
-                style: const TextStyle(
+                style: TextStyle(
                   color: Colors.white,
                 ),
               ),
@@ -138,7 +136,7 @@ class _WishlistsPageState extends State<WishlistsPage> {
                           fit: BoxFit.cover,
                         ),
                       ),
-                      SizedBox(width: 10.0),
+                      const SizedBox(width: 10.0),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -160,13 +158,13 @@ class _WishlistsPageState extends State<WishlistsPage> {
                           const SizedBox(height: 15.0),
                           Row(
                             children: [
-                              CircleAvatar(
+                              const CircleAvatar(
                                 radius: 10,
                                 backgroundImage: NetworkImage(
                                   'https://images.unsplash.com/photo-1529973625058-a665431328fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80',
                                 ),
                               ),
-                              SizedBox(width: 10.0,),
+                              const SizedBox(width: 10.0,),
                               Text( // LINK TO PROFILE
                                 indivWishlist.creatorName!,
                                 style: const TextStyle(
