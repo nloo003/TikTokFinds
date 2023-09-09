@@ -41,6 +41,11 @@ class _FriendPageState extends State<FriendPage> {
     getUser(userId).then((item) {
       setState(() {
         user = item;
+        for (int i = 0; i < widget.userIdList.length; i++) {
+          
+          userList.add(fetchData(widget.userIdList[i]));
+
+        }
       });
     });
 
@@ -137,11 +142,12 @@ class _FriendPageState extends State<FriendPage> {
                   itemBuilder: (context, index) {
                     debugPrint(widget.userIdList.toString());
                     debugPrint(widget.userIdList.length.toString());
-                    UserModel newPerson = fetchData(widget.userIdList[index]);
+                    debugPrint(index.toString());
+                    // UserModel newPerson = fetchData(widget.userIdList[index]);
                     return Card(
                       child: ListTile(
-                        title: Text(newPerson.name!),
-                        subtitle: Text(newPerson.handle!),
+                        title: Text(user.name!),
+                        subtitle: Text(user.handle!),
                         trailing: const Icon(Icons.notifications_outlined),
                         leading: GestureDetector(
                             onTap: () {
