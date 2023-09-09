@@ -7,59 +7,57 @@ import 'package:flutter/material.dart';
 import 'package:tiktok/05_1_profile_page_others.dart';
 import 'package:tiktok/model/user_model.dart';
 import 'package:tiktok/widgets/back_icon.dart';
-import 'package:tiktok/model/api.dart';
 
-class FriendPage extends StatefulWidget {
-  final List<String> userIdList;
-  const FriendPage({required this.userIdList, super.key});
+class User {
+  final String username;
+  final String handle;
 
-  @override
-  State<FriendPage> createState() => _FriendPageState();
+  const User({required this.username, required this.handle});
 }
 
-class _FriendPageState extends State<FriendPage> {
+class FriendPageFactory extends StatefulWidget {
+  const FriendPageFactory({super.key});
+
+  @override
+  State<FriendPageFactory> createState() => _FriendPageFactoryState();
+}
+
+class _FriendPageFactoryState extends State<FriendPageFactory> {
+  String initialUserId = "64faace4f139f050c81cdab1";
+  UserModel user = UserModel("", "", "", [], [], 0, "");
+
   List<UserModel> userList = [];
 
-  Future<UserModel> fetchData(String userId) async {
-    try {
-      UserModel tempUser;
-      tempUser = await getUser(userId);
-      debugPrint(tempUser.name);
-      return tempUser;
-    } catch (e) {
-      debugPrint("fetch data failed: $userId");
-      throw Error();
-    }
-  }
+  // Future<UserModel> getUsers(String id) async {
+  //   try {
+  //     var url = Uri.parse("http://10.0.2.2::4000/api/user/profile/:$id");
+  //     final response = await http.get(url);
 
-  String userId = '64fbf5b43c612b13b658d6eb';
-  UserModel user = UserModel("", "", "", [], [], 0, "");
-  @override
-  void initState() {
-    super.initState();
-    // Call the fetchData function when the widget is initialized
-    getUser(userId).then((item) {
-      setState(() {
-        user = item;
-      });
-    });
+  //     if (response.statusCode == 200){
+  //       final List<dynamic> responseData = jsonDecode(response.body);
 
-    // for (int i = 0; i < widget.userIdList.length; i++) {
-    //   debugPrint("For loop start");
-    //   setState(() {
-    //     getUser(widget.userIdList[i]).then((value) {
-    //       userList.add(value);
-    //     });
-    //   });
+  //       final <UserModel> data = responseData.map(((json) =>  UserModel.fromJson(json))).toList();
 
-    //   // getUser(widget.userIdList[i]).then((item) {
-    //   //   debugPrint("GetUser");
-    //   //   setState(() async {
-    //   //     userList!.add(item);
-    //   //   });
-    //   // });
-    // }
-  }
+  //       return data;
+  //     }
+  //     else {
+  //       debugPrint('Request failed with status: ${response.statusCode}');
+  //       return [];
+  //     }
+  //   } catch (e) {
+  //     debugPrint('Error: $e');
+  //     return []; // Return an empty list in case of an exception
+  //   }
+  //   }
+  //   void initState() {
+  //     super.initState();
+  //     getUsers(initialUserId).then((items) {
+  //       setState(() {
+  //         testUser = List.from(items);
+  //       });
+  //     });
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -133,26 +131,22 @@ class _FriendPageState extends State<FriendPage> {
             ),
             Expanded(
               child: ListView.builder(
-                  itemCount: widget.userIdList.length,
+                  itemCount: userList.length,
                   itemBuilder: (context, index) {
-                    debugPrint(widget.userIdList.toString());
-                    debugPrint(widget.userIdList.length.toString());
-                    UserModel newPerson = fetchData(widget.userIdList[index]);
+                    final user = userList[index];
                     return Card(
                       child: ListTile(
-                        title: Text(newPerson.name!),
-                        subtitle: Text(newPerson.handle!),
+                        title: Text(user.name!),
+                        subtitle: Text(user.handle!),
                         trailing: const Icon(Icons.notifications_outlined),
-                        leading: GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                    builder: (BuildContext context) {
-                                  return const ProfilePageOthers();
-                                }),
-                              );
-                            },
-                            child: const Icon(Icons.plus_one_outlined)),
+                        leading: GestureDetector(onTap: () {
+                          Navigator.of(context).push(
+                        MaterialPageRoute(builder: (BuildContext context) {
+                          return const ProfilePageOthers();
+                        }),
+                      );
+                        },
+                        child: const Icon(Icons.plus_one_outlined)),
                       ),
                     );
                   }),
