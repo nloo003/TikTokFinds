@@ -18,7 +18,7 @@ class ProfilePageSelf extends StatefulWidget {
 }
 
 class _ProfilePageSelfState extends State<ProfilePageSelf> {
-  String userId = '64fbec2d3c612b13b658d6cd';
+  String userId = '64fbf5b43c612b13b658d6eb';
   UserModel user = const UserModel("", "", "", [], [], 0, "");
 
   @override
@@ -111,7 +111,7 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                       Navigator.of(context).push(
                         MaterialPageRoute(builder: (BuildContext context) {
                           return FriendPage(
-                            userListId: user.following,
+                            userIdList: user.following,
                           ); //TODO
                         }),
                       );
@@ -133,7 +133,7 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                       Navigator.of(context).push(
                         MaterialPageRoute(builder: (BuildContext context) {
                           return FriendPage(
-                            userListId: user.followers,
+                            userIdList: user.followers,
                           );
                         }),
                       );

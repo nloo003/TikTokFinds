@@ -10,15 +10,17 @@ import 'package:tiktok/widgets/back_icon.dart';
 import 'package:tiktok/model/api.dart';
 
 class FriendPage extends StatefulWidget {
-  final List<String> userListId;
-  const FriendPage({required this.userListId, super.key});
+  final List<String> userIdList;
+  const FriendPage({required this.userIdList, super.key});
 
   @override
   State<FriendPage> createState() => _FriendPageState();
 }
 
 class _FriendPageState extends State<FriendPage> {
-  String userId = '64fbec2d3c612b13b658d6cd';
+  List<UserModel> userList = [];
+
+  String userId = '64fbf5b43c612b13b658d6eb';
   UserModel user = const UserModel("", "", "", [], [], 0, "");
 
   @override
@@ -104,20 +106,30 @@ class _FriendPageState extends State<FriendPage> {
             ),
             Expanded(
               child: ListView.builder(
-                  itemCount: widget.userListId.length,
+                  itemCount: widget.userIdList.length,
                   itemBuilder: (context, index) {
-                    List<UserModel> userList = [];
-                    widget.userListId.forEach((id) {
-                      UserModel person =
-                          const UserModel("", "", "", [], [], 0, "");
-                      getUser(id).then((item) {
-                        setState(() {
-                          person = item;
+                    debugPrint(widget.userIdList.toString());
+                    debugPrint(widget.userIdList.length.toString());
+
+                    for (int i = 0; i < widget.userIdList.length; i++) {
+                      debugPrint("For loop start");
+                      setState(() async {
+                        getUser(widget.userIdList[i]).then((value) {
+                          userList!.add(value);
                         });
                       });
-                      userList.add(person);
-                    });
-                    UserModel newPerson = userList[index];
+
+                      // getUser(widget.userIdList[i]).then((item) {
+                      //   debugPrint("GetUser");
+                      //   setState(() async {
+                      //     userList!.add(item);
+                      //   });
+                      // });
+                    }
+
+                    debugPrint(userList![0].name);
+                    debugPrint("done");
+                    UserModel newPerson = userList![index];
                     return Card(
                       child: ListTile(
                         title: Text(newPerson.name),
