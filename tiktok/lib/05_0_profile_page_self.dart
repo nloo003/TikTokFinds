@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tiktok/06_1_wishlists_page.dart';
 import 'package:tiktok/06_wishlist_page.dart';
 import 'package:tiktok/07_friends_page.dart';
+import 'package:tiktok/model/api.dart';
 import 'package:tiktok/model/user_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:math';
@@ -16,44 +17,14 @@ class ProfilePageSelf extends StatefulWidget {
 }
 
 class _ProfilePageSelfState extends State<ProfilePageSelf> {
-  String initialUserId = "64fb433933c7ef2ac0c25804";
-  UserModel user = const UserModel(
-      "Meng Kiat",
-      "mkiats",
-      ["following"],
-      ["followers"],
-      1233,
-      "_id",
-      "ProfilePicURL",
-      "created_at",
-      "UpdatedAt",
-      123321);
-
-  Future<UserModel> getUser(String userId) async {
-    try {
-      var url = Uri.parse('http://10.0.2.2:4000/api/user/profile/${userId}');
-      final response = await http.get(url);
-
-      if (response.statusCode == 200) {
-        final Map<String, dynamic> responseData = jsonDecode(response.body);
-
-        final UserModel user = UserModel.fromJson(responseData);
-
-        return user;
-      } else {
-        // debugPrint('Request failed with status: ${response.statusCode}');
-        throw Exception('Failed to load user');
-      }
-    } catch (e) {
-      // debugPrint('Error: $e');
-      throw Exception('Error: $e');
-    }
-  }
-
+  String userId = '64fbec2d3c612b13b658d6cd';
+  UserModel user = UserModel("", "", "", [], [], 0, "");
+  
   @override
   void initState() {
     super.initState();
-    getUser(initialUserId).then((item) {
+    // Call the fetchData function when the widget is initialized
+    getUser(userId).then((item) {
       setState(() {
         user = item;
       });

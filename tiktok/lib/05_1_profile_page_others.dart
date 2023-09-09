@@ -13,12 +13,7 @@ class ProfilePageOthers extends StatefulWidget {
 }
 
 class _ProfilePageOthersState extends State<ProfilePageOthers> {
-
-  UserModel user = const UserModel("Meng Kiat", "mkiats", ["following"],
-      ["followers"], 1233, "_id", "ProfilePicURL", "created_at", "UpdatedAt", 123321);
-
-
-
+  UserModel user = UserModel("", "", "", [], [], 0, "");
 
   @override
   Widget build(BuildContext context) {
