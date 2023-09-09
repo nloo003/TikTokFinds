@@ -179,8 +179,8 @@ class _DiscoverPageState extends State<DiscoverPage> {
                     width: 60,
                     height: 60,
                     child: Image.network(
-                      imageUrl,
-                      // displayList[index].wishListImage!,
+                      // imageUrl,
+                      displayList[index].wishListImage!,
                       fit: BoxFit.cover,
                     ),
                   )
