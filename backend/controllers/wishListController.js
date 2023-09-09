@@ -8,7 +8,7 @@ const getWishListById = async (req,res) => {
         const wishList = await WishList.getWishListById(req)
         res.status(200).json(wishList)
     }catch(error){
-        res.status(404).json("error", error.message)
+        res.status(404).json({error: error.message})
     }
     
 }
@@ -18,7 +18,7 @@ const getWishListsByUserId = async (req,res)=>{
         const wishLists = await WishList.getWishListsByUserId(req)
         res.status(200).json(wishLists)
     }catch(error){
-        res.status(404).json("error", error.message)
+        res.status(404).json({error: error.message})
     }
 }
 
@@ -27,7 +27,7 @@ const createWishList = async(req,res) => {
         const wishList = await WishList.createWishList(req)
         res.status(200).json(wishList)
     } catch(error){
-        res.status(404).json("error", error.message)
+        res.status(404).json({error: error.message})
     }
 }
 const addItemToWishList = async(req,res) => {
@@ -36,7 +36,7 @@ const addItemToWishList = async(req,res) => {
         res.status(200).json(addedShopItem)
 
     } catch(error){
-        res.status(404).json(error)
+        res.status(404).json({error: error.message})
     }
 }
 
@@ -46,7 +46,7 @@ const getAllWishLists = async(req,res) => {
         res.status(200).json(allWishLists)
 
     } catch(error){
-        res.status(404).json(error)
+        res.status(404).json({error: error.message})
     }
 }
 

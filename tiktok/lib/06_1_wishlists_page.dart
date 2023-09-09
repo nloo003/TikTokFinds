@@ -52,12 +52,71 @@ class _WishlistsPageState extends State<WishlistsPage> {
         allWishlist = items;
       });
     });
-    getUser(widget.userId!).then((fetchedUser) {
-      setState(() {
-        user = fetchedUser;
-      });
-    });
   }
+
+  // add wishlist pop up
+  // Future<void> _showAddWishlistDialog(BuildContext context) async {
+  //   TextEditingController nameController = TextEditingController();
+  //   TextEditingController descriptionController = TextEditingController();
+
+  //   await showDialog(
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return AlertDialog(
+  //         title: Text('Add Wishlist'),
+  //         content: Column(
+  //           mainAxisSize: MainAxisSize.min,
+  //           children: <Widget>[
+  //             TextField(
+  //               controller: nameController,
+  //               decoration: InputDecoration(labelText: 'Name'),
+  //             ),
+  //             TextField(
+  //               controller: descriptionController,
+  //               decoration: InputDecoration(labelText: 'Description'),
+  //             ),
+  //           ],
+  //         ),
+  //         actions: <Widget>[
+  //           TextButton(
+  //             onPressed: () {
+  //               Navigator.of(context).pop(); // Close pop up
+  //             },
+  //             child: Text('Cancel'),
+  //           ),
+  //           TextButton(
+  //             onPressed: () {
+  //               // Validate and save the input values
+  //               final name = nameController.text.trim();
+  //               final description = descriptionController.text.trim();
+
+  //               if (name.isNotEmpty) {
+  //                 // Create and add a new wishlist
+  //                 final newWishlist = WishlistModel(
+  //                   name,
+  //                   description,
+  //                   'https://plus.unsplash.com/premium_photo-1683417272601-dbbfed0ed718?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1776&q=80', // Replace with a valid image URL
+  //                   [],
+  //                   widget.userId!, // creatorid
+  //                   '', //creator name
+  //                   DateTime.now().toString(),
+  //                 );
+
+  //                 // Add the new wishlist to the list
+  //                 setState(() {
+  //                   allWishlist.add(newWishlist);
+  //                 });
+
+  //                 Navigator.of(context).pop();
+  //               }
+  //             },
+  //             child: Text('Add'),
+  //           ),
+  //         ],
+  //       );
+  //     },
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -65,11 +124,11 @@ class _WishlistsPageState extends State<WishlistsPage> {
     
     // If only want to display an individual list
     if (widget.indivList != null && widget.indivList == true) {
-      for(WishlistModel wishlist in allWishlist) {
-          if (wishlist.id == widget.wishlistId) {
-            indivWishlist = wishlist;
-            break;
-          }
+      for (WishlistModel wishlist in allWishlist) {
+        if (wishlist.id == widget.wishlistId) {
+          indivWishlist = wishlist;
+          break;
+        }
       }
 
       return Scaffold(
@@ -134,8 +193,11 @@ class _WishlistsPageState extends State<WishlistsPage> {
                                   'https://images.unsplash.com/photo-1529973625058-a665431328fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80',
                                 ),
                               ),
-                              SizedBox(width: 10.0,),
-                              Text( // LINK TO PROFILE
+                              SizedBox(
+                                width: 10.0,
+                              ),
+                              Text(
+                                // LINK TO PROFILE
                                 indivWishlist.creatorName!,
                                 style: const TextStyle(
                                   fontSize: 16,
@@ -209,6 +271,7 @@ class _WishlistsPageState extends State<WishlistsPage> {
             ),
             onPressed: () {
               // Add wishlist button pressed, implement action here
+              // _showAddWishlistDialog(context);
             },
           ),
         ],

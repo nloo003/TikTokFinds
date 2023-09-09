@@ -7,7 +7,7 @@ const getUserById = async (req,res) => {
         const user= await User.getUserById(req)
         res.status(200).json(user)
     }catch(error){
-        res.status(404).json("error", error.message)
+        res.status(404).json({error: error.message})
     }
     
 }
@@ -19,7 +19,7 @@ const getUserFollowers = async (req,res) => {
     res.status(200).json(followers)
     }
     catch(error){
-        res.status(404).json("error", error.message)
+        res.status(404).json({error: error.message})
     }
     
 }
@@ -29,7 +29,7 @@ const getUserFollowing = async (req,res) => {
         const following = await User.getUserFollowing(req)
         res.status(200).json(following)
     }catch(error){
-        res.status(404).json("error", error.message)
+        res.status(404).json({error: error.message})
     }
     
 }
