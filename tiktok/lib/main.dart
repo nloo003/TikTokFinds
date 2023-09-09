@@ -39,8 +39,17 @@ class _RootPageState extends State<RootPage> {
     const DiscoverPage(),
     const CreateStoryPage(),
     const InboxPage(),
+<<<<<<< Updated upstream
     const WishlistPage(),
     // const ProfilePageOthers(),
+=======
+    // WishlistPage(),
+    const WishlistsPage(),
+    const FriendPageFactory(),
+    // const InboxPage(),
+    const WishlistsPage(),
+    const ProfilePageOthers(),
+>>>>>>> Stashed changes
     const ProfilePageSelf(),
   ];
   @override

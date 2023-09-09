@@ -1,5 +1,10 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
+<<<<<<< Updated upstream
+=======
+import 'package:tiktok/06_1_wishlists_page.dart';
+import 'package:tiktok/06_wishlist_page.dart';
+>>>>>>> Stashed changes
 
 class ProfilePageSelf extends StatefulWidget {
   const ProfilePageSelf({super.key});
@@ -137,7 +142,17 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 5, 5, 0),
                   child: ElevatedButton(
+<<<<<<< Updated upstream
                       onPressed: () {},
+=======
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (BuildContext context) {
+                            return const WishlistsPage();
+                          }),
+                        );
+                      },
+>>>>>>> Stashed changes
                       style: ButtonStyle(
                           backgroundColor:
                               MaterialStateProperty.all(Colors.blueGrey)),

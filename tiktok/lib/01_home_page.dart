@@ -116,6 +116,7 @@ class HomePage extends StatelessWidget {
                         fontSize: 14.0,
                       ),
                     ),
+<<<<<<< Updated upstream
                   ),
                   GestureDetector(
                     onTap: () {
@@ -131,6 +132,23 @@ class HomePage extends StatelessWidget {
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 14.0,
+=======
+                    GestureDetector(
+                      // onTap: () {
+                      //   // redirect to the Wishlist page here
+                      //   Navigator.of(context).push(
+                      //     MaterialPageRoute(
+                      //       builder: (context) => WishlistPage(),
+                      //     ),
+                      //   );
+                      // },
+                      child: const Text(
+                        '🎁 Wishlist',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14.0,
+                        ),
+>>>>>>> Stashed changes
                       ),
                     ),
                   ),
