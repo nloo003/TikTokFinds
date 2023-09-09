@@ -119,8 +119,8 @@ userSchema.statics.follow = async function(req){
     if (!userToFollowId){
         throw Error("No such user")
     }
-    user["following"].push({"userId": userToFollowId, "userName": userToFollow.name, "userHandle": userToFollow.handle})
-    userToFollow["followers"].push({"userId": userId, "userName": user.name, "userHandle": user.handle})
+    user["following"].push(userToFollowId)
+    userToFollow["followers"].push(userId)
     const updatedUser = await user.save()
     const updatedUserToFollow = await userToFollow.save()
     return updatedUser
