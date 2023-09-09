@@ -8,57 +8,27 @@ import 'package:tiktok/05_1_profile_page_others.dart';
 import 'package:tiktok/model/user_model.dart';
 import 'package:tiktok/widgets/back_icon.dart';
 
-class User {
-  final String username;
-  final String handle;
-
-  const User({required this.username, required this.handle});
-}
-
 class FriendPageFactory extends StatefulWidget {
-  const FriendPageFactory({super.key});
+  final List<String> userListId;
+  const FriendPageFactory({required this.userListId, super.key});
 
   @override
   State<FriendPageFactory> createState() => _FriendPageFactoryState();
 }
 
 class _FriendPageFactoryState extends State<FriendPageFactory> {
-  String initialUserId = "64faace4f139f050c81cdab1";
-  UserModel user = const UserModel("Meng Kiat", "mkiats", ["following"],
-      ["followers"], 123321, "abcdefghijkl", "createdAt", "updatedAt", 123321);
-
-  List<UserModel> userList = [];
-
-  // Future<UserModel> getUsers(String id) async {
-  //   try {
-  //     var url = Uri.parse("http://10.0.2.2::4000/api/user/profile/:$id");
-  //     final response = await http.get(url);
-
-  //     if (response.statusCode == 200){
-  //       final List<dynamic> responseData = jsonDecode(response.body);
-
-  //       final <UserModel> data = responseData.map(((json) =>  UserModel.fromJson(json))).toList();
-
-  //       return data;
-  //     }
-  //     else {
-  //       debugPrint('Request failed with status: ${response.statusCode}');
-  //       return [];
-  //     }
-  //   } catch (e) {
-  //     debugPrint('Error: $e');
-  //     return []; // Return an empty list in case of an exception
-  //   }
-  //   }
-  //   void initState() {
-  //     super.initState();
-  //     getUsers(initialUserId).then((items) {
-  //       setState(() {
-  //         testUser = List.from(items);
-  //       });
-  //     });
-  //   }
-  // }
+  List<String> userList = context.
+  UserModel user = const UserModel(
+      "Meng Kiat",
+      "mkiats",
+      ["following"],
+      ["followers"],
+      1233,
+      "_id",
+      "ProfilePicURL",
+      "created_at",
+      "UpdatedAt",
+      123321);
 
   @override
   Widget build(BuildContext context) {
@@ -132,7 +102,7 @@ class _FriendPageFactoryState extends State<FriendPageFactory> {
             ),
             Expanded(
               child: ListView.builder(
-                  itemCount: userList.length,
+                  itemCount: userListId.length,
                   itemBuilder: (context, index) {
                     final user = userList[index];
                     return Card(
@@ -140,14 +110,16 @@ class _FriendPageFactoryState extends State<FriendPageFactory> {
                         title: Text(user.name),
                         subtitle: Text(user.handle),
                         trailing: const Icon(Icons.notifications_outlined),
-                        leading: GestureDetector(onTap: () {
-                          Navigator.of(context).push(
-                        MaterialPageRoute(builder: (BuildContext context) {
-                          return const ProfilePageOthers();
-                        }),
-                      );
-                        },
-                        child: const Icon(Icons.plus_one_outlined)),
+                        leading: GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) {
+                                  return const ProfilePageOthers();
+                                }),
+                              );
+                            },
+                            child: const Icon(Icons.plus_one_outlined)),
                       ),
                     );
                   }),

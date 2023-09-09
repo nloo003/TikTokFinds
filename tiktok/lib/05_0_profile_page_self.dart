@@ -4,6 +4,9 @@ import 'package:tiktok/06_1_wishlists_page.dart';
 import 'package:tiktok/06_wishlist_page.dart';
 import 'package:tiktok/07_friends_page.dart';
 import 'package:tiktok/model/user_model.dart';
+import 'package:http/http.dart' as http;
+import 'dart:math';
+import 'dart:convert';
 
 class ProfilePageSelf extends StatefulWidget {
   const ProfilePageSelf({super.key});
@@ -13,8 +16,49 @@ class ProfilePageSelf extends StatefulWidget {
 }
 
 class _ProfilePageSelfState extends State<ProfilePageSelf> {
-  UserModel user = const UserModel("Meng Kiat", "mkiats", ["following"],
-      ["followers"], 1233, "abcdefghijkl", "createdAt", "updatedAt", 123321);
+  String initialUserId = "64fb433933c7ef2ac0c25804";
+  UserModel user = const UserModel(
+      "Meng Kiat",
+      "mkiats",
+      ["following"],
+      ["followers"],
+      1233,
+      "_id",
+      "ProfilePicURL",
+      "created_at",
+      "UpdatedAt",
+      123321);
+
+  Future<UserModel> getUser(String userId) async {
+    try {
+      var url = Uri.parse('http://10.0.2.2:4000/api/user/profile/${userId}');
+      final response = await http.get(url);
+
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> responseData = jsonDecode(response.body);
+
+        final UserModel user = UserModel.fromJson(responseData);
+
+        return user;
+      } else {
+        // debugPrint('Request failed with status: ${response.statusCode}');
+        throw Exception('Failed to load user');
+      }
+    } catch (e) {
+      // debugPrint('Error: $e');
+      throw Exception('Error: $e');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getUser(initialUserId).then((item) {
+      setState(() {
+        user = item;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +138,7 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(builder: (BuildContext context) {
-                          return const FriendPageFactory();
+                          return const FriendPageFactory(user.following);
                         }),
                       );
                     },
@@ -114,7 +158,7 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(builder: (BuildContext context) {
-                          return const FriendPageFactory();
+                          return const FriendPageFactory(user.followers);
                         }),
                       );
                     },
@@ -174,7 +218,7 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                         Navigator.of(context).push(
                           MaterialPageRoute(builder: (BuildContext context) {
                             return const WishlistsPage(
-                              // Pass userId as argument NICKY 
+                              // Pass userId as argument NICKY
                               userId: "",
                               indivList: false,
                               wishlistId: "",
