@@ -24,8 +24,7 @@ class FriendPageFactory extends StatefulWidget {
 
 class _FriendPageFactoryState extends State<FriendPageFactory> {
   String initialUserId = "64faace4f139f050c81cdab1";
-  UserModel user = const UserModel("Meng Kiat", "mkiats", ["following"],
-      ["followers"], 123321, "abcdefghijkl", "createdAt", "updatedAt", 123321);
+  UserModel user = UserModel("", "", "", [], [], 0, "");
 
   List<UserModel> userList = [];
 

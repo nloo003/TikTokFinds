@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tiktok/06_1_wishlists_page.dart';
 import 'package:tiktok/06_wishlist_page.dart';
 import 'package:tiktok/07_friends_page.dart';
+import 'package:tiktok/model/api.dart';
 import 'package:tiktok/model/user_model.dart';
 
 class ProfilePageSelf extends StatefulWidget {
@@ -13,8 +14,19 @@ class ProfilePageSelf extends StatefulWidget {
 }
 
 class _ProfilePageSelfState extends State<ProfilePageSelf> {
-  UserModel user = const UserModel("Meng Kiat", "mkiats", ["following"],
-      ["followers"], 1233, "abcdefghijkl", "createdAt", "updatedAt", 123321);
+  String userId = '64fbec2d3c612b13b658d6cd';
+  UserModel user = UserModel("", "", "", [], [], 0, "");
+  
+  @override
+  void initState() {
+    super.initState();
+    // Call the fetchData function when the widget is initialized
+    getUser(userId).then((item) {
+      setState(() {
+        user = item;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

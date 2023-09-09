@@ -142,14 +142,14 @@ class _WishlistsPageState extends State<WishlistsPage> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
+                          const Text(
                             "Public List",
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w400,
                             ),
                           ),
-                          SizedBox(height: 10.0),
+                          const SizedBox(height: 10.0),
                           Text(
                             wishlistName!,
                             style: const TextStyle(
@@ -157,7 +157,7 @@ class _WishlistsPageState extends State<WishlistsPage> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          SizedBox(height: 15.0),
+                          const SizedBox(height: 15.0),
                           Row(
                             children: [
                               CircleAvatar(
