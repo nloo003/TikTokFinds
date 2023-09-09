@@ -119,7 +119,9 @@ class _FriendPageFactoryState extends State<FriendPageFactory> {
                         leading: GestureDetector(onTap: () {
                           Navigator.of(context).push(
                         MaterialPageRoute(builder: (BuildContext context) {
-                          return const ProfilePageOthers();
+                          return const ProfilePageOthers(
+                            userId: "",
+                          );
                         }),
                       );
                         },

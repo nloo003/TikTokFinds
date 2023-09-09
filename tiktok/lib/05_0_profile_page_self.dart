@@ -193,9 +193,8 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(builder: (BuildContext context) {
-                            return const WishlistsPage(
-                              // Pass userId as argument NICKY
-                              userId: "",
+                            return WishlistsPage(
+                              userId: user.id,
                               indivList: false,
                               wishlistId: "",
                             );
@@ -205,7 +204,7 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                       style: ButtonStyle(
                           backgroundColor:
                               MaterialStateProperty.all(Colors.blueGrey)),
-                      child: const Text("Wishlist")),
+                      child: const Text("Finds")),
                 )
               ],
             ),
