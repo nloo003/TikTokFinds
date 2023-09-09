@@ -79,6 +79,8 @@ userSchema.statics.getUserFollowers = async function(req){
     return user.followers
 }
 
+
+
 userSchema.statics.getUserFollowing = async function(req){
     const {id} = req.params
     if (!mongoose.Types.ObjectId.isValid(id)){
@@ -126,6 +128,15 @@ userSchema.statics.follow = async function(req){
     return updatedUser
 }
 
-
+userSchema.statics.getAllUsers = async function(req){
+    if (!mongoose.Types.ObjectId.isValid(id)){
+        throw Error("Invalid ID")
+    }
+    const user = await this.findById(id)
+    if (!user){
+        throw Error("No such user")
+    }
+    return user.followers
+}
 
 module.exports = mongoose.model('user', userSchema)
