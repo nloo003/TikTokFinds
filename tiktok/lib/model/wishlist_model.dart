@@ -1,6 +1,7 @@
 import 'item_model.dart';
 
 class WishlistModel {
+  String? id;
   String? name;
   String? description;
   List<ItemModel>? items;
@@ -8,7 +9,7 @@ class WishlistModel {
   String? creatorName;
   String? wishListImage;
 
-  WishlistModel(this.name, this.description, this.items, this.creatorId, this.creatorName, this.wishListImage);
+  WishlistModel(this.id, this.name, this.description, this.items, this.creatorId, this.creatorName, this.wishListImage);
   // WishlistModel(this.name, this.description, this.items, this.creatorId, this.creatorName);
 
   factory WishlistModel.fromJson(Map<String, dynamic> json) {
@@ -20,6 +21,7 @@ class WishlistModel {
     }
 
     return WishlistModel(
+      json['id'],
       json['name'],
       json['description'],
       itemsList,

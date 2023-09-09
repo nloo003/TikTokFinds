@@ -1,6 +1,11 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, unused_import
 
+import 'package:http/http.dart' as http;
+import 'dart:math';
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:tiktok/05_1_profile_page_others.dart';
+import 'package:tiktok/model/user_model.dart';
 import 'package:tiktok/widgets/back_icon.dart';
 
 class User {
@@ -18,13 +23,42 @@ class FriendPageFactory extends StatefulWidget {
 }
 
 class _FriendPageFactoryState extends State<FriendPageFactory> {
-  List<User> users = [
-    const User(username: "Meng Kiat", handle: "mkiats"),
-    const User(username: "Nicky", handle: "NLOO"),
-    const User(username: "Tharun", handle: "DARUN")
-  ];
+  String initialUserId = "64faace4f139f050c81cdab1";
+  UserModel user = UserModel("", "", "", [], [], 0, "");
 
-  String username = "mkiats";
+  List<UserModel> userList = [];
+
+  // Future<UserModel> getUsers(String id) async {
+  //   try {
+  //     var url = Uri.parse("http://10.0.2.2::4000/api/user/profile/:$id");
+  //     final response = await http.get(url);
+
+  //     if (response.statusCode == 200){
+  //       final List<dynamic> responseData = jsonDecode(response.body);
+
+  //       final <UserModel> data = responseData.map(((json) =>  UserModel.fromJson(json))).toList();
+
+  //       return data;
+  //     }
+  //     else {
+  //       debugPrint('Request failed with status: ${response.statusCode}');
+  //       return [];
+  //     }
+  //   } catch (e) {
+  //     debugPrint('Error: $e');
+  //     return []; // Return an empty list in case of an exception
+  //   }
+  //   }
+  //   void initState() {
+  //     super.initState();
+  //     getUsers(initialUserId).then((items) {
+  //       setState(() {
+  //         testUser = List.from(items);
+  //       });
+  //     });
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +66,7 @@ class _FriendPageFactoryState extends State<FriendPageFactory> {
         automaticallyImplyLeading: false,
         leading: const BackIcon(),
         backgroundColor: Colors.black,
-        title: Text(username),
+        title: Text(user.name),
         centerTitle: true,
         actions: [
           Padding(
@@ -97,15 +131,22 @@ class _FriendPageFactoryState extends State<FriendPageFactory> {
             ),
             Expanded(
               child: ListView.builder(
-                  itemCount: users.length,
+                  itemCount: userList.length,
                   itemBuilder: (context, index) {
-                    final user = users[index];
+                    final user = userList[index];
                     return Card(
                       child: ListTile(
-                        title: Text(user.username),
+                        title: Text(user.name),
                         subtitle: Text(user.handle),
-                        trailing:
-                            const Icon(Icons.notifications_active_outlined),
+                        trailing: const Icon(Icons.notifications_outlined),
+                        leading: GestureDetector(onTap: () {
+                          Navigator.of(context).push(
+                        MaterialPageRoute(builder: (BuildContext context) {
+                          return const ProfilePageOthers();
+                        }),
+                      );
+                        },
+                        child: const Icon(Icons.plus_one_outlined)),
                       ),
                     );
                   }),

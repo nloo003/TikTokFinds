@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:tiktok/03_create_story_page.dart';
 import 'package:tiktok/02_discover_page.dart';
@@ -38,13 +40,13 @@ class _RootPageState extends State<RootPage> {
   final pages = [
     HomePage(),
     const DiscoverPage(),
-    const CreateStoryPage(),
-    const InboxPage(),
+    // const CreateStoryPage(),
+    // const InboxPage(),
     // WishlistPage(),
-    const WishlistsPage(),
+    // const WishlistsPage(),
     const FriendPageFactory(),
     // const InboxPage(),
-    const WishlistPage(),
+    // const WishlistPage(),
     const ProfilePageOthers(),
     const ProfilePageSelf(),
   ];
@@ -83,12 +85,6 @@ class _RootPageState extends State<RootPage> {
                   color: Colors.white70,
                 ),
                 label: 'Inbox'),
-            NavigationDestination(
-                icon: Icon(
-                  Icons.card_giftcard_outlined,
-                  color: Colors.white70,
-                ),
-                label: 'Wishlist'),
             NavigationDestination(
                 icon: Icon(
                   Icons.man,

@@ -7,7 +7,7 @@ class UploadIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 50,
       height: 35,
       child: Stack(
