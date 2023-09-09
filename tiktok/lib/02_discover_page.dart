@@ -6,6 +6,8 @@ import 'model/wishlist_model.dart';
 import 'model/item_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import '06_1_wishlists_page.dart';
+import 'model/api.dart';
 
 class DiscoverPage extends StatefulWidget {
   const DiscoverPage({super.key});
@@ -32,30 +34,6 @@ class _DiscoverPageState extends State<DiscoverPage> {
         element.name!.toLowerCase().contains(value.toLowerCase())).toList();
     });
     searchWord = value;
-  }
-
-  Future<List<WishlistModel>> getWishList() async {
-    try {
-      var url = Uri.parse('http://10.0.2.2:4000/api/wishList/all');
-      final response = await http.get(url);
-
-      if (response.statusCode == 200) {
-        final List<dynamic> responseData = jsonDecode(response.body);
-
-        final List<WishlistModel> data = responseData
-          .map((json) => WishlistModel.fromJson(json))
-          .toList();
-        
-        return data;
-      }
-      else {
-        debugPrint('Request failed with status: ${response.statusCode}');
-        return [];
-      }
-    } catch (e) {
-      debugPrint('Error: $e');
-      return []; // Return an empty list in case of an exception
-    }
   }
 
   @override
@@ -156,11 +134,15 @@ class _DiscoverPageState extends State<DiscoverPage> {
               itemCount: displayList.length,
               itemBuilder: (context, index) => GestureDetector(
                 onTap: () {
-                  // Navigator.of(context).push(
-                  //   MaterialPageRoute(
-                  //     builder: (context) => const WishlistPage(),
-                  //   ),
-                  // );
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => WishlistsPage(
+                        userId: displayList[index].creatorId,
+                        indivList: false,
+                        wishlistId: displayList[index].id,
+                      ),
+                    ),
+                  );
                   debugPrint("clicked");
                 },
                 child: ListTile(

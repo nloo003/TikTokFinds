@@ -1,7 +1,9 @@
 // ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'package:tiktok/widgets/back_icon.dart';
+import 'model/item_model.dart';
+import 'model/wishlist_model.dart';
+import 'model/api.dart';
 
 // Define a class to represent a wishlist item
 class WishlistItemModel {
@@ -17,7 +19,17 @@ class WishlistItemModel {
 }
 
 class WishlistsPage extends StatefulWidget {
-  const WishlistsPage({super.key});
+  // const WishlistsPage({super.key});
+  final String? userId;
+  final bool? indivList;
+  final String? wishlistId;
+
+  const WishlistsPage({
+    Key? key,
+    required this.userId,
+    required this.indivList,
+    required this.wishlistId,
+  }) : super(key: key);
 
   @override
   State<WishlistsPage> createState() => _WishlistsPageState();
@@ -26,42 +38,68 @@ class WishlistsPage extends StatefulWidget {
 class _WishlistsPageState extends State<WishlistsPage> {
   ////////////////////////////////////////////////////////////////
   // Mocked list of wishlists (replace this with actual API data)
-  final List<List<WishlistItemModel>> wishlists = [
-    // Food Wishlist
-    [
-      WishlistItemModel(
-        itemName: 'Coffee beans',
-        itemDescription: 'Arabica, Roasted',
-        itemImage:
-            'https://images.unsplash.com/photo-1625021659159-f63f546d74a7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80',
-      ),
-    ],
-    // Hall Items Wishlist
-    [
-      WishlistItemModel(
-        itemName: 'Keyboard',
-        itemDescription: 'Mechanical, Tactile switches, Ergonomic, Wireless',
-        itemImage:
-            'https://images.unsplash.com/photo-1595044426077-d36d9236d54a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-      ),
-      WishlistItemModel(
-        itemName: 'Shampoo',
-        itemDescription: 'Natural ingredients, Everyday use',
-        itemImage:
-            'https://images.unsplash.com/photo-1629196869698-2ce173dacc24?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80',
-      ),
-      WishlistItemModel(
-        itemName: 'Diffuser',
-        itemDescription: 'Essential oil diffuser, Scented oil diffuser',
-        itemImage:
-            'https://images.unsplash.com/photo-1625480493029-abd01cd6061d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
-      ),
-    ],
-  ];
+  // final List<List<WishlistItemModel>> wishlists = [
+  //   // Food Wishlist
+  //   [
+  //     WishlistItemModel(
+  //       itemName: 'Coffee beans',
+  //       itemDescription: 'Arabica, Roasted',
+  //       itemImage:
+  //           'https://images.unsplash.com/photo-1625021659159-f63f546d74a7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80',
+  //     ),
+  //   ],
+  //   // Hall Items Wishlist
+  //   [
+  //     WishlistItemModel(
+  //       itemName: 'Keyboard',
+  //       itemDescription: 'Mechanical, Tactile switches, Ergonomic, Wireless',
+  //       itemImage:
+  //           'https://images.unsplash.com/photo-1595044426077-d36d9236d54a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+  //     ),
+  //     WishlistItemModel(
+  //       itemName: 'Shampoo',
+  //       itemDescription: 'Natural ingredients, Everyday use',
+  //       itemImage:
+  //           'https://images.unsplash.com/photo-1629196869698-2ce173dacc24?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80',
+  //     ),
+  //     WishlistItemModel(
+  //       itemName: 'Diffuser',
+  //       itemDescription: 'Essential oil diffuser, Scented oil diffuser',
+  //       itemImage:
+  //           'https://images.unsplash.com/photo-1625480493029-abd01cd6061d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+  //     ),
+  //   ],
+  // ];
   /////////////////////////////////////////////////////////////
+
+  List<WishlistModel> allWishlist = [];
+
+  @override
+  void initState() {
+    super.initState();
+    // Call the fetchData function when the widget is initialized
+    getWishList().then((items) {
+      setState(() {
+        allWishlist = items;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    debugPrint(widget.wishlistId);
+    
+    if (widget.indivList != null && widget.indivList == true) {
+      for(WishlistModel wishlist in allWishlist) {
+          if (wishlist.id == widget.wishlistId) {
+            WishlistModel indivWishlist = wishlist;
+            break;
+          }
+      }
+
+      return Scaffold();
+    }
+    else {}
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -86,18 +124,17 @@ class _WishlistsPageState extends State<WishlistsPage> {
         ],
       ),
       body: ListView.builder(
-        itemCount: wishlists.length,
+        itemCount: allWishlist.length,
         itemBuilder: (context, index) {
-          final wishlist = wishlists[index];
-          final wishlistName =
-              index == 0 ? "Food Wishlist" : "Hall Items Wishlist";
+          final wishlist = allWishlist[index];
+          final wishlistName = wishlist.name;
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
-                  wishlistName,
+                  wishlistName!,
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -109,12 +146,14 @@ class _WishlistsPageState extends State<WishlistsPage> {
                 child: ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  itemCount: wishlist.length,
+                  itemCount: wishlist.items!.length,
                   itemBuilder: (context, index) {
-                    final item = wishlist[index];
+                    final item = wishlist.items![index];
                     return WishlistItem(
+                      itemId: item.itemId,
                       itemName: item.itemName,
-                      itemDescription: item.itemDescription,
+                      itemPrice: item.itemPrice,
+                      // itemDescription: item.itemDescription,
                       itemImage: item.itemImage,
                     );
                   },
@@ -129,13 +168,17 @@ class _WishlistsPageState extends State<WishlistsPage> {
 }
 
 class WishlistItem extends StatelessWidget {
-  final String itemName;
-  final String itemDescription;
-  final String itemImage;
+  final String? itemId;
+  final String? itemName;
+  final double? itemPrice;
+  // final String? itemDescription;
+  final String? itemImage;
 
   WishlistItem({
+    required this.itemId,
     required this.itemName,
-    required this.itemDescription,
+    required this.itemPrice,
+    // required this.itemDescription,
     required this.itemImage,
   });
 
@@ -151,7 +194,7 @@ class WishlistItem extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.0),
               image: DecorationImage(
-                image: NetworkImage(itemImage),
+                image: NetworkImage(itemImage!),
                 fit: BoxFit.cover,
               ),
             ),
@@ -161,7 +204,7 @@ class WishlistItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                itemName,
+                itemName!,
                 style: const TextStyle(
                   fontSize: 18.0,
                   fontWeight: FontWeight.bold,
@@ -169,7 +212,7 @@ class WishlistItem extends StatelessWidget {
               ),
               const SizedBox(height: 4.0),
               Text(
-                itemDescription,
+                itemPrice.toString(),
                 style: const TextStyle(
                   fontSize: 14.0,
                   color: Colors.grey,

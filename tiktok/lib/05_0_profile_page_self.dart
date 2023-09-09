@@ -173,7 +173,12 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(builder: (BuildContext context) {
-                            return const WishlistsPage();
+                            return const WishlistsPage(
+                              // Pass userId as argument NICKY 
+                              userId: "",
+                              indivList: false,
+                              wishlistId: "",
+                            );
                           }),
                         );
                       },
