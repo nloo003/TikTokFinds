@@ -47,7 +47,7 @@ wishListSchema.statics.createWishList = async function(req){
 }
 
 wishListSchema.statics.addItem = async function(req){
-    const {wishListId, itemId, itemName, itemPrice, itemImage} = req.body
+    const {wishListId, itemId} = req.body
     if (!mongoose.Types.ObjectId.isValid(wishListId)){
         throw Error("Invalid wish list ID")
     }
@@ -58,7 +58,7 @@ wishListSchema.statics.addItem = async function(req){
     if (!wishList){
         throw Error("No such wishList")
     }
-    wishList["items"].push({itemId, itemName, itemPrice, itemImage})
+    wishList["items"].push(itemId)
     const updatedWishList = await wishList.save()
     return updatedWishList
 }
