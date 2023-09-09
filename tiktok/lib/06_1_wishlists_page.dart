@@ -73,6 +73,7 @@ class _WishlistsPageState extends State<WishlistsPage> {
 
   List<WishlistModel> allWishlist = [];
   WishlistModel indivWishlist = WishlistModel("", "", "", [], "", "", "");
+  ItemModel iter_item = ItemModel("", "", 0.0, "", "");
 
   @override
   void initState() {
@@ -87,7 +88,7 @@ class _WishlistsPageState extends State<WishlistsPage> {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint(widget.wishlistId);
+    // debugPrint(widget.wishlistId);
     
     // If only want to display an individual list
     if (widget.indivList != null && widget.indivList == true) {
@@ -186,14 +187,29 @@ class _WishlistsPageState extends State<WishlistsPage> {
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: wishlist.items!.length,
                     itemBuilder: (context, index) {
-                      final item = wishlist.items![index];
-                      return WishlistItem(
-                        itemId: item.itemId,
-                        itemName: item.itemName,
-                        itemPrice: item.itemPrice,
-                        // itemDescription: item.itemDescription,
-                        itemImage: item.itemImage,
-                      );
+                      final itemId = wishlist.items![index];
+                      debugPrint(wishlist.items![index]);
+                      return FutureBuilder<ItemModel>(
+                        future: getItem(itemId),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState == ConnectionState.waiting) {
+                            // Handle loading state
+                            return CircularProgressIndicator();
+                          } else if (snapshot.hasError) {
+                            // Handle error state
+                            return Text('Error: ${snapshot.error}');
+                          } else {
+                            final iter_item = snapshot.data;
+                            return WishlistItem(
+                              itemId: iter_item!.itemId,
+                              itemName: iter_item.itemName,
+                              itemPrice: iter_item.itemPrice,
+                              // itemDescription: item.itemDescription,
+                              itemImage: iter_item.itemImage,
+                            );
+                          }
+                        }
+                      );       
                     },
                   ),
                 ),
@@ -255,11 +271,11 @@ class _WishlistsPageState extends State<WishlistsPage> {
                   itemBuilder: (context, index) {
                     final item = wishlist.items![index];
                     return WishlistItem(
-                      itemId: item.itemId,
-                      itemName: item.itemName,
-                      itemPrice: item.itemPrice,
+                      itemId: "item.itemId",
+                      itemName: "item.itemName",
+                      itemPrice: 0.0,
                       // itemDescription: item.itemDescription,
-                      itemImage: item.itemImage,
+                      itemImage: "item.itemImage",
                     );
                   },
                 ),

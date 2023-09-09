@@ -68,7 +68,7 @@ class _FriendPageState extends State<FriendPage> {
         automaticallyImplyLeading: false,
         leading: const BackIcon(),
         backgroundColor: Colors.black,
-        title: Text(user.name),
+        title: Text(user.name!),
         centerTitle: true,
         actions: [
           Padding(
@@ -143,8 +143,8 @@ class _FriendPageState extends State<FriendPage> {
                     UserModel newPerson = userList[index];
                     return Card(
                       child: ListTile(
-                        title: Text(newPerson.name),
-                        subtitle: Text(newPerson.handle),
+                        title: Text(user.name!),
+                        subtitle: Text(user.handle!),
                         trailing: const Icon(Icons.notifications_outlined),
                         leading: GestureDetector(
                             onTap: () {

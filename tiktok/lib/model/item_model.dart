@@ -3,15 +3,17 @@ class ItemModel {
   String? itemName;
   double? itemPrice;
   String? itemImage;
+  String? itemStore;
 
-  ItemModel(this.itemId, this.itemName, this.itemPrice, this.itemImage);
+  ItemModel(this.itemId, this.itemName, this.itemPrice, this.itemImage, this.itemStore);
 
   factory ItemModel.fromJson(Map<String, dynamic> json) {
     return ItemModel(
-      json['itemId'],
-      json['itemName'],
-      json['itemPrice']?.toDouble(),
-      json['itemImage'],
+      json['id'],
+      json['name'],
+      json['price']?.toDouble(),
+      json['imageUrl'],
+      json['store'],
     );
   }
 }
