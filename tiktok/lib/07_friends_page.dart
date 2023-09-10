@@ -41,11 +41,11 @@ class _FriendPageState extends State<FriendPage> {
     getUser(userId).then((item) {
       setState(() {
         user = item;
-        for (int i = 0; i < widget.userIdList.length; i++) {
+        // for (int i = 0; i < widget.userIdList.length; i++) {
           
-          userList.add(fetchData(widget.userIdList[i]));
+        //   userList.add(fetchData(widget.userIdList[i]));
 
-        }
+        // }
       });
     });
 
