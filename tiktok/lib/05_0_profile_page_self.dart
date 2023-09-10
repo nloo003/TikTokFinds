@@ -19,7 +19,7 @@ class ProfilePageSelf extends StatefulWidget {
 
 class _ProfilePageSelfState extends State<ProfilePageSelf> {
   String userId = '64fbf5b43c612b13b658d6eb';
-  UserModel user = UserModel("", "", "", [], [], 0, "");
+  UserModel user = UserModel("", "", "", [], [], '0', "");
 
   @override
   void initState() {
@@ -79,12 +79,12 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
         child: Container(
           color: Colors.black,
           child: Column(children: [
-            const Padding(
+            Padding(
               padding: EdgeInsets.all(8.0),
               child: CircleAvatar(
                 radius: 50,
                 backgroundImage: NetworkImage(
-                  "https://images.unsplash.com/photo-1529973625058-a665431328fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80",
+                  user.profilePicUrl!
                 ),
               ),
             ),
@@ -110,8 +110,8 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(builder: (BuildContext context) {
-                          return FriendPage(
-                            userIdList: user.following!,
+                          return FriendPageState(
+                            userId: user.id!
                           ); //TODO
                         }),
                       );
@@ -132,8 +132,8 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(builder: (BuildContext context) {
-                          return FriendPage(
-                            userIdList: user.followers!,
+                          return FriendPageState(
+                            userId: user.id!
                           );
                         }),
                       );
@@ -193,9 +193,8 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(builder: (BuildContext context) {
-                            return const WishlistsPage(
-                              // Pass userId as argument NICKY
-                              userId: "",
+                            return WishlistsPage(
+                              userId: user.id,
                               indivList: false,
                               wishlistId: "",
                             );
@@ -205,7 +204,7 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                       style: ButtonStyle(
                           backgroundColor:
                               MaterialStateProperty.all(Colors.blueGrey)),
-                      child: const Text("Wishlist")),
+                      child: const Text("Finds")),
                 )
               ],
             ),

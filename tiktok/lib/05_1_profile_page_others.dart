@@ -1,19 +1,36 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:tiktok/widgets/back_icon.dart';
-
+import 'model/api.dart';
 import '06_1_wishlists_page.dart';
 import 'model/user_model.dart';
 
 class ProfilePageOthers extends StatefulWidget {
-  const ProfilePageOthers({super.key});
+  // const ProfilePageOthers({super.key});
+  final String? userId;
+
+  const ProfilePageOthers({
+    Key? key,
+    required this.userId
+  }) : super(key: key);
 
   @override
   State<ProfilePageOthers> createState() => _ProfilePageOthersState();
 }
 
 class _ProfilePageOthersState extends State<ProfilePageOthers> {
-  UserModel user = UserModel("", "", "", [], [], 0, "");
+  UserModel user = UserModel("", "", "", [], [], '0', "");  
+
+  @override
+  void initState() {
+    super.initState();
+    // Call the fetchData function when the widget is initialized
+    getUser(widget.userId!).then((item) {
+      setState(() {
+        user = item;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,12 +79,12 @@ class _ProfilePageOthersState extends State<ProfilePageOthers> {
         child: Container(
           color: Colors.black,
           child: Column(children: [
-            const Padding(
+            Padding(
               padding: EdgeInsets.all(8.0),
               child: CircleAvatar(
                 radius: 50,
                 backgroundImage: NetworkImage(
-                  "https://images.unsplash.com/photo-1529973625058-a665431328fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80",
+                  user.profilePicUrl!
                 ),
               ),
             ),
@@ -124,23 +141,13 @@ class _ProfilePageOthersState extends State<ProfilePageOthers> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(5, 5, 0, 0),
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(Colors.blueGrey)),
-                    child: const Text("Edit Profile"),
-                  ),
-                ),
-                Padding(
                   padding: const EdgeInsets.fromLTRB(5, 5, 5, 0),
                   child: ElevatedButton(
                     onPressed: () {},
                     style: ButtonStyle(
                         backgroundColor:
                             MaterialStateProperty.all(Colors.blueGrey)),
-                    child: const Text("Add Friends"),
+                    child: const Text("+ Add Friend"),
                   ),
                 ),
                 Padding(
@@ -149,9 +156,8 @@ class _ProfilePageOthersState extends State<ProfilePageOthers> {
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(builder: (BuildContext context) {
-                            return const WishlistsPage(
-                              // Pass userId as argument NICKY 
-                              userId: "",
+                            return WishlistsPage(
+                              userId: user.id,
                               indivList: false,
                               wishlistId: "",
                             );
@@ -161,40 +167,24 @@ class _ProfilePageOthersState extends State<ProfilePageOthers> {
                       style: ButtonStyle(
                           backgroundColor:
                               MaterialStateProperty.all(Colors.blueGrey)),
-                      child: const Text("Wishlist")),
+                      child: const Text("Finds")),
                 )
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.blueGrey),
-                    foregroundColor: MaterialStateProperty.all(Colors.white),
-                    minimumSize:
-                        MaterialStateProperty.all<Size>(const Size(20, 20))),
-                child: const Text("+ Add Bio",
-                    style: TextStyle(
-                        fontSize: 12, overflow: TextOverflow.visible)),
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                  child: OutlinedButton(
-                    style: const ButtonStyle(alignment: Alignment.center),
-                    onPressed: () {},
-                    child: const Row(children: [
-                      Icon(Icons.photo),
-                      Text("Add Yours", style: TextStyle(fontSize: 12)),
-                    ]),
-                  ),
-                ),
-              ],
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+            //   child: ElevatedButton(
+            //     onPressed: () {},
+            //     style: ButtonStyle(
+            //         backgroundColor: MaterialStateProperty.all(Colors.blueGrey),
+            //         foregroundColor: MaterialStateProperty.all(Colors.white),
+            //         minimumSize:
+            //             MaterialStateProperty.all<Size>(const Size(20, 20))),
+            //     child: const Text("+ Add Bio",
+            //         style: TextStyle(
+            //             fontSize: 12, overflow: TextOverflow.visible)),
+            //   ),
+            // ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -211,32 +201,6 @@ class _ProfilePageOthersState extends State<ProfilePageOthers> {
                     child: const Icon(Icons.favorite_outline)),
               ],
             ),
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 25),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.picture_in_picture_alt_outlined,
-                        color: Colors.white,
-                      ),
-                      const SizedBox(
-                        child: Text(
-                            "Share a fun video you've recorded recently",
-                            style: TextStyle(color: Colors.white)),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: const Text(
-                          "Upload",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                    ]),
-              ),
-            )
           ]),
         ),
       ),

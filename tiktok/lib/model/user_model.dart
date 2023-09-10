@@ -6,7 +6,7 @@ class UserModel {
   String? handle;
   List<String>? following;
   List<String>? followers;
-  double? likes;
+  String? likes;
   String? profilePicUrl;
 
   UserModel(this.id, this.name, this.handle, this.following, this.followers,
@@ -14,12 +14,12 @@ class UserModel {
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
-      json['id'],
+      json['_id'],
       json['name'],
       json['handle'],
       List<String>.from(json['following']),
       List<String>.from(json['followers']),
-      json['likes'].toDouble(),
+      json['likes'].toString(),
       json['profilePicUrl'],
     );
   }

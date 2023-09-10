@@ -1,2 +1,2 @@
-# TikTokHackathonWinners
-E-Commerce + Most Popular Solutions Winner
+# TikTok Hackathon E-Commerce
+

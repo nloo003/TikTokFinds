@@ -14,7 +14,7 @@ class WishlistModel {
   factory WishlistModel.fromJson(Map<String, dynamic> json) {
 
     return WishlistModel(
-      json['id'],
+      json['_id'],
       json['name'],
       json['description'],
       List<String>.from(json['items']),

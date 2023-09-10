@@ -7,6 +7,7 @@ import 'package:tiktok/04_inbox_page.dart';
 import 'package:tiktok/05_0_profile_page_self.dart';
 import 'package:tiktok/01_home_page.dart';
 import 'package:tiktok/05_1_profile_page_others.dart';
+import 'package:tiktok/06_1_wishlists_page.dart';
 import 'package:tiktok/06_wishlist_page.dart';
 import 'package:tiktok/06_1_wishlists_page.dart';
 import 'package:tiktok/07_friends_page.dart';
@@ -44,10 +45,10 @@ class _RootPageState extends State<RootPage> {
     // const InboxPage(),
     // WishlistPage(),
     // const WishlistsPage(),
-    // const FriendPageFactory(),
+    // const FriendPageState(userId: ""),
     const InboxPage(),
     // const WishlistPage(),
-    const ProfilePageOthers(),
+    const ProfilePageOthers(userId: "64fbf5b43c612b13b658d6eb"),
     const ProfilePageSelf(),
   ];
   @override
