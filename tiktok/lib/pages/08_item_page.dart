@@ -1,24 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:tiktok/widgets/back_icon.dart';
-import '../model/wishlist_model.dart';
-import '../model/api.dart';
-import '../model/user_model.dart';
 
 class ItemPage extends StatefulWidget {
   final String? itemId;
   final String? itemName;
   final double? itemPrice;
   final String? itemImage;
-  //final String? itemDescription;
-  //final UserModel? seller; // UserModel to represent the seller
 
   ItemPage({
     required this.itemId,
     required this.itemName,
     required this.itemPrice,
     required this.itemImage,
-    //required this.itemDescription,
-    //required this.seller,
   });
 
   @override
@@ -26,7 +19,6 @@ class ItemPage extends StatefulWidget {
 }
 
 class _ItemPageState extends State<ItemPage> {
-  // comments for item
   List<Map<String, String>> comments = [
     {"username": "@mxkiats", "comment": "Great product! I love it!"},
     {"username": "@mr.swaroop", "comment": "The quality is amazing."},
@@ -35,7 +27,6 @@ class _ItemPageState extends State<ItemPage> {
     {"username": "@kaikai", "comment": "Bought this multiple times!"},
   ];
 
-  // Sample related items for testing
   List<Map<String, dynamic>> relatedItems = [
     {
       "itemName": "Sleek table lamp",
@@ -47,8 +38,8 @@ class _ItemPageState extends State<ItemPage> {
       "itemName": "Adjustable lamp",
       "itemPrice": 15.99,
       "itemImage":
-          "https://images.unsplash.com/photo-1570974802254-4b0ad1a755f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-    },
+          "https://images.unsplash.com/photo-1570974802254-4b0ad1a755f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+    }
   ];
 
   @override
@@ -61,11 +52,38 @@ class _ItemPageState extends State<ItemPage> {
         title: Text(widget.itemName ?? "Item Not Found"),
         centerTitle: true,
         actions: [
+          //   Padding(
+          //     padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
+          //     child: GestureDetector(
+          //       onTap: () {},
+          //       child: const Icon(Icons.favorite_outline),
+          //     ),
+          //   ),
           Padding(
             padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                // add to cart
+              },
+              child: const Icon(Icons.add_shopping_cart),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
+            child: GestureDetector(
+              onTap: () {
+                // like
+              },
               child: const Icon(Icons.favorite_outline),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
+            child: GestureDetector(
+              onTap: () {
+                // share
+              },
+              child: const Icon(Icons.share),
             ),
           ),
         ],
@@ -167,7 +185,7 @@ class _ItemPageState extends State<ItemPage> {
                         "\$${item['itemPrice'].toStringAsFixed(2)}",
                       ),
                       onTap: () {
-                        // click to related
+                        // Click to related item page
                       },
                     ),
                 ],
