@@ -1,15 +1,16 @@
-// ignore_for_file: unused_import
+// ignore_for_file: unused_import, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
-import 'package:tiktok/03_create_story_page.dart';
-import 'package:tiktok/02_discover_page.dart';
-import 'package:tiktok/04_inbox_page.dart';
-import 'package:tiktok/05_0_profile_page_self.dart';
-import 'package:tiktok/01_home_page.dart';
-import 'package:tiktok/05_1_profile_page_others.dart';
-import 'package:tiktok/06_wishlist_page.dart';
-import 'package:tiktok/06_1_wishlists_page.dart';
-import 'package:tiktok/07_friends_page.dart';
+import 'package:tiktok/pages/03_create_story_page.dart';
+import 'package:tiktok/pages/02_discover_page.dart';
+import 'package:tiktok/pages/04_inbox_page.dart';
+import 'package:tiktok/pages/05_0_profile_page_self.dart';
+import 'package:tiktok/pages/01_home_page.dart';
+import 'package:tiktok/pages/05_1_profile_page_others.dart';
+import 'package:tiktok/pages/06_1_wishlists_page.dart';
+import 'package:tiktok/pages/06_wishlist_page.dart';
+import 'package:tiktok/pages/06_1_wishlists_page.dart';
+import 'package:tiktok/pages/07_friends_page.dart';
 import 'package:tiktok/widgets/upload_icon.dart';
 
 void main() {
@@ -44,10 +45,10 @@ class _RootPageState extends State<RootPage> {
     // const InboxPage(),
     // WishlistPage(),
     // const WishlistsPage(),
-    const FriendPageFactory(),
-    // const InboxPage(),
+    // const FriendPageState(userId: ""),
+    const InboxPage(),
     // const WishlistPage(),
-    const ProfilePageOthers(),
+    const ProfilePageOthers(userId: "64fbf5b43c612b13b658d6eb"),
     const ProfilePageSelf(),
   ];
   @override

@@ -1,10 +1,14 @@
 // ignore_for_file: file_names, unused_import
 import 'package:flutter/material.dart';
-import 'package:tiktok/06_1_wishlists_page.dart';
-import 'package:tiktok/06_wishlist_page.dart';
-import 'package:tiktok/07_friends_page.dart';
+import 'package:tiktok/pages/01_home_page.dart';
+import 'package:tiktok/pages/06_1_wishlists_page.dart';
+import 'package:tiktok/pages/06_wishlist_page.dart';
+import 'package:tiktok/pages/07_friends_page.dart';
 import 'package:tiktok/model/api.dart';
 import 'package:tiktok/model/user_model.dart';
+import 'package:http/http.dart' as http;
+import 'dart:math';
+import 'dart:convert';
 
 class ProfilePageSelf extends StatefulWidget {
   const ProfilePageSelf({super.key});
@@ -14,9 +18,8 @@ class ProfilePageSelf extends StatefulWidget {
 }
 
 class _ProfilePageSelfState extends State<ProfilePageSelf> {
-  // String userId = '64fbec2d3c612b13b658d6cd';
   String userId = '64fbf5b43c612b13b658d6eb';
-  UserModel user = UserModel("", "", "", [], [], 0, "");
+  UserModel user = UserModel("", "", "", [], [], '0', "");
 
   @override
   void initState() {
@@ -40,7 +43,7 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
               debugPrint("Username clicked");
             },
             child: Text(
-              user.name,
+              user.name!,
               style: const TextStyle(color: Colors.white),
             ),
           ),
@@ -76,12 +79,12 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
         child: Container(
           color: Colors.black,
           child: Column(children: [
-            const Padding(
+            Padding(
               padding: EdgeInsets.all(8.0),
               child: CircleAvatar(
                 radius: 50,
                 backgroundImage: NetworkImage(
-                  "https://images.unsplash.com/photo-1529973625058-a665431328fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80",
+                  user.profilePicUrl!
                 ),
               ),
             ),
@@ -89,7 +92,7 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  user.handle,
+                  user.handle!,
                   style: const TextStyle(color: Colors.white),
                 ),
                 const Icon(
@@ -107,13 +110,15 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(builder: (BuildContext context) {
-                          return const FriendPageFactory();
+                          return FriendPageState(
+                            userId: user.id!
+                          ); //TODO
                         }),
                       );
                     },
                     child: Column(
                       children: [
-                        Text(user.following.length.toString(),
+                        Text(user.following!.length.toString(),
                             style: const TextStyle(color: Colors.white)),
                         const Text("Following",
                             style: TextStyle(color: Colors.white))
@@ -127,13 +132,15 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(builder: (BuildContext context) {
-                          return const FriendPageFactory();
+                          return FriendPageState(
+                            userId: user.id!
+                          );
                         }),
                       );
                     },
                     child: Column(
                       children: [
-                        Text(user.followers.length.toString(),
+                        Text(user.followers!.length.toString(),
                             style: const TextStyle(color: Colors.white)),
                         const Text("Followers",
                             style: TextStyle(color: Colors.white))
@@ -186,9 +193,8 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                       onPressed: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(builder: (BuildContext context) {
-                            return const WishlistsPage(
-                              // Pass userId as argument NICKY
-                              userId: "",
+                            return WishlistsPage(
+                              userId: user.id,
                               indivList: false,
                               wishlistId: "",
                             );
@@ -198,7 +204,7 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                       style: ButtonStyle(
                           backgroundColor:
                               MaterialStateProperty.all(Colors.blueGrey)),
-                      child: const Text("Wishlist")),
+                      child: const Text("Finds")),
                 )
               ],
             ),
