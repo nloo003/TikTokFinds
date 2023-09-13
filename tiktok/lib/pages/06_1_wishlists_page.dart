@@ -5,6 +5,7 @@ import '../model/item_model.dart';
 import '../model/wishlist_model.dart';
 import '../model/api.dart';
 import '../model/user_model.dart';
+import 'package:tiktok/pages/08_item_page.dart';
 
 // Define a class to represent a wishlist item
 class WishlistItemModel {
@@ -37,7 +38,6 @@ class WishlistsPage extends StatefulWidget {
 }
 
 class _WishlistsPageState extends State<WishlistsPage> {
-
   List<WishlistModel> allWishlist = [];
   WishlistModel indivWishlist = WishlistModel("", "", "", [], "", "", "");
   ItemModel iter_item = ItemModel("", "", 0.0, "", "");
@@ -121,7 +121,7 @@ class _WishlistsPageState extends State<WishlistsPage> {
   @override
   Widget build(BuildContext context) {
     // debugPrint(widget.wishlistId);
-    
+
     // If only want to display an individual list
     if (widget.indivList != null && widget.indivList == true) {
       for (WishlistModel wishlist in allWishlist) {
@@ -144,7 +144,8 @@ class _WishlistsPageState extends State<WishlistsPage> {
             // debugPrint("id ${wishlist.id}");
             // debugPrint("widget ${widget.wishlistId}");
             if (wishlist.id != widget.wishlistId) {
-              return SizedBox.shrink(); // Return an empty SizedBox to skip the item
+              return SizedBox
+                  .shrink(); // Return an empty SizedBox to skip the item
             }
 
             final wishlistName = wishlist.name;
@@ -221,26 +222,41 @@ class _WishlistsPageState extends State<WishlistsPage> {
                       final itemId = wishlist.items![index];
                       debugPrint(wishlist.items![index]);
                       return FutureBuilder<ItemModel>(
-                        future: getItem(itemId),
-                        builder: (context, snapshot) {
-                          if (snapshot.connectionState == ConnectionState.waiting) {
-                            // Handle loading state
-                            return CircularProgressIndicator();
-                          } else if (snapshot.hasError) {
-                            // Handle error state
-                            return Text('Error: ${snapshot.error}');
-                          } else {
-                            final iter_item = snapshot.data;
-                            return WishlistItem(
-                              itemId: iter_item!.itemId,
-                              itemName: iter_item.itemName,
-                              itemPrice: iter_item.itemPrice,
-                              // itemDescription: item.itemDescription,
-                              itemImage: iter_item.itemImage,
-                            );
-                          }
-                        }
-                      );       
+                          future: getItem(itemId),
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              // Handle loading state
+                              return CircularProgressIndicator();
+                            } else if (snapshot.hasError) {
+                              // Handle error state
+                              return Text('Error: ${snapshot.error}');
+                            } else {
+                              final iter_item = snapshot.data;
+                              return GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => ItemPage(
+                                          itemId: iter_item!.itemId,
+                                          itemName: iter_item.itemName,
+                                          itemPrice: iter_item.itemPrice,
+                                          // itemDescription: iter_item.itemDescription,
+                                          itemImage: iter_item.itemImage,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  child: WishlistItem(
+                                    itemId: iter_item!.itemId,
+                                    itemName: iter_item.itemName,
+                                    itemPrice: iter_item.itemPrice,
+                                    // itemDescription: item.itemDescription,
+                                    itemImage: iter_item.itemImage,
+                                  ));
+                            }
+                          });
                     },
                   ),
                 ),
@@ -299,42 +315,43 @@ class _WishlistsPageState extends State<WishlistsPage> {
                     ),
                     SizedBox(width: 10.0),
                     Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            "Public List",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                            ),
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "Public List",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
                           ),
-                          const SizedBox(height: 10.0),
-                          Text(
-                            wishlistName!,
-                            style: const TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
+                        ),
+                        const SizedBox(height: 10.0),
+                        Text(
+                          wishlistName!,
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
                           ),
-                          const SizedBox(height: 15.0),
-                        ],
-                      ),
+                        ),
+                        const SizedBox(height: 15.0),
+                      ],
+                    ),
                   ],
                 ),
               ),
               Container(
                 padding: const EdgeInsets.all(16.0),
                 child: ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: wishlist.items!.length,
-                    itemBuilder: (context, index) {
-                      final itemId = wishlist.items![index];
-                      // debugPrint(wishlist.items![index]);
-                      return FutureBuilder<ItemModel>(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: wishlist.items!.length,
+                  itemBuilder: (context, index) {
+                    final itemId = wishlist.items![index];
+                    // debugPrint(wishlist.items![index]);
+                    return FutureBuilder<ItemModel>(
                         future: getItem(itemId),
                         builder: (context, snapshot) {
-                          if (snapshot.connectionState == ConnectionState.waiting) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
                             // Handle loading state
                             return CircularProgressIndicator();
                           } else if (snapshot.hasError) {
@@ -350,10 +367,9 @@ class _WishlistsPageState extends State<WishlistsPage> {
                               itemImage: iter_item.itemImage,
                             );
                           }
-                        }
-                      );       
-                    },
-                  ),
+                        });
+                  },
+                ),
               ),
             ],
           );

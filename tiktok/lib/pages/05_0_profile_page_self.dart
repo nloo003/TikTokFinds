@@ -10,6 +10,8 @@ import 'package:http/http.dart' as http;
 import 'dart:math';
 import 'dart:convert';
 
+import 'package:tiktok/pages/08_item_page.dart';
+
 class ProfilePageSelf extends StatefulWidget {
   const ProfilePageSelf({super.key});
 
@@ -83,9 +85,7 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
               padding: EdgeInsets.all(8.0),
               child: CircleAvatar(
                 radius: 50,
-                backgroundImage: NetworkImage(
-                  user.profilePicUrl!
-                ),
+                backgroundImage: NetworkImage(user.profilePicUrl!),
               ),
             ),
             Row(
@@ -110,9 +110,7 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(builder: (BuildContext context) {
-                          return FriendPageState(
-                            userId: user.id!
-                          ); //TODO
+                          return FriendPageState(userId: user.id!); //TODO
                         }),
                       );
                     },
@@ -132,9 +130,7 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(builder: (BuildContext context) {
-                          return FriendPageState(
-                            userId: user.id!
-                          );
+                          return FriendPageState(userId: user.id!);
                         }),
                       );
                     },
@@ -205,6 +201,26 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                           backgroundColor:
                               MaterialStateProperty.all(Colors.blueGrey)),
                       child: const Text("Finds")),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 5, 5, 0),
+                  child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (BuildContext context) {
+                            return ItemPage(
+                                itemId: "1",
+                                itemName: "Item 1",
+                                itemPrice: 19.99,
+                                itemImage:
+                                    "https://images.unsplash.com/photo-1621265010303-a793d1017307?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80");
+                          }),
+                        );
+                      },
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.blueGrey)),
+                      child: const Text("Item")),
                 )
               ],
             ),

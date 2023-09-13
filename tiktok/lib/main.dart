@@ -11,6 +11,7 @@ import 'package:tiktok/pages/06_1_wishlists_page.dart';
 import 'package:tiktok/pages/06_wishlist_page.dart';
 import 'package:tiktok/pages/06_1_wishlists_page.dart';
 import 'package:tiktok/pages/07_friends_page.dart';
+import 'package:tiktok/pages/08_item_page.dart';
 import 'package:tiktok/widgets/upload_icon.dart';
 
 void main() {
