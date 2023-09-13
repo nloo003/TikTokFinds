@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'dart:math';
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:tiktok/05_1_profile_page_others.dart';
+import 'package:tiktok/pages/05_1_profile_page_others.dart';
 import 'package:tiktok/model/user_model.dart';
 import 'package:tiktok/widgets/back_icon.dart';
 
