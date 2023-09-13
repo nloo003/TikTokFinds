@@ -1,9 +1,9 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:tiktok/widgets/back_icon.dart';
-import 'model/api.dart';
+import '../model/api.dart';
 import '06_1_wishlists_page.dart';
-import 'model/user_model.dart';
+import '../model/user_model.dart';
 
 class ProfilePageOthers extends StatefulWidget {
   // const ProfilePageOthers({super.key});

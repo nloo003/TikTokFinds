@@ -2,12 +2,12 @@
 import 'package:flutter/material.dart';
 import '06_wishlist_page.dart';
 import 'dart:math';
-import 'model/wishlist_model.dart';
-import 'model/item_model.dart';
+import '../model/wishlist_model.dart';
+import '../model/item_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '06_1_wishlists_page.dart';
-import 'model/api.dart';
+import '../model/api.dart';
 
 class DiscoverPage extends StatefulWidget {
   const DiscoverPage({super.key});
