@@ -54,69 +54,70 @@ class _WishlistsPageState extends State<WishlistsPage> {
     });
   }
 
-  // add wishlist pop up
-  // Future<void> _showAddWishlistDialog(BuildContext context) async {
-  //   TextEditingController nameController = TextEditingController();
-  //   TextEditingController descriptionController = TextEditingController();
+  //add wishlist pop up
+  Future<void> _showAddWishlistDialog(BuildContext context) async {
+    TextEditingController nameController = TextEditingController();
+    TextEditingController descriptionController = TextEditingController();
 
-  //   await showDialog(
-  //     context: context,
-  //     builder: (BuildContext context) {
-  //       return AlertDialog(
-  //         title: Text('Add Wishlist'),
-  //         content: Column(
-  //           mainAxisSize: MainAxisSize.min,
-  //           children: <Widget>[
-  //             TextField(
-  //               controller: nameController,
-  //               decoration: InputDecoration(labelText: 'Name'),
-  //             ),
-  //             TextField(
-  //               controller: descriptionController,
-  //               decoration: InputDecoration(labelText: 'Description'),
-  //             ),
-  //           ],
-  //         ),
-  //         actions: <Widget>[
-  //           TextButton(
-  //             onPressed: () {
-  //               Navigator.of(context).pop(); // Close pop up
-  //             },
-  //             child: Text('Cancel'),
-  //           ),
-  //           TextButton(
-  //             onPressed: () {
-  //               // Validate and save the input values
-  //               final name = nameController.text.trim();
-  //               final description = descriptionController.text.trim();
+    await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Add Wishlist'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              TextField(
+                controller: nameController,
+                decoration: InputDecoration(labelText: 'Name'),
+              ),
+              TextField(
+                controller: descriptionController,
+                decoration: InputDecoration(labelText: 'Description'),
+              ),
+            ],
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close pop up
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                // Validate and save the input values
+                final name = nameController.text.trim();
+                final description = descriptionController.text.trim();
 
-  //               if (name.isNotEmpty) {
-  //                 // Create and add a new wishlist
-  //                 final newWishlist = WishlistModel(
-  //                   name,
-  //                   description,
-  //                   'https://plus.unsplash.com/premium_photo-1683417272601-dbbfed0ed718?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1776&q=80', // Replace with a valid image URL
-  //                   [],
-  //                   widget.userId!, // creatorid
-  //                   '', //creator name
-  //                   DateTime.now().toString(),
-  //                 );
+                if (name.isNotEmpty) {
+                  // Create and add a new wishlist
+                  final newWishlist = WishlistModel(
+                    "abc",
+                    name,
+                    description,
+                    [],
+                    widget.userId!, // creatorid
+                    '', //creator name
+                    "https://images.unsplash.com/photo-1585652757141-8837d676fac8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
+                  );
 
-  //                 // Add the new wishlist to the list
-  //                 setState(() {
-  //                   allWishlist.add(newWishlist);
-  //                 });
+                  // Add the new wishlist to the list
+                  setState(() {
+                    allWishlist.add(newWishlist);
+                  });
 
-  //                 Navigator.of(context).pop();
-  //               }
-  //             },
-  //             child: Text('Add'),
-  //           ),
-  //         ],
-  //       );
-  //     },
-  //   );
-  // }
+                  Navigator.of(context).pop();
+                }
+              },
+              child: Text('Add'),
+            ),
+          ],
+        );
+      },
+    );
+    return;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -144,7 +145,7 @@ class _WishlistsPageState extends State<WishlistsPage> {
             // debugPrint("id ${wishlist.id}");
             // debugPrint("widget ${widget.wishlistId}");
             if (wishlist.id != widget.wishlistId) {
-              return SizedBox
+              return const SizedBox
                   .shrink(); // Return an empty SizedBox to skip the item
             }
 
@@ -166,7 +167,7 @@ class _WishlistsPageState extends State<WishlistsPage> {
                           fit: BoxFit.cover,
                         ),
                       ),
-                      SizedBox(width: 10.0),
+                      const SizedBox(width: 10.0),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -235,26 +236,28 @@ class _WishlistsPageState extends State<WishlistsPage> {
                               final iter_item = snapshot.data;
                               return GestureDetector(
                                   onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => ItemPage(
-                                          itemId: iter_item!.itemId,
-                                          itemName: iter_item.itemName,
-                                          itemPrice: iter_item.itemPrice,
-                                          // itemDescription: iter_item.itemDescription,
-                                          itemImage: iter_item.itemImage,
-                                        ),
-                                      ),
-                                    );
+                                    debugPrint("clicked ${iter_item!.itemId}");
+                                    if(iter_item !=null && iter_item.itemId != null){
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(builder: (BuildContext context) {
+                                          return ItemPage(
+                                            itemId: iter_item.itemId,
+                                            itemName: iter_item.itemName,
+                                            itemPrice: iter_item.itemPrice,
+                                            itemImage: iter_item.itemImage,
+                                          );
+                                        })
+                                      );
+                                    }
                                   },
                                   child: WishlistItem(
-                                    itemId: iter_item!.itemId,
-                                    itemName: iter_item.itemName,
-                                    itemPrice: iter_item.itemPrice,
+                                    itemId: iter_item?.itemId,
+                                    itemName: iter_item?.itemName,
+                                    itemPrice: iter_item?.itemPrice ?? 0,
                                     // itemDescription: item.itemDescription,
-                                    itemImage: iter_item.itemImage,
-                                  ));
+                                    itemImage: iter_item?.itemImage,
+                                  )
+                                );
                             }
                           });
                     },
@@ -273,7 +276,7 @@ class _WishlistsPageState extends State<WishlistsPage> {
         automaticallyImplyLeading: false,
         leading: const BackIcon(),
         title: Text(
-          "${user.name!}'s Finds",
+          allWishlist.isNotEmpty ? "${allWishlist[0].creatorName!}'s Finds" : "Loading...",
           style: const TextStyle(
             color: Colors.white,
           ),
@@ -287,7 +290,7 @@ class _WishlistsPageState extends State<WishlistsPage> {
             ),
             onPressed: () {
               // Add wishlist button pressed, implement action here
-              // _showAddWishlistDialog(context);
+              _showAddWishlistDialog(context);
             },
           ),
         ],
@@ -359,12 +362,29 @@ class _WishlistsPageState extends State<WishlistsPage> {
                             return Text('Error: ${snapshot.error}');
                           } else {
                             final iter_item = snapshot.data;
-                            return WishlistItem(
-                              itemId: iter_item!.itemId,
-                              itemName: iter_item.itemName,
-                              itemPrice: iter_item.itemPrice,
-                              // itemDescription: item.itemDescription,
-                              itemImage: iter_item.itemImage,
+                            return GestureDetector(
+                              onTap: () {
+                                debugPrint("clicked ${iter_item!.itemId}");
+                                if(iter_item !=null && iter_item.itemId != null){
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(builder: (BuildContext context) {
+                                      return ItemPage(
+                                        itemId: iter_item.itemId,
+                                        itemName: iter_item.itemName,
+                                        itemPrice: iter_item.itemPrice,
+                                        itemImage: iter_item.itemImage,
+                                      );
+                                    })
+                                  );
+                                }
+                              },
+                              child: WishlistItem(
+                                itemId: iter_item?.itemId,
+                                itemName: iter_item?.itemName,
+                                itemPrice: iter_item?.itemPrice ?? 0,
+                                // itemDescription: item.itemDescription,
+                                itemImage: iter_item?.itemImage,
+                              )
                             );
                           }
                         });

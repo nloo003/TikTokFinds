@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tiktok/widgets/back_icon.dart';
+import '../model/item_model.dart';
+import '../model/api.dart';
 
 class ItemPage extends StatefulWidget {
   final String? itemId;
@@ -7,18 +9,32 @@ class ItemPage extends StatefulWidget {
   final double? itemPrice;
   final String? itemImage;
 
-  ItemPage({
+  const ItemPage({
+    Key? key,
     required this.itemId,
     required this.itemName,
     required this.itemPrice,
     required this.itemImage,
-  });
+  }) : super(key:key);
 
   @override
-  _ItemPageState createState() => _ItemPageState();
+  State<ItemPage> createState() => _ItemPageState();
 }
 
 class _ItemPageState extends State<ItemPage> {
+  ItemModel item = ItemModel("", "", 0.0, "", "");
+
+  @override
+  void initState() {
+    super.initState();
+    // Call the fetchData function when the widget is initialized
+    getItem(widget.itemId!).then((e) {
+      setState(() {
+        item = e;
+      });
+    });
+  }
+
   List<Map<String, String>> comments = [
     {"username": "@mxkiats", "comment": "Great product! I love it!"},
     {"username": "@mr.swaroop", "comment": "The quality is amazing."},
@@ -49,7 +65,7 @@ class _ItemPageState extends State<ItemPage> {
         automaticallyImplyLeading: false,
         leading: const BackIcon(),
         backgroundColor: Colors.black,
-        title: Text(widget.itemName ?? "Item Not Found"),
+        title: Text(item.itemName!),
         centerTitle: true,
         actions: [
           //   Padding(
@@ -59,15 +75,15 @@ class _ItemPageState extends State<ItemPage> {
           //       child: const Icon(Icons.favorite_outline),
           //     ),
           //   ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
-            child: GestureDetector(
-              onTap: () {
-                // add to cart
-              },
-              child: const Icon(Icons.add_shopping_cart),
-            ),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
+          //   child: GestureDetector(
+          //     onTap: () {
+          //       // add to cart
+          //     },
+          //     child: const Icon(Icons.add_shopping_cart),
+          //   ),
+          // ),
           Padding(
             padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
             child: GestureDetector(
@@ -78,7 +94,7 @@ class _ItemPageState extends State<ItemPage> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
+            padding: const EdgeInsets.fromLTRB(5, 5, 16, 5),
             child: GestureDetector(
               onTap: () {
                 // share
@@ -94,7 +110,7 @@ class _ItemPageState extends State<ItemPage> {
           children: [
             // Display item image
             Image.network(
-              widget.itemImage ?? "",
+              widget.itemImage!,
               width: double.infinity,
               height: 300.0,
               fit: BoxFit.cover,
@@ -107,7 +123,7 @@ class _ItemPageState extends State<ItemPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.itemName ?? "Item Not Found",
+                    item.itemName!,
                     style: TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
@@ -115,7 +131,7 @@ class _ItemPageState extends State<ItemPage> {
                   ),
                   SizedBox(height: 8.0),
                   Text(
-                    "\$${widget.itemPrice?.toStringAsFixed(2) ?? ""}",
+                    "\$${item.itemPrice?.toStringAsFixed(2)}",
                     style: TextStyle(
                       fontSize: 20.0,
                       color: Colors.green,
@@ -157,14 +173,34 @@ class _ItemPageState extends State<ItemPage> {
                 ],
               ),
             ),
-
+            Container(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      debugPrint("clicked");
+                      
+                    },
+                    child: const Text("Visit shop")
+                  ),
+                  SizedBox(width:10.0),
+                  ElevatedButton(
+                    onPressed: (){
+                      debugPrint("clicked");
+                    }, 
+                    child: const Text("Add to cart")
+                  )
+                ],
+              )
+            ),
             // Related Items Section
             Container(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     "Related Items",
                     style: TextStyle(
                       fontSize: 20.0,
@@ -172,17 +208,17 @@ class _ItemPageState extends State<ItemPage> {
                     ),
                   ),
                   // Display related items here
-                  for (var item in relatedItems)
+                  for (var iterItem in relatedItems)
                     ListTile(
                       leading: Image.network(
-                        item['itemImage'],
+                        iterItem['itemImage'],
                         width: 100.0,
                         height: 100.0,
                         fit: BoxFit.cover,
                       ),
-                      title: Text(item['itemName']),
+                      title: Text(iterItem['itemName']),
                       subtitle: Text(
-                        "\$${item['itemPrice'].toStringAsFixed(2)}",
+                        "\$${iterItem['itemPrice'].toStringAsFixed(2)}",
                       ),
                       onTap: () {
                         // Click to related item page
