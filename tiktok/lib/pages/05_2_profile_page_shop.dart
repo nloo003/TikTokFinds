@@ -14,6 +14,13 @@ import 'package:tiktok/pages/08_item_page.dart';
 
 class ProfilePageShop extends StatefulWidget {
   const ProfilePageShop({super.key});
+  // final String? shopName;
+
+  // const ProfilePageShop({
+  //   Key? key,
+  //   required this.shopName
+  // }) : super(key: key);
+
 
   @override
   State<ProfilePageShop> createState() => _ProfilePageSelfState();
