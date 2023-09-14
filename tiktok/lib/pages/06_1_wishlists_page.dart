@@ -1,4 +1,4 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, non_constant_identifier_names, use_key_in_widget_constructors, prefer_const_constructors_in_immutables, unnecessary_null_comparison
 import 'package:flutter/material.dart';
 import 'package:tiktok/widgets/back_icon.dart';
 import '../model/item_model.dart';
@@ -93,14 +93,13 @@ class _WishlistsPageState extends State<WishlistsPage> {
                 if (name.isNotEmpty) {
                   // Create and add a new wishlist
                   final newWishlist = WishlistModel(
-                    "abc",
-                    name,
-                    description,
-                    [],
-                    widget.userId!, // creatorid
-                    '', //creator name
-                    "https://images.unsplash.com/photo-1585652757141-8837d676fac8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
-                  );
+                      "abc",
+                      name,
+                      description,
+                      [],
+                      widget.userId!, // creatorid
+                      '', //creator name
+                      "https://images.unsplash.com/photo-1585652757141-8837d676fac8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80");
 
                   // Add the new wishlist to the list
                   setState(() {
@@ -180,6 +179,7 @@ class _WishlistsPageState extends State<WishlistsPage> {
                           ),
                           const SizedBox(height: 10.0),
                           Text(
+                            overflow: TextOverflow.ellipsis,
                             wishlistName!,
                             style: const TextStyle(
                               fontSize: 20,
@@ -237,18 +237,19 @@ class _WishlistsPageState extends State<WishlistsPage> {
                               return GestureDetector(
                                   onTap: () {
                                     debugPrint("clicked ${iter_item!.itemId}");
-                                    if(iter_item !=null && iter_item.itemId != null){
+                                    if (iter_item != null &&
+                                        iter_item.itemId != null) {
                                       Navigator.of(context).push(
-                                        MaterialPageRoute(builder: (BuildContext context) {
-                                          return ItemPage(
-                                            itemId: iter_item.itemId,
-                                            itemName: iter_item.itemName,
-                                            itemPrice: iter_item.itemPrice,
-                                            itemImage: iter_item.itemImage,
-                                            itemStore: iter_item.itemStore,
-                                          );
-                                        })
-                                      );
+                                          MaterialPageRoute(
+                                              builder: (BuildContext context) {
+                                        return ItemPage(
+                                          itemId: iter_item.itemId,
+                                          itemName: iter_item.itemName,
+                                          itemPrice: iter_item.itemPrice,
+                                          itemImage: iter_item.itemImage,
+                                          itemStore: iter_item.itemStore,
+                                        );
+                                      }));
                                     }
                                   },
                                   child: WishlistItem(
@@ -257,8 +258,7 @@ class _WishlistsPageState extends State<WishlistsPage> {
                                     itemPrice: iter_item?.itemPrice ?? 0,
                                     // itemDescription: item.itemDescription,
                                     itemImage: iter_item?.itemImage,
-                                  )
-                                );
+                                  ));
                             }
                           });
                     },
@@ -277,7 +277,9 @@ class _WishlistsPageState extends State<WishlistsPage> {
         automaticallyImplyLeading: false,
         leading: const BackIcon(),
         title: Text(
-          allWishlist.isNotEmpty ? "${allWishlist[0].creatorName!}'s Finds" : "Loading...",
+          allWishlist.isNotEmpty
+              ? "${allWishlist[0].creatorName!}'s Finds"
+              : "Loading...",
           style: const TextStyle(
             color: Colors.white,
           ),
@@ -364,11 +366,13 @@ class _WishlistsPageState extends State<WishlistsPage> {
                           } else {
                             final iter_item = snapshot.data;
                             return GestureDetector(
-                              onTap: () {
-                                debugPrint("clicked ${iter_item!.itemId}");
-                                if(iter_item !=null && iter_item.itemId != null){
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(builder: (BuildContext context) {
+                                onTap: () {
+                                  debugPrint("clicked ${iter_item!.itemId}");
+                                  if (iter_item != null &&
+                                      iter_item.itemId != null) {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (BuildContext context) {
                                       return ItemPage(
                                         itemId: iter_item.itemId,
                                         itemName: iter_item.itemName,
@@ -376,18 +380,16 @@ class _WishlistsPageState extends State<WishlistsPage> {
                                         itemImage: iter_item.itemImage,
                                         itemStore: iter_item.itemStore,
                                       );
-                                    })
-                                  );
-                                }
-                              },
-                              child: WishlistItem(
-                                itemId: iter_item?.itemId,
-                                itemName: iter_item?.itemName,
-                                itemPrice: iter_item?.itemPrice ?? 0,
-                                // itemDescription: item.itemDescription,
-                                itemImage: iter_item?.itemImage,
-                              )
-                            );
+                                    }));
+                                  }
+                                },
+                                child: WishlistItem(
+                                  itemId: iter_item?.itemId,
+                                  itemName: iter_item?.itemName,
+                                  itemPrice: iter_item?.itemPrice ?? 0,
+                                  // itemDescription: item.itemDescription,
+                                  itemImage: iter_item?.itemImage,
+                                ));
                           }
                         });
                   },

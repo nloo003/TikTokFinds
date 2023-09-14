@@ -1,7 +1,7 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
-import 'package:tiktok/model/user_model.dart';
 import 'package:tiktok/model/wishlist_model.dart';
-import 'package:tiktok/pages/06_1_wishlists_page.dart';
 import 'package:tiktok/widgets/back_icon.dart';
 import '../model/item_model.dart';
 import '../model/api.dart';
@@ -212,7 +212,7 @@ class _ItemPageState extends State<ItemPage> {
                         context: context,
                         builder: (BuildContext context) {
                           return AlertDialog(
-                            title: Text("Add to"),
+                            title: const Text("Add to"),
                             content: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[

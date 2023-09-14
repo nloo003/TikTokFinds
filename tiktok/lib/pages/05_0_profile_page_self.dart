@@ -81,7 +81,7 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
           color: Colors.black,
           child: Column(children: [
             Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               child: CircleAvatar(
                 radius: 50,
                 backgroundImage: NetworkImage(user.profilePicUrl!),
@@ -109,7 +109,7 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(builder: (BuildContext context) {
-                          return FriendPageState(userId: user.id!); //TODO
+                          return FriendPageState(userId: user.id!); 
                         }),
                       );
                     },

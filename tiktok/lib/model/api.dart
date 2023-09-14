@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_brace_in_string_interps
+
 import 'item_model.dart';
 import 'user_model.dart';
 import 'wishlist_model.dart';
