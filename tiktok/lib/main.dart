@@ -9,10 +9,7 @@ import 'package:tiktok/pages/01_home_page.dart';
 import 'package:tiktok/pages/05_1_profile_page_others.dart';
 import 'package:tiktok/pages/05_2_profile_page_shop.dart';
 import 'package:tiktok/pages/06_1_wishlists_page.dart';
-import 'package:tiktok/pages/06_wishlist_page.dart';
-import 'package:tiktok/pages/06_1_wishlists_page.dart';
 import 'package:tiktok/pages/07_friends_page.dart';
-import 'package:tiktok/pages/07_friends_page_temp.dart';
 import 'package:tiktok/pages/08_item_page.dart';
 import 'package:tiktok/widgets/upload_icon.dart';
 

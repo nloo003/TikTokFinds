@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:tiktok/model/item_model.dart';
 import 'package:tiktok/pages/01_home_page.dart';
 import 'package:tiktok/pages/06_1_wishlists_page.dart';
-import 'package:tiktok/pages/06_wishlist_page.dart';
 import 'package:tiktok/pages/07_friends_page.dart';
 import 'package:tiktok/model/api.dart';
 import 'package:tiktok/model/user_model.dart';
@@ -272,20 +271,20 @@ class _ProfilePageSelfState extends State<ProfilePageShop> {
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemCount: storeItems.length,
-            prototypeItem: ListTile(
-              leading: const Icon(
-                Icons.browse_gallery_outlined,
-                color: Colors.white70,
-              ),
-              title: Text(
-                storeItems.first.itemName!,
-                style: const TextStyle(color: Colors.white),
-              ),
-              trailing: const Icon(
-                Icons.texture_outlined,
-                color: Colors.white70,
-              ),
-            ),
+            // prototypeItem: ListTile(
+            //   leading: const Icon(
+            //     Icons.browse_gallery_outlined,
+            //     color: Colors.white70,
+            //   ),
+            //   title: Text(
+            //     storeItems.first.itemName!,
+            //     style: const TextStyle(color: Colors.white),
+            //   ),
+            //   trailing: const Icon(
+            //     Icons.texture_outlined,
+            //     color: Colors.white70,
+            //   ),
+            // ),
             itemBuilder: (context, index) {
               final iter_item = storeItems[index];
 

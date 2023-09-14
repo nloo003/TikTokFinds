@@ -1,6 +1,5 @@
 // ignore_for_file: file_names, unused_import
 import 'package:flutter/material.dart';
-import '06_wishlist_page.dart';
 import 'dart:math';
 import '../model/wishlist_model.dart';
 import '../model/item_model.dart';

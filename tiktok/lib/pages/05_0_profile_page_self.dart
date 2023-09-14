@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:tiktok/pages/01_home_page.dart';
 import 'package:tiktok/pages/06_1_wishlists_page.dart';
-import 'package:tiktok/pages/06_wishlist_page.dart';
 import 'package:tiktok/pages/07_friends_page.dart';
 import 'package:tiktok/model/api.dart';
 import 'package:tiktok/model/user_model.dart';
