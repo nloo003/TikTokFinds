@@ -6,7 +6,6 @@ import 'package:tiktok/pages/06_1_wishlists_page.dart';
 import 'package:tiktok/pages/07_friends_page.dart';
 import 'package:tiktok/model/api.dart';
 import 'package:tiktok/model/user_model.dart';
-import 'package:tiktok/model/item_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:math';
 import 'dart:convert';
@@ -89,8 +88,8 @@ class _ProfilePageSelfState extends State<ProfilePageShop> {
       ),
       body: SingleChildScrollView(
         child: Column(children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
             child: CircleAvatar(
               radius: 50,
               backgroundImage: NetworkImage("https://images.unsplash.com/photo-1595991209266-5ff5a3a2f008?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"),
@@ -120,7 +119,7 @@ class _ProfilePageSelfState extends State<ProfilePageShop> {
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(builder: (BuildContext context) {
-                            return FriendPageState(userId: user.id!); //TODO
+                            return FriendPageState(userId: user.id!); 
                           }),
                         );
                       },

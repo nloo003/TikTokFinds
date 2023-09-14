@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, unused_import
+// ignore_for_file: file_names, unused_import, prefer_interpolation_to_compose_strings
 
 import 'package:http/http.dart' as http;
 import 'dart:math';

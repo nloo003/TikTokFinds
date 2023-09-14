@@ -1,4 +1,3 @@
-import 'item_model.dart';
 
 class WishlistModel {
   String? id;

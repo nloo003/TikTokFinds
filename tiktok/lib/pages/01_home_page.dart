@@ -53,7 +53,7 @@ class HomePage extends StatelessWidget {
                       color: Colors.white,
                     ),
                     onPressed: () {
-                      // TODO: person add action
+                      debugPrint("Circle avatar pressed");
                     },
                   ),
                   IconButton(
@@ -139,22 +139,22 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                     ),
-                  
-                  // GestureDetector(
-                  //   onTap: () {
-                  //     // redirect to the Wishlist page here
-                  //     Navigator.of(context).push(
-                  //       MaterialPageRoute(
-                  //         builder: (context) => WishlistPage(),
-                  //       ),
-                  //     );
-                  //   },
-                  //   child: const Text(
-                  //     '🎁 Wishlist',
-                  //     style: TextStyle(
-                  //       color: Colors.white,
-                  //       fontSize: 14.0,
-                  //   ),))
+
+                    // GestureDetector(
+                    //   onTap: () {
+                    //     // redirect to the Wishlist page here
+                    //     Navigator.of(context).push(
+                    //       MaterialPageRoute(
+                    //         builder: (context) => WishlistPage(),
+                    //       ),
+                    //     );
+                    //   },
+                    //   child: const Text(
+                    //     '🎁 Wishlist',
+                    //     style: TextStyle(
+                    //       color: Colors.white,
+                    //       fontSize: 14.0,
+                    //   ),))
                   ],
                 ),
               ),

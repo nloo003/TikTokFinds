@@ -88,7 +88,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
                     constraints: const BoxConstraints(maxHeight: 40.0),
                     child: Center(
                       child: TextField(
-                        style: TextStyle(color: Colors.white70),
+                        style: const TextStyle(color: Colors.white70),
                         controller: textController,
                         onChanged: (value) => updateList(value),
                         decoration: InputDecoration(
