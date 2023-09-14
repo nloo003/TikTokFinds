@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, unused_import
+// ignore_for_file: file_names, unused_import, non_constant_identifier_names
 import 'package:flutter/material.dart';
 import 'package:tiktok/model/item_model.dart';
 import 'package:tiktok/pages/01_home_page.dart';
@@ -32,17 +32,6 @@ class ProfilePageShop extends StatefulWidget {
 class _ProfilePageSelfState extends State<ProfilePageShop> {
   String userId = '64fbf5b43c612b13b658d6eb';
   UserModel user = UserModel("", "", "", [], [], '0', "");
-  List<ListItem> itemList = [
-    ListItem("shampoo", "shampoo.com"),
-    ListItem("soap", "soap.com"),
-    ListItem("shampoo", "shampoo.com"),
-    ListItem("soap", "soap.com"),
-    ListItem("shampoo", "shampoo.com"),
-    ListItem("soap", "soap.com"),
-    ListItem("shampoo", "shampoo.com"),
-    ListItem("soap", "soap.com"),
-  ];
-
   List<ItemModel> storeItems = [];
   ItemModel iter_item = ItemModel("", "", 0.0, "", "");
 
@@ -283,20 +272,20 @@ class _ProfilePageSelfState extends State<ProfilePageShop> {
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemCount: storeItems.length,
-            // prototypeItem: ListTile(
-            //   leading: const Icon(
-            //     Icons.browse_gallery_outlined,
-            //     color: Colors.white70,
-            //   ),
-            //   title: Text(
-            //     storeItems.first.itemName,
-            //     style: const TextStyle(color: Colors.white),
-            //   ),
-            //   trailing: const Icon(
-            //     Icons.texture_outlined,
-            //     color: Colors.white70,
-            //   ),
-            // ),
+            prototypeItem: ListTile(
+              leading: const Icon(
+                Icons.browse_gallery_outlined,
+                color: Colors.white70,
+              ),
+              title: Text(
+                storeItems.first.itemName!,
+                style: const TextStyle(color: Colors.white),
+              ),
+              trailing: const Icon(
+                Icons.texture_outlined,
+                color: Colors.white70,
+              ),
+            ),
             itemBuilder: (context, index) {
               final iter_item = storeItems[index];
 
