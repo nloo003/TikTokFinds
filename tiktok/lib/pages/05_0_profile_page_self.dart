@@ -213,7 +213,8 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                                 itemName: "Item 1",
                                 itemPrice: 19.99,
                                 itemImage:
-                                    "https://images.unsplash.com/photo-1621265010303-a793d1017307?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80");
+                                    "https://images.unsplash.com/photo-1621265010303-a793d1017307?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                            );
                           }),
                         );
                       },
