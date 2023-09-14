@@ -202,28 +202,28 @@ class _ProfilePageSelfState extends State<ProfilePageSelf> {
                               MaterialStateProperty.all(Colors.blueGrey)),
                       child: const Text("Finds")),
                 ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 5, 5, 0),
-                  child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(builder: (BuildContext context) {
-                            return ItemPage(
-                                itemId: "1",
-                                itemName: "Item 1",
-                                itemPrice: 19.99,
-                                itemImage:
-                                    "https://images.unsplash.com/photo-1621265010303-a793d1017307?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-                                itemStore: "ABC",
-                            );
-                          }),
-                        );
-                      },
-                      style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(Colors.blueGrey)),
-                      child: const Text("Item")),
-                )
+                // Padding(
+                //   padding: const EdgeInsets.fromLTRB(0, 5, 5, 0),
+                //   child: ElevatedButton(
+                //       onPressed: () {
+                //         Navigator.of(context).push(
+                //           MaterialPageRoute(builder: (BuildContext context) {
+                //             return ItemPage(
+                //                 itemId: "1",
+                //                 itemName: "Item 1",
+                //                 itemPrice: 19.99,
+                //                 itemImage:
+                //                     "https://images.unsplash.com/photo-1621265010303-a793d1017307?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+                //                 itemStore: "ABC",
+                //             );
+                //           }),
+                //         );
+                //       },
+                //       style: ButtonStyle(
+                //           backgroundColor:
+                //               MaterialStateProperty.all(Colors.blueGrey)),
+                //       child: const Text("Item")),
+                // )
               ],
             ),
             Padding(
