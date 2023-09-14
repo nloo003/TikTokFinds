@@ -245,6 +245,7 @@ class _WishlistsPageState extends State<WishlistsPage> {
                                             itemName: iter_item.itemName,
                                             itemPrice: iter_item.itemPrice,
                                             itemImage: iter_item.itemImage,
+                                            itemStore: iter_item.itemStore,
                                           );
                                         })
                                       );
@@ -373,6 +374,7 @@ class _WishlistsPageState extends State<WishlistsPage> {
                                         itemName: iter_item.itemName,
                                         itemPrice: iter_item.itemPrice,
                                         itemImage: iter_item.itemImage,
+                                        itemStore: iter_item.itemStore,
                                       );
                                     })
                                   );

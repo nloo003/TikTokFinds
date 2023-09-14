@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:tiktok/widgets/back_icon.dart';
 import '../model/item_model.dart';
 import '../model/api.dart';
+import 'package:tiktok/pages/05_2_profile_page_shop.dart';
 
 class ItemPage extends StatefulWidget {
   final String? itemId;
   final String? itemName;
   final double? itemPrice;
   final String? itemImage;
+  final String? itemStore;
 
   const ItemPage({
     Key? key,
@@ -15,6 +17,8 @@ class ItemPage extends StatefulWidget {
     required this.itemName,
     required this.itemPrice,
     required this.itemImage,
+    required this.itemStore,
+
   }) : super(key:key);
 
   @override
@@ -180,9 +184,22 @@ class _ItemPageState extends State<ItemPage> {
                   ElevatedButton(
                     onPressed: () {
                       debugPrint("clicked");
-                      
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (BuildContext context) {
+                          return ProfilePageShop(
+                            shopName: widget.itemStore
+                          );
+                        })
+                      );
                     },
                     child: const Text("Visit shop")
+                  ),
+                  const SizedBox(width:10.0),
+                  ElevatedButton(
+                    onPressed: (){
+                      debugPrint("clicked");
+                    }, 
+                    child: const Text("Add to Finds")
                   ),
                   const SizedBox(width:10.0),
                   ElevatedButton(

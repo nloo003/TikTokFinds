@@ -53,7 +53,7 @@ class _RootPageState extends State<RootPage> {
     // const FriendPageTemp(userIdList: ["64faace4f139f050c81cdab1", "64faca4d074f7f2492bcfbbb"]),
     // const WishlistPage(),
     // const ProfilePageOthers(userId: "64fbf5b43c612b13b658d6eb"),
-    const ProfilePageShop(),
+    const ProfilePageShop(shopName: "ABC"),
     const ProfilePageSelf(),
   ];
   @override
