@@ -41,16 +41,9 @@ class _RootPageState extends State<RootPage> {
   final pages = [
     HomePage(),
     const DiscoverPage(),
-    // const CreateStoryPage(),
-    // const InboxPage(),
-    // WishlistPage(),
-    // const WishlistsPage(),
-    // const FriendPageState(userId: ""),
+    const CreateStoryPage(),
     const InboxPage(),
-    // const FriendPageTemp(userIdList: ["64faace4f139f050c81cdab1", "64faca4d074f7f2492bcfbbb"]),
-    // const WishlistPage(),
-    // const ProfilePageOthers(userId: "64fbf5b43c612b13b658d6eb"),
-    const ProfilePageShop(shopName: "ABC"),
+    // const ProfilePageShop(shopName: "ABC"),
     const ProfilePageSelf(),
   ];
   @override
