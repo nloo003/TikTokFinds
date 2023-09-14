@@ -17,11 +17,7 @@ class ProfilePageShop extends StatefulWidget {
   // const ProfilePageShop({super.key});
   final String? shopName;
 
-  const ProfilePageShop({
-    Key? key,
-    required this.shopName
-  }) : super(key: key);
-
+  const ProfilePageShop({Key? key, required this.shopName}) : super(key: key);
 
   @override
   State<ProfilePageShop> createState() => _ProfilePageSelfState();
@@ -92,7 +88,8 @@ class _ProfilePageSelfState extends State<ProfilePageShop> {
             padding: EdgeInsets.all(8.0),
             child: CircleAvatar(
               radius: 50,
-              backgroundImage: NetworkImage("https://images.unsplash.com/photo-1595991209266-5ff5a3a2f008?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"),
+              backgroundImage: NetworkImage(
+                  "https://images.unsplash.com/photo-1595991209266-5ff5a3a2f008?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"),
             ),
           ),
           Row(
@@ -119,7 +116,7 @@ class _ProfilePageSelfState extends State<ProfilePageShop> {
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(builder: (BuildContext context) {
-                            return FriendPageState(userId: user.id!); 
+                            return FriendPageState(userId: user.id!);
                           }),
                         );
                       },
@@ -161,7 +158,8 @@ class _ProfilePageSelfState extends State<ProfilePageShop> {
                         children: [
                           Text(user.likes.toString(),
                               style: const TextStyle(color: Colors.white)),
-                          const Text("Likes", style: TextStyle(color: Colors.white))
+                          const Text("Likes",
+                              style: TextStyle(color: Colors.white))
                         ],
                       ),
                     ),
@@ -226,7 +224,7 @@ class _ProfilePageSelfState extends State<ProfilePageShop> {
               //                     "https://images.unsplash.com/photo-1621265010303-a793d1017307?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
               //                 itemStore: "ABC"
               //                    );
-                              
+
               //           }),
               //         );
               //       },
@@ -255,8 +253,7 @@ class _ProfilePageSelfState extends State<ProfilePageShop> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               OutlinedButton(
-                  onPressed: () {},
-                  child: const Icon(Icons.shopping_bag)),
+                  onPressed: () {}, child: const Icon(Icons.shopping_bag)),
               // OutlinedButton(
               //     onPressed: () {}, child: const Icon(Icons.lock_outline)),
               OutlinedButton(
@@ -288,10 +285,10 @@ class _ProfilePageSelfState extends State<ProfilePageShop> {
               final iter_item = storeItems[index];
 
               return GestureDetector(
-                onTap: () {
-                  debugPrint("clicked ${iter_item.itemName}");
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (BuildContext context) {
+                  onTap: () {
+                    debugPrint("clicked ${iter_item.itemName}");
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (BuildContext context) {
                       return ItemPage(
                         itemId: iter_item.itemId,
                         itemName: iter_item.itemName,
@@ -299,28 +296,26 @@ class _ProfilePageSelfState extends State<ProfilePageShop> {
                         itemImage: iter_item.itemImage,
                         itemStore: iter_item.itemStore,
                       );
-                    })
-                  );
-                },
-                child: ListTile(
-                  leading: Image.network(
-                  iter_item.itemImage!,
-                  height: 40.0,
-                  width: 40,
-                  // 'https://images.unsplash.com/photo-1529973625058-a665431328fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80',
-                  fit: BoxFit.cover,
-                  ),
-                  title: Text(
-                    iter_item.itemName!,
-                    style: const TextStyle(color: Colors.white),
-                  ),
-                  trailing: const Icon(
-                    Icons.texture_outlined,
-                    color: Colors.white70,
-                  ),
-                )
-                
-              );
+                    }));
+                  },
+                  child: ListTile(
+                    contentPadding: const EdgeInsets.fromLTRB(20, 5, 5, 20),
+                    leading: Image.network(
+                      iter_item.itemImage!,
+                      height: 50.0,
+                      width: 50.0,
+                      // 'https://images.unsplash.com/photo-1529973625058-a665431328fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80',
+                      fit: BoxFit.cover,
+                    ),
+                    title: Text(
+                      iter_item.itemName!,
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                    trailing: const Icon(
+                      Icons.favorite_outline_outlined,
+                      color: Colors.white70,
+                    ),
+                  ));
             },
           )
         ]),
