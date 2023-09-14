@@ -177,7 +177,7 @@ class _WishlistsPageState extends State<WishlistsPage> {
                               fontWeight: FontWeight.w400,
                             ),
                           ),
-                          const SizedBox(height: 10.0),
+                          const SizedBox(height: 8.0),
                           Text(
                             overflow: TextOverflow.ellipsis,
                             wishlistName!,
@@ -186,7 +186,7 @@ class _WishlistsPageState extends State<WishlistsPage> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          const SizedBox(height: 15.0),
+                          const SizedBox(height: 8.0),
                           Text(
                             (wishlist.description!.length > 48) // Adjust the character limit as needed
                             ? '${wishlist.description!.substring(0, 48)}...' // Truncate and add ellipsis
@@ -196,7 +196,7 @@ class _WishlistsPageState extends State<WishlistsPage> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          const SizedBox(height: 15.0),
+                          const SizedBox(height: 8.0),
                           Row(
                             children: [
                               // CircleAvatar(
