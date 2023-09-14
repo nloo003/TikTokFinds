@@ -131,38 +131,36 @@ Future<List<ItemModel>> getShopItemsByStoreName(String storeName) async {
   }
 }
 
-// Future<void> addItemToWishlist(String itemId) async {
-//   final url = Uri.parse('http://10.0.2.2:4000/api/shopItem/getByStoreName');
+Future<void> addItemToWishlist(String wishListId, String itemId) async {
+  final url = Uri.parse('http://10.0.2.2:4000/api/wishList/add');
   
-//   // Create a map containing the request data
-//   final Map<String, dynamic> requestData = {
-//     "itemId": itemId,
-//   };
+  // Create a map containing the request data
+  final Map<String, dynamic> requestData = {
+    "wishListId": wishListId,
+    "itemId": itemId,
+  };
 
-//   // Encode the map to JSON
-//   final jsonData = jsonEncode(requestData);
+  // Encode the map to JSON
+  final jsonData = jsonEncode(requestData);
 
-//   try {
-//     final response = await http.post(
-//       url,
-//       headers: <String, String>{
-//         'Content-Type': 'application/json',
-//       },
-//       body: jsonData,
-//     );
+  try {
+    final response = await http.post(
+      url,
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+      },
+      body: jsonData,
+    );
 
-//     if (response.statusCode == 200) {
-//       // If the server returns a 200 OK response, parse the JSON
-//       final List<dynamic> responseData = jsonDecode(response.body);
-//       final List<ItemModel> data =
-//           responseData.map((json) => ItemModel.fromJson(json)).toList();
-//       return data;
-//     } else {
-//       // If the server did not return a 200 OK response, throw an exception
-//       throw Exception('Failed to fetch shop items');
-//     }
-//   } catch (e) {
-//     // Handle any exceptions that may occur
-//     throw Exception('Error: $e');
-//   }
-// }
+    if (response.statusCode == 200) {
+      return;
+
+    } else {
+      // If the server did not return a 200 OK response, throw an exception
+      throw Exception('Failed to update wishlist');
+    }
+  } catch (e) {
+    // Handle any exceptions that may occur
+    throw Exception('Error: $e');
+  }
+}
