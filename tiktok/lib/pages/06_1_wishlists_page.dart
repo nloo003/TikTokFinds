@@ -59,6 +59,16 @@ class _WishlistsPageState extends State<WishlistsPage> {
     }));
   }
 
+  void createWishlistAndUpdateWishlist(
+      wishlistName, description, userId, userName, wishlistPicUrl) async {
+    addWishlist(wishlistName, description, userId, userName, wishlistPicUrl);
+    setState(() {
+      final newWishlist = WishlistModel("abc", wishlistName, description, [],
+          userId, userName, wishlistPicUrl);
+      allWishlist.add(newWishlist);
+    });
+  }
+
   //add wishlist pop up
   Future<void> _showAddWishlistDialog(BuildContext context) async {
     TextEditingController nameController = TextEditingController();
@@ -68,7 +78,7 @@ class _WishlistsPageState extends State<WishlistsPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Add a new Find'),
+          title: const Text('Add a new Find'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
@@ -106,13 +116,12 @@ class _WishlistsPageState extends State<WishlistsPage> {
                   //     '', //creator name
                   //     "https://images.unsplash.com/photo-1585652757141-8837d676fac8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80");
 
-                  addWishlist(name, description, widget.userId!, user.name!,
+                  createWishlistAndUpdateWishlist(
+                      name,
+                      description,
+                      widget.userId!,
+                      user.name!,
                       "https://images.unsplash.com/photo-1585652757141-8837d676fac8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80");
-
-                  // Add the new wishlist to the list
-                  // setState(() {
-                  //   allWishlist.add(newWishlist);
-                  // });
 
                   Navigator.of(context).pop();
                 }
