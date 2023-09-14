@@ -1,5 +1,6 @@
 // ignore_for_file: file_names, unused_import
 import 'package:flutter/material.dart';
+import 'package:tiktok/model/item_model.dart';
 import 'package:tiktok/pages/01_home_page.dart';
 import 'package:tiktok/pages/06_1_wishlists_page.dart';
 import 'package:tiktok/pages/06_wishlist_page.dart';
@@ -21,31 +22,82 @@ class ProfilePageShop extends StatefulWidget {
   //   required this.shopName
   // }) : super(key: key);
 
-
   @override
   State<ProfilePageShop> createState() => _ProfilePageSelfState();
-}
-
-class ListItem {
-  final String itemName;
-  final String image;
-
-  ListItem(this.itemName, this.image);
 }
 
 class _ProfilePageSelfState extends State<ProfilePageShop> {
   String userId = '64fbf5b43c612b13b658d6eb';
   UserModel user = UserModel("", "", "", [], [], '0', "");
-  List<ListItem> itemList = [
-    ListItem("shampoo", "shampoo.com"),
-    ListItem("soap", "soap.com"),
-    ListItem("shampoo", "shampoo.com"),
-    ListItem("soap", "soap.com"),
-    ListItem("shampoo", "shampoo.com"),
-    ListItem("soap", "soap.com"),
-    ListItem("shampoo", "shampoo.com"),
-    ListItem("soap", "soap.com"),
+  List<ItemModel> itemList = [
+    ItemModel(
+        "123456789",
+        "Sleek table lamp",
+        20.99,
+        "https://images.unsplash.com/photo-1558745909-9368b144feb8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80",
+        "testStore"),
+    ItemModel(
+        "123456789",
+        "Sleek table lamp",
+        20.99,
+        "https://images.unsplash.com/photo-1558745909-9368b144feb8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80",
+        "testStore"),
+    ItemModel(
+        "123456789",
+        "Sleek table lamp",
+        20.99,
+        "https://images.unsplash.com/photo-1558745909-9368b144feb8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80",
+        "testStore"),
+    ItemModel(
+        "123456789",
+        "Sleek table lamp",
+        20.99,
+        "https://images.unsplash.com/photo-1558745909-9368b144feb8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80",
+        "testStore"),
+    ItemModel(
+        "123456789",
+        "Sleek table lamp",
+        20.99,
+        "https://images.unsplash.com/photo-1558745909-9368b144feb8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80",
+        "testStore"),
+    ItemModel(
+        "123456789",
+        "Sleek table lamp",
+        20.99,
+        "https://images.unsplash.com/photo-1558745909-9368b144feb8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80",
+        "testStore"),
+    ItemModel(
+        "123456789",
+        "Sleek table lamp",
+        20.99,
+        "https://images.unsplash.com/photo-1558745909-9368b144feb8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80",
+        "testStore"),
+    ItemModel(
+        "123456789",
+        "Sleek table lamp",
+        20.99,
+        "https://images.unsplash.com/photo-1558745909-9368b144feb8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80",
+        "testStore"),
+    ItemModel(
+        "123456789",
+        "Sleek table lamp",
+        20.99,
+        "https://images.unsplash.com/photo-1558745909-9368b144feb8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80",
+        "testStore"),
+    ItemModel(
+        "123456789",
+        "Sleek table lamp",
+        20.99,
+        "https://images.unsplash.com/photo-1558745909-9368b144feb8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80",
+        "testStore"),
   ];
+
+  ItemModel testItem = ItemModel(
+      "123456789",
+      "Sleek table lamp",
+      20.99,
+      "https://images.unsplash.com/photo-1558745909-9368b144feb8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80",
+      "testStore");
 
   @override
   void initState() {
@@ -228,7 +280,7 @@ class _ProfilePageSelfState extends State<ProfilePageShop> {
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(builder: (BuildContext context) {
-                          return ItemPage(
+                          return const ItemPage(
                               itemId: "1",
                               itemName: "Item 1",
                               itemPrice: 19.99,
@@ -278,32 +330,51 @@ class _ProfilePageSelfState extends State<ProfilePageShop> {
             shrinkWrap: true,
             itemCount: itemList.length,
             prototypeItem: ListTile(
-              leading: const Icon(
-                Icons.browse_gallery_outlined,
-                color: Colors.white70,
+              leading: SizedBox(
+                height: 20,
+                width: 20,
+                child: Ink.image(
+                  image: NetworkImage(testItem.itemImage!),
+                ),
               ),
               title: Text(
-                itemList.first.itemName,
+                itemList.first.itemName!,
                 style: const TextStyle(color: Colors.white),
               ),
-              trailing: const Icon(
-                Icons.texture_outlined,
-                color: Colors.white70,
+              trailing: GestureDetector(
+                onTap: () {
+                  //call API call to add item to wishlist
+                  debugPrint("Wishlist added");
+                },
+                
+                child: const Icon(
+                  Icons.favorite_border_outlined,
+                  color: Colors.white70,
+                ),
               ),
             ),
             itemBuilder: (context, index) {
               return ListTile(
-                leading: const Icon(
-                  Icons.browse_gallery_outlined,
-                  color: Colors.white70,
+                leading: SizedBox(
+                  height: 100,
+                  width: 100,
+                  child: Ink.image(
+                    image: NetworkImage(testItem.itemImage!),
+                  ),
                 ),
                 title: Text(
-                  itemList[index].itemName,
+                  itemList[index].itemName!,
                   style: const TextStyle(color: Colors.white),
                 ),
-                trailing: const Icon(
-                  Icons.texture_outlined,
-                  color: Colors.white70,
+                trailing: GestureDetector(
+                  onTap: () {
+                    //call API call to add item to wishlist
+                    debugPrint("Wishlist added");
+                  },
+                  child: const Icon(
+                    Icons.favorite_border_outlined,
+                    color: Colors.white70,
+                  ),
                 ),
               );
             },

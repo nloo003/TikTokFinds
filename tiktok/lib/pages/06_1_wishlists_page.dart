@@ -63,17 +63,17 @@ class _WishlistsPageState extends State<WishlistsPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Add Wishlist'),
+          title: const Text('Add Wishlist'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               TextField(
                 controller: nameController,
-                decoration: InputDecoration(labelText: 'Name'),
+                decoration: const InputDecoration(labelText: 'Name'),
               ),
               TextField(
                 controller: descriptionController,
-                decoration: InputDecoration(labelText: 'Description'),
+                decoration: const InputDecoration(labelText: 'Description'),
               ),
             ],
           ),
@@ -82,7 +82,7 @@ class _WishlistsPageState extends State<WishlistsPage> {
               onPressed: () {
                 Navigator.of(context).pop(); // Close pop up
               },
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
             TextButton(
               onPressed: () {
@@ -110,7 +110,7 @@ class _WishlistsPageState extends State<WishlistsPage> {
                   Navigator.of(context).pop();
                 }
               },
-              child: Text('Add'),
+              child: const Text('Add'),
             ),
           ],
         );
@@ -189,13 +189,13 @@ class _WishlistsPageState extends State<WishlistsPage> {
                           const SizedBox(height: 15.0),
                           Row(
                             children: [
-                              CircleAvatar(
+                              const CircleAvatar(
                                 radius: 10,
                                 backgroundImage: NetworkImage(
                                   'https://images.unsplash.com/photo-1529973625058-a665431328fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80',
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10.0,
                               ),
                               Text(
@@ -228,7 +228,7 @@ class _WishlistsPageState extends State<WishlistsPage> {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
                               // Handle loading state
-                              return CircularProgressIndicator();
+                              return const CircularProgressIndicator();
                             } else if (snapshot.hasError) {
                               // Handle error state
                               return Text('Error: ${snapshot.error}');
@@ -316,7 +316,7 @@ class _WishlistsPageState extends State<WishlistsPage> {
                         fit: BoxFit.cover,
                       ),
                     ),
-                    SizedBox(width: 10.0),
+                    const SizedBox(width: 10.0),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -356,7 +356,7 @@ class _WishlistsPageState extends State<WishlistsPage> {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
                             // Handle loading state
-                            return CircularProgressIndicator();
+                            return const CircularProgressIndicator();
                           } else if (snapshot.hasError) {
                             // Handle error state
                             return Text('Error: ${snapshot.error}');

@@ -124,15 +124,15 @@ class _ItemPageState extends State<ItemPage> {
                 children: [
                   Text(
                     item.itemName!,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 24.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 8.0),
+                  const SizedBox(height: 8.0),
                   Text(
                     "\$${item.itemPrice?.toStringAsFixed(2)}",
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 20.0,
                       color: Colors.green,
                     ),
@@ -147,14 +147,14 @@ class _ItemPageState extends State<ItemPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     "Comments (5)",
                     style: TextStyle(
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 8.0),
+                  const SizedBox(height: 8.0),
                   for (var comment in comments)
                     Padding(
                       padding: const EdgeInsets.only(bottom: 8.0),
@@ -162,7 +162,7 @@ class _ItemPageState extends State<ItemPage> {
                         children: [
                           Text(
                             "${comment['username']}: ",
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -184,7 +184,7 @@ class _ItemPageState extends State<ItemPage> {
                     },
                     child: const Text("Visit shop")
                   ),
-                  SizedBox(width:10.0),
+                  const SizedBox(width:10.0),
                   ElevatedButton(
                     onPressed: (){
                       debugPrint("clicked");
