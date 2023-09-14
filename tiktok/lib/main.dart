@@ -12,6 +12,7 @@ import 'package:tiktok/pages/06_1_wishlists_page.dart';
 import 'package:tiktok/pages/06_wishlist_page.dart';
 import 'package:tiktok/pages/06_1_wishlists_page.dart';
 import 'package:tiktok/pages/07_friends_page.dart';
+import 'package:tiktok/pages/07_friends_page_temp.dart';
 import 'package:tiktok/pages/08_item_page.dart';
 import 'package:tiktok/widgets/upload_icon.dart';
 
@@ -49,6 +50,7 @@ class _RootPageState extends State<RootPage> {
     // const WishlistsPage(),
     // const FriendPageState(userId: ""),
     const InboxPage(),
+    // const FriendPageTemp(userIdList: ["64faace4f139f050c81cdab1", "64faca4d074f7f2492bcfbbb"]),
     // const WishlistPage(),
     // const ProfilePageOthers(userId: "64fbf5b43c612b13b658d6eb"),
     const ProfilePageShop(),
