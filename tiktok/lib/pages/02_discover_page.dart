@@ -76,7 +76,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
               children: <Widget>[
                 IconButton(
                   icon: const Icon(Icons.arrow_back_ios,
-                  color: Colors.grey), // Back button icon
+                      color: Colors.grey), // Back button icon
                   onPressed: () {
                     Navigator.pop(context); // Add navigation logic here
                   },
@@ -110,7 +110,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
                               : null,
                           border: OutlineInputBorder(
                             borderSide: const BorderSide(
-                                color: Colors.grey, width: 2.0),
+                                color: Colors.white70, width: 2.0),
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           disabledBorder: OutlineInputBorder(
@@ -119,6 +119,11 @@ class _DiscoverPageState extends State<DiscoverPage> {
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           focusedBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                                color: Colors.grey, width: 2.0),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          enabledBorder: OutlineInputBorder(
                             borderSide: const BorderSide(
                                 color: Colors.grey, width: 2.0),
                             borderRadius: BorderRadius.circular(8.0),
@@ -151,7 +156,10 @@ class _DiscoverPageState extends State<DiscoverPage> {
             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               Text(
                 " Finds |",
-                style: TextStyle(color: Colors.white70, fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    color: Colors.white70,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold),
               ),
               Text(
                 " Latest |",
