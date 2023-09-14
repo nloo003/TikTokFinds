@@ -24,9 +24,21 @@ const createShopItem = async (req,res) => {
     
 }
 
+const getShopItemsByStoreName = async (req,res) => {
+    try{
+    const shopItems = await ShopItem.getShopItemByStoreName(req)
+    res.status(200).json(shopItems)
+    }
+    catch(error){
+        res.status(404).json({error: error.message})
+    }
+    
+}
+
 
 
 module.exports = {
     createShopItem,
-    getShopItemById
+    getShopItemById,
+    getShopItemsByStoreName
 }

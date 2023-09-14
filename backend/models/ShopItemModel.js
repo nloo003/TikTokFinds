@@ -55,6 +55,14 @@ shopItemSchema.statics.getShopItemById = async function (req){
     return shopItem
 }
 
+shopItemSchema.statics.getShopItemByStoreName = async function (req){
+    const {storeName} = req.body
+
+    const shopItems = await this.find({store:storeName})
+
+    return shopItems
+}
+
 
 
 
