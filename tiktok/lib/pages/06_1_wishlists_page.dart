@@ -69,11 +69,11 @@ class _WishlistsPageState extends State<WishlistsPage> {
             children: <Widget>[
               TextField(
                 controller: nameController,
-                decoration: InputDecoration(labelText: 'Name'),
+                decoration: const InputDecoration(labelText: 'Name'),
               ),
               TextField(
                 controller: descriptionController,
-                decoration: InputDecoration(labelText: 'Description'),
+                decoration: const InputDecoration(labelText: 'Description'),
               ),
             ],
           ),
@@ -82,7 +82,7 @@ class _WishlistsPageState extends State<WishlistsPage> {
               onPressed: () {
                 Navigator.of(context).pop(); // Close pop up
               },
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
             TextButton(
               onPressed: () {
@@ -110,7 +110,7 @@ class _WishlistsPageState extends State<WishlistsPage> {
                   Navigator.of(context).pop();
                 }
               },
-              child: Text('Add'),
+              child: const Text('Add'),
             ),
           ],
         );
@@ -238,7 +238,7 @@ class _WishlistsPageState extends State<WishlistsPage> {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
                               // Handle loading state
-                              return CircularProgressIndicator();
+                              return const CircularProgressIndicator();
                             } else if (snapshot.hasError) {
                               // Handle error state
                               return Text('Error: ${snapshot.error}');
@@ -327,7 +327,7 @@ class _WishlistsPageState extends State<WishlistsPage> {
                         fit: BoxFit.cover,
                       ),
                     ),
-                    SizedBox(width: 10.0),
+                    const SizedBox(width: 10.0),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -367,7 +367,7 @@ class _WishlistsPageState extends State<WishlistsPage> {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
                             // Handle loading state
-                            return CircularProgressIndicator();
+                            return const CircularProgressIndicator();
                           } else if (snapshot.hasError) {
                             // Handle error state
                             return Text('Error: ${snapshot.error}');

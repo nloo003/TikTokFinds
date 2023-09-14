@@ -1,8 +1,8 @@
-// ignore_for_file: file_names, unused_import
+// ignore_for_file: file_names, unused_import, non_constant_identifier_names
 import 'package:flutter/material.dart';
+import 'package:tiktok/model/item_model.dart';
 import 'package:tiktok/pages/01_home_page.dart';
 import 'package:tiktok/pages/06_1_wishlists_page.dart';
-import 'package:tiktok/pages/06_wishlist_page.dart';
 import 'package:tiktok/pages/07_friends_page.dart';
 import 'package:tiktok/model/api.dart';
 import 'package:tiktok/model/user_model.dart';
@@ -28,27 +28,9 @@ class ProfilePageShop extends StatefulWidget {
   State<ProfilePageShop> createState() => _ProfilePageSelfState();
 }
 
-class ListItem {
-  final String itemName;
-  final String image;
-
-  ListItem(this.itemName, this.image);
-}
-
 class _ProfilePageSelfState extends State<ProfilePageShop> {
   String userId = '64fbf5b43c612b13b658d6eb';
   UserModel user = UserModel("", "", "", [], [], '0', "");
-  List<ListItem> itemList = [
-    ListItem("shampoo", "shampoo.com"),
-    ListItem("soap", "soap.com"),
-    ListItem("shampoo", "shampoo.com"),
-    ListItem("soap", "soap.com"),
-    ListItem("shampoo", "shampoo.com"),
-    ListItem("soap", "soap.com"),
-    ListItem("shampoo", "shampoo.com"),
-    ListItem("soap", "soap.com"),
-  ];
-
   List<ItemModel> storeItems = [];
   ItemModel iter_item = ItemModel("", "", 0.0, "", "");
 
@@ -295,7 +277,7 @@ class _ProfilePageSelfState extends State<ProfilePageShop> {
             //     color: Colors.white70,
             //   ),
             //   title: Text(
-            //     storeItems.first.itemName,
+            //     storeItems.first.itemName!,
             //     style: const TextStyle(color: Colors.white),
             //   ),
             //   trailing: const Icon(

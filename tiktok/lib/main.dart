@@ -9,8 +9,6 @@ import 'package:tiktok/pages/01_home_page.dart';
 import 'package:tiktok/pages/05_1_profile_page_others.dart';
 import 'package:tiktok/pages/05_2_profile_page_shop.dart';
 import 'package:tiktok/pages/06_1_wishlists_page.dart';
-import 'package:tiktok/pages/06_wishlist_page.dart';
-import 'package:tiktok/pages/06_1_wishlists_page.dart';
 import 'package:tiktok/pages/07_friends_page.dart';
 import 'package:tiktok/pages/08_item_page.dart';
 import 'package:tiktok/widgets/upload_icon.dart';
@@ -43,15 +41,9 @@ class _RootPageState extends State<RootPage> {
   final pages = [
     HomePage(),
     const DiscoverPage(),
-    // const CreateStoryPage(),
-    // const InboxPage(),
-    // WishlistPage(),
-    // const WishlistsPage(),
-    // const FriendPageState(userId: ""),
+    const CreateStoryPage(),
     const InboxPage(),
-    // const WishlistPage(),
-    // const ProfilePageOthers(userId: "64fbf5b43c612b13b658d6eb"),
-    const ProfilePageShop(shopName: "ABC"),
+    // const ProfilePageShop(shopName: "ABC"),
     const ProfilePageSelf(),
   ];
   @override

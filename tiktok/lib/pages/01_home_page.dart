@@ -1,7 +1,6 @@
 // ignore_for_file: file_names, unused_import, use_key_in_widget_constructors, must_be_immutable
 import 'package:flutter/material.dart';
 import 'package:tiktok/pages/06_1_wishlists_page.dart';
-import 'package:tiktok/pages/06_wishlist_page.dart';
 
 class HomePage extends StatelessWidget {
   bool isLiked = false;

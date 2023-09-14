@@ -1,6 +1,5 @@
 // ignore_for_file: file_names, unused_import
 import 'package:flutter/material.dart';
-import '06_wishlist_page.dart';
 import 'dart:math';
 import '../model/wishlist_model.dart';
 import '../model/item_model.dart';
@@ -17,8 +16,10 @@ class DiscoverPage extends StatefulWidget {
 }
 
 class _DiscoverPageState extends State<DiscoverPage> {
-
-  List<String> hintTextList = ["iPhone 11 pro case", "Travel adapter", ];
+  List<String> hintTextList = [
+    "iPhone 11 pro case",
+    "Travel adapter",
+  ];
   List<WishlistModel> wishlistList = [];
   List<WishlistModel> displayList = [];
   final _random = Random();
@@ -26,14 +27,17 @@ class _DiscoverPageState extends State<DiscoverPage> {
   String searchWord = "";
   bool hintWordSet = false;
   TextEditingController textController = TextEditingController();
-  String imageUrl = 'https://images.unsplash.com/photo-1529973625058-a665431328fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80';
+  String imageUrl =
+      'https://images.unsplash.com/photo-1529973625058-a665431328fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80';
   List<int> numList = [43, 2, 33, 44];
   int num = 0;
 
   void updateList(String value) {
     setState(() {
-      displayList = wishlistList.where((element) => 
-        element.name!.toLowerCase().contains(value.toLowerCase())).toList();
+      displayList = wishlistList
+          .where((element) =>
+              element.name!.toLowerCase().contains(value.toLowerCase()))
+          .toList();
     });
     searchWord = value;
   }
@@ -63,6 +67,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
     // }
 
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Column(
         children: <Widget>[
           Container(
@@ -82,6 +87,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
                     constraints: const BoxConstraints(maxHeight: 40.0),
                     child: Center(
                       child: TextField(
+                        style: TextStyle(color: Colors.white70),
                         controller: textController,
                         onChanged: (value) => updateList(value),
                         decoration: InputDecoration(
@@ -89,22 +95,26 @@ class _DiscoverPageState extends State<DiscoverPage> {
                             Icons.search,
                             color: Colors.grey,
                           ),
-                          suffixIcon: searchWord.isNotEmpty ? IconButton(
-                            icon: const Icon(
-                              Icons.clear,
-                              color: Colors.grey,
-                            ),
-                            onPressed: () {
-                              textController.clear();
-                              updateList('');
-                            },
-                          ) : null,
+                          suffixIcon: searchWord.isNotEmpty
+                              ? IconButton(
+                                  icon: const Icon(
+                                    Icons.clear,
+                                    color: Colors.grey,
+                                  ),
+                                  onPressed: () {
+                                    textController.clear();
+                                    updateList('');
+                                  },
+                                )
+                              : null,
                           border: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.grey, width: 2.0),
+                            borderSide: const BorderSide(
+                                color: Colors.grey, width: 2.0),
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.grey, width: 2.0),
+                            borderSide: const BorderSide(
+                                color: Colors.grey, width: 2.0),
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           contentPadding: const EdgeInsets.only(top: 5.0),
@@ -130,75 +140,95 @@ class _DiscoverPageState extends State<DiscoverPage> {
               ],
             ),
           ),
-          const SizedBox(height: 5.0),
+          const SizedBox(
+            height: 17.0,
+            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Text(
+                " Finds |",
+                style: TextStyle(color: Colors.white70, fontSize: 15),
+              ),
+              Text(
+                " Latest |",
+                style: TextStyle(color: Colors.white70, fontSize: 15),
+              ),
+              Text(
+                " Recommended |",
+                style: TextStyle(color: Colors.white70, fontSize: 15),
+              ),
+              Text(
+                " Shops",
+                style: TextStyle(color: Colors.white70, fontSize: 15),
+              )
+            ]),
+          ),
           Expanded(
             child: ListView.builder(
-              padding: const EdgeInsets.only(left: 10.0),
-              itemCount: displayList.length,
-              itemBuilder: (context, index) => GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => WishlistsPage(
-                        userId: displayList[index].creatorId,
-                        indivList: true,
-                        wishlistId: displayList[index].id,
-                      ),
-                    ),
-                  );
-                  debugPrint("clicked");
-                },
-                child: ListTile(
-                  contentPadding: const EdgeInsets.all(8.0),
-                  title: Text(
-                    displayList[index].name!,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 17.0, 
-                    ),
-                  ),
-                  subtitle: Row(
-                    children: [
-                      // CircleAvatar(
-                      //   radius: 10,
-                      //   backgroundImage: NetworkImage(
-                      //     // displayList[index].wishListImage!,
-                      //     imageUrl
-                      //   ),
-                      // ),
-                      // const SizedBox(width: 5.0,),
-                      Text(
-                        displayList[index].creatorName!,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                  trailing: Column(
-                    children: [
-                      const SizedBox(height: 8.0),
-                      const Icon(
-                        Icons.turned_in_not_sharp,
-                        color: Colors.grey,
-                      ),
-                      Text(
-                        (num*index + index*2 + 1).toString(),
-                      ),
-                    ],
-                  ),
-                  leading: SizedBox(
-                    width: 60,
-                    height: 60,
-                    child: Image.network(
-                      // imageUrl,
-                      displayList[index].wishListImage!,
-                      fit: BoxFit.cover,
-                    ),
-                  )
-                ),
-              )  
-            ),
+                padding: const EdgeInsets.only(left: 10.0),
+                itemCount: displayList.length,
+                itemBuilder: (context, index) => GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => WishlistsPage(
+                              userId: displayList[index].creatorId,
+                              indivList: true,
+                              wishlistId: displayList[index].id,
+                            ),
+                          ),
+                        );
+                        debugPrint("clicked");
+                      },
+                      child: ListTile(
+                          contentPadding: const EdgeInsets.all(8.0),
+                          title: Text(
+                            displayList[index].name!,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 17.0,
+                              color: Colors.white70,
+                            ),
+                          ),
+                          subtitle: Row(
+                            children: [
+                              // CircleAvatar(
+                              //   radius: 10,
+                              //   backgroundImage: NetworkImage(
+                              //     // displayList[index].wishListImage!,
+                              //     imageUrl
+                              //   ),
+                              // ),
+                              // const SizedBox(width: 5.0,),
+                              Text(
+                                displayList[index].creatorName!,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white70,
+                                ),
+                              ),
+                            ],
+                          ),
+                          trailing: Column(
+                            children: [
+                              const SizedBox(height: 8.0),
+                              const Icon(
+                                Icons.turned_in_not_sharp,
+                                color: Colors.grey,
+                              ),
+                              Text(
+                                (num * index + index * 2 + 1).toString(),
+                              ),
+                            ],
+                          ),
+                          leading: SizedBox(
+                            width: 60,
+                            height: 60,
+                            child: Image.network(
+                              // imageUrl,
+                              displayList[index].wishListImage!,
+                              fit: BoxFit.cover,
+                            ),
+                          )),
+                    )),
           ),
         ],
       ),
