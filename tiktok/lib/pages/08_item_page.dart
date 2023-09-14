@@ -82,22 +82,6 @@ class _ItemPageState extends State<ItemPage> {
         title: Text(item.itemName!),
         centerTitle: true,
         actions: [
-          //   Padding(
-          //     padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
-          //     child: GestureDetector(
-          //       onTap: () {},
-          //       child: const Icon(Icons.favorite_outline),
-          //     ),
-          //   ),
-          // Padding(
-          //   padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
-          //   child: GestureDetector(
-          //     onTap: () {
-          //       // add to cart
-          //     },
-          //     child: const Icon(Icons.add_shopping_cart),
-          //   ),
-          // ),
           Padding(
             padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
             child: GestureDetector(
@@ -221,6 +205,7 @@ class _ItemPageState extends State<ItemPage> {
                                     title: Text("•  ${wl.name!}"),
                                     onTap: () {
                                       // handle
+                                      addItemToWishlist(wl.id!, widget.itemId!);
                                       Navigator.of(context).pop();
                                     },
                                   )

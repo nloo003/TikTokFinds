@@ -63,7 +63,7 @@ class _WishlistsPageState extends State<WishlistsPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Add Wishlist'),
+          title: Text('Add a new Find'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
@@ -187,17 +187,27 @@ class _WishlistsPageState extends State<WishlistsPage> {
                             ),
                           ),
                           const SizedBox(height: 15.0),
+                          Text(
+                            (wishlist.description!.length > 48) // Adjust the character limit as needed
+                            ? '${wishlist.description!.substring(0, 48)}...' // Truncate and add ellipsis
+                            : wishlist.description!,
+                            style: const TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(height: 15.0),
                           Row(
                             children: [
-                              const CircleAvatar(
-                                radius: 10,
-                                backgroundImage: NetworkImage(
-                                  'https://images.unsplash.com/photo-1529973625058-a665431328fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80',
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 10.0,
-                              ),
+                              // CircleAvatar(
+                              //   radius: 10,
+                              //   backgroundImage: NetworkImage(
+                              //     'https://images.unsplash.com/photo-1529973625058-a665431328fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80',
+                              //   ),
+                              // ),
+                              // SizedBox(
+                              //   width: 10.0,
+                              // ),
                               Text(
                                 // LINK TO PROFILE
                                 indivWishlist.creatorName!,
