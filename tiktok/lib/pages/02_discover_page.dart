@@ -75,7 +75,8 @@ class _DiscoverPageState extends State<DiscoverPage> {
             child: Row(
               children: <Widget>[
                 IconButton(
-                  icon: const Icon(Icons.arrow_back_ios), // Back button icon
+                  icon: const Icon(Icons.arrow_back_ios,
+                  color: Colors.grey), // Back button icon
                   onPressed: () {
                     Navigator.pop(context); // Add navigation logic here
                   },
@@ -108,6 +109,11 @@ class _DiscoverPageState extends State<DiscoverPage> {
                                 )
                               : null,
                           border: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                                color: Colors.grey, width: 2.0),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          disabledBorder: OutlineInputBorder(
                             borderSide: const BorderSide(
                                 color: Colors.grey, width: 2.0),
                             borderRadius: BorderRadius.circular(8.0),
@@ -145,7 +151,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
             child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               Text(
                 " Finds |",
-                style: TextStyle(color: Colors.white70, fontSize: 15),
+                style: TextStyle(color: Colors.white70, fontSize: 15, fontWeight: FontWeight.bold),
               ),
               Text(
                 " Latest |",
@@ -216,6 +222,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
                               ),
                               Text(
                                 (num * index + index * 2 + 1).toString(),
+                                style: TextStyle(color: Colors.grey),
                               ),
                             ],
                           ),
