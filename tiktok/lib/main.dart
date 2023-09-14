@@ -51,7 +51,7 @@ class _RootPageState extends State<RootPage> {
     const InboxPage(),
     // const WishlistPage(),
     // const ProfilePageOthers(userId: "64fbf5b43c612b13b658d6eb"),
-    const ProfilePageShop(),
+    const ProfilePageShop(shopName: "ABC"),
     const ProfilePageSelf(),
   ];
   @override

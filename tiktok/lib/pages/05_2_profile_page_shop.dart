@@ -6,20 +6,22 @@ import 'package:tiktok/pages/06_wishlist_page.dart';
 import 'package:tiktok/pages/07_friends_page.dart';
 import 'package:tiktok/model/api.dart';
 import 'package:tiktok/model/user_model.dart';
+import 'package:tiktok/model/item_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:math';
 import 'dart:convert';
 
 import 'package:tiktok/pages/08_item_page.dart';
+import 'package:tiktok/widgets/back_icon.dart';
 
 class ProfilePageShop extends StatefulWidget {
-  const ProfilePageShop({super.key});
-  // final String? shopName;
+  // const ProfilePageShop({super.key});
+  final String? shopName;
 
-  // const ProfilePageShop({
-  //   Key? key,
-  //   required this.shopName
-  // }) : super(key: key);
+  const ProfilePageShop({
+    Key? key,
+    required this.shopName
+  }) : super(key: key);
 
 
   @override
@@ -47,13 +49,16 @@ class _ProfilePageSelfState extends State<ProfilePageShop> {
     ListItem("soap", "soap.com"),
   ];
 
+  List<ItemModel> storeItems = [];
+  ItemModel iter_item = ItemModel("", "", 0.0, "", "");
+
   @override
   void initState() {
     super.initState();
     // Call the fetchData function when the widget is initialized
-    getUser(userId).then((item) {
+    getShopItemsByStoreName(widget.shopName!).then((items) {
       setState(() {
-        user = item;
+        storeItems = items;
       });
     });
   }
@@ -70,13 +75,13 @@ class _ProfilePageSelfState extends State<ProfilePageShop> {
               debugPrint("Username clicked");
             },
             child: Text(
-              user.name!,
+              widget.shopName!,
               style: const TextStyle(color: Colors.white),
             ),
           ),
         ),
         automaticallyImplyLeading: false,
-        leading: null,
+        leading: const BackIcon(),
         centerTitle: true,
         actions: <Widget>[
           Padding(
@@ -106,7 +111,7 @@ class _ProfilePageSelfState extends State<ProfilePageShop> {
             padding: const EdgeInsets.all(8.0),
             child: CircleAvatar(
               radius: 50,
-              backgroundImage: NetworkImage(user.profilePicUrl!),
+              backgroundImage: NetworkImage("https://images.unsplash.com/photo-1595991209266-5ff5a3a2f008?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"),
             ),
           ),
           Row(
@@ -125,58 +130,62 @@ class _ProfilePageSelfState extends State<ProfilePageShop> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(5, 15, 20, 5),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (BuildContext context) {
-                        return FriendPageState(userId: user.id!); //TODO
-                      }),
-                    );
-                  },
-                  child: Column(
-                    children: [
-                      Text(user.following!.length.toString(),
-                          style: const TextStyle(color: Colors.white)),
-                      const Text("Following",
-                          style: TextStyle(color: Colors.white))
-                    ],
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(5, 15, 20, 5),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (BuildContext context) {
+                            return FriendPageState(userId: user.id!); //TODO
+                          }),
+                        );
+                      },
+                      child: Column(
+                        children: [
+                          Text(user.following!.length.toString(),
+                              style: const TextStyle(color: Colors.white)),
+                          const Text("Following",
+                              style: TextStyle(color: Colors.white))
+                        ],
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(5, 15, 5, 5),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (BuildContext context) {
-                        return FriendPageState(userId: user.id!);
-                      }),
-                    );
-                  },
-                  child: Column(
-                    children: [
-                      Text(user.followers!.length.toString(),
-                          style: const TextStyle(color: Colors.white)),
-                      const Text("Followers",
-                          style: TextStyle(color: Colors.white))
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(5, 15, 20, 5),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (BuildContext context) {
+                            return FriendPageState(userId: user.id!);
+                          }),
+                        );
+                      },
+                      child: Column(
+                        children: [
+                          Text(user.followers!.length.toString(),
+                              style: const TextStyle(color: Colors.white)),
+                          const Text("Followers",
+                              style: TextStyle(color: Colors.white))
+                        ],
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(15, 20, 5, 5),
-                child: GestureDetector(
-                  onTap: () {},
-                  child: Column(
-                    children: [
-                      Text(user.likes.toString(),
-                          style: const TextStyle(color: Colors.white)),
-                      const Text("Likes", style: TextStyle(color: Colors.white))
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(5, 15, 5, 5),
+                    child: GestureDetector(
+                      onTap: () {},
+                      child: Column(
+                        children: [
+                          Text(user.likes.toString(),
+                              style: const TextStyle(color: Colors.white)),
+                          const Text("Likes", style: TextStyle(color: Colors.white))
+                        ],
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
             ],
           ),
@@ -190,7 +199,7 @@ class _ProfilePageSelfState extends State<ProfilePageShop> {
                   style: ButtonStyle(
                       backgroundColor:
                           MaterialStateProperty.all(Colors.blueGrey)),
-                  child: const Text("Edit Profile"),
+                  child: const Text("Follow"),
                 ),
               ),
               Padding(
@@ -200,7 +209,7 @@ class _ProfilePageSelfState extends State<ProfilePageShop> {
                   style: ButtonStyle(
                       backgroundColor:
                           MaterialStateProperty.all(Colors.blueGrey)),
-                  child: const Text("Add Friends"),
+                  child: const Text("Message"),
                 ),
               ),
               Padding(
@@ -222,50 +231,53 @@ class _ProfilePageSelfState extends State<ProfilePageShop> {
                             MaterialStateProperty.all(Colors.blueGrey)),
                     child: const Text("Finds")),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 5, 5, 0),
-                child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (BuildContext context) {
-                          return ItemPage(
-                              itemId: "1",
-                              itemName: "Item 1",
-                              itemPrice: 19.99,
-                              itemImage:
-                                  "https://images.unsplash.com/photo-1621265010303-a793d1017307?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80");
-                        }),
-                      );
-                    },
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(Colors.blueGrey)),
-                    child: const Text("Item")),
-              )
+              // Padding(
+              //   padding: const EdgeInsets.fromLTRB(0, 5, 5, 0),
+              //   child: ElevatedButton(
+              //       onPressed: () {
+              //         Navigator.of(context).push(
+              //           MaterialPageRoute(builder: (BuildContext context) {
+              //             return ItemPage(
+              //                 itemId: "1",
+              //                 itemName: "Item 1",
+              //                 itemPrice: 19.99,
+              //                 itemImage:
+              //                     "https://images.unsplash.com/photo-1621265010303-a793d1017307?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+              //                 itemStore: "ABC"
+              //                    );
+                              
+              //           }),
+              //         );
+              //       },
+              //       style: ButtonStyle(
+              //           backgroundColor:
+              //               MaterialStateProperty.all(Colors.blueGrey)),
+              //       child: const Text("Item")),
+              // )
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-            child: ElevatedButton(
-              onPressed: () {},
-              style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.blueGrey),
-                  foregroundColor: MaterialStateProperty.all(Colors.white),
-                  minimumSize:
-                      MaterialStateProperty.all<Size>(const Size(20, 20))),
-              child: const Text("+ Add Bio",
-                  style:
-                      TextStyle(fontSize: 12, overflow: TextOverflow.visible)),
-            ),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+          //   child: ElevatedButton(
+          //     onPressed: () {},
+          //     style: ButtonStyle(
+          //         backgroundColor: MaterialStateProperty.all(Colors.blueGrey),
+          //         foregroundColor: MaterialStateProperty.all(Colors.white),
+          //         minimumSize:
+          //             MaterialStateProperty.all<Size>(const Size(20, 20))),
+          //     child: const Text("+ Add Bio",
+          //         style:
+          //             TextStyle(fontSize: 12, overflow: TextOverflow.visible)),
+          //   ),
+          // ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               OutlinedButton(
                   onPressed: () {},
-                  child: const Icon(Icons.browse_gallery_outlined)),
-              OutlinedButton(
-                  onPressed: () {}, child: const Icon(Icons.lock_outline)),
+                  child: const Icon(Icons.shopping_bag)),
+              // OutlinedButton(
+              //     onPressed: () {}, child: const Icon(Icons.lock_outline)),
               OutlinedButton(
                   onPressed: () {},
                   child: const Icon(Icons.collections_outlined)),
@@ -276,35 +288,57 @@ class _ProfilePageSelfState extends State<ProfilePageShop> {
           ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            itemCount: itemList.length,
-            prototypeItem: ListTile(
-              leading: const Icon(
-                Icons.browse_gallery_outlined,
-                color: Colors.white70,
-              ),
-              title: Text(
-                itemList.first.itemName,
-                style: const TextStyle(color: Colors.white),
-              ),
-              trailing: const Icon(
-                Icons.texture_outlined,
-                color: Colors.white70,
-              ),
-            ),
+            itemCount: storeItems.length,
+            // prototypeItem: ListTile(
+            //   leading: const Icon(
+            //     Icons.browse_gallery_outlined,
+            //     color: Colors.white70,
+            //   ),
+            //   title: Text(
+            //     storeItems.first.itemName,
+            //     style: const TextStyle(color: Colors.white),
+            //   ),
+            //   trailing: const Icon(
+            //     Icons.texture_outlined,
+            //     color: Colors.white70,
+            //   ),
+            // ),
             itemBuilder: (context, index) {
-              return ListTile(
-                leading: const Icon(
-                  Icons.browse_gallery_outlined,
-                  color: Colors.white70,
-                ),
-                title: Text(
-                  itemList[index].itemName,
-                  style: const TextStyle(color: Colors.white),
-                ),
-                trailing: const Icon(
-                  Icons.texture_outlined,
-                  color: Colors.white70,
-                ),
+              final iter_item = storeItems[index];
+
+              return GestureDetector(
+                onTap: () {
+                  debugPrint("clicked ${iter_item.itemName}");
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (BuildContext context) {
+                      return ItemPage(
+                        itemId: iter_item.itemId,
+                        itemName: iter_item.itemName,
+                        itemPrice: iter_item.itemPrice,
+                        itemImage: iter_item.itemImage,
+                        itemStore: iter_item.itemStore,
+                      );
+                    })
+                  );
+                },
+                child: ListTile(
+                  leading: Image.network(
+                  iter_item.itemImage!,
+                  height: 40.0,
+                  width: 40,
+                  // 'https://images.unsplash.com/photo-1529973625058-a665431328fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80',
+                  fit: BoxFit.cover,
+                  ),
+                  title: Text(
+                    iter_item.itemName!,
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                  trailing: const Icon(
+                    Icons.texture_outlined,
+                    color: Colors.white70,
+                  ),
+                )
+                
               );
             },
           )
