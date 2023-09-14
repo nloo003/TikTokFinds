@@ -266,7 +266,8 @@ class _ProfilePageSelfState extends State<ProfilePageShop> {
                   onPressed: () {}, child: const Icon(Icons.favorite_outline)),
             ],
           ),
-          ListView.builder(physics: const NeverScrollableScrollPhysics(),
+          ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemCount: itemList.length,
             prototypeItem: ListTile(
@@ -285,9 +286,17 @@ class _ProfilePageSelfState extends State<ProfilePageShop> {
             ),
             itemBuilder: (context, index) {
               return ListTile(
+                leading: const Icon(
+                  Icons.browse_gallery_outlined,
+                  color: Colors.white70,
+                ),
                 title: Text(
                   itemList[index].itemName,
                   style: const TextStyle(color: Colors.white),
+                ),
+                trailing: const Icon(
+                  Icons.texture_outlined,
+                  color: Colors.white70,
                 ),
               );
             },
