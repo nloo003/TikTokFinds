@@ -52,6 +52,11 @@ class _WishlistsPageState extends State<WishlistsPage> {
         allWishlist = items;
       });
     });
+    getUser(widget.userId!).then(((value) {
+      setState(() {
+        user = value;
+      });
+    }));
   }
 
   //add wishlist pop up
@@ -92,19 +97,22 @@ class _WishlistsPageState extends State<WishlistsPage> {
 
                 if (name.isNotEmpty) {
                   // Create and add a new wishlist
-                  final newWishlist = WishlistModel(
-                      "abc",
-                      name,
-                      description,
-                      [],
-                      widget.userId!, // creatorid
-                      '', //creator name
+                  // final newWishlist = WishlistModel(
+                  //     "abc",
+                  //     name,
+                  //     description,
+                  //     [],
+                  //     widget.userId!, // creatorid
+                  //     '', //creator name
+                  //     "https://images.unsplash.com/photo-1585652757141-8837d676fac8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80");
+
+                  addWishlist(name, description, widget.userId!, user.name!,
                       "https://images.unsplash.com/photo-1585652757141-8837d676fac8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80");
 
                   // Add the new wishlist to the list
-                  setState(() {
-                    allWishlist.add(newWishlist);
-                  });
+                  // setState(() {
+                  //   allWishlist.add(newWishlist);
+                  // });
 
                   Navigator.of(context).pop();
                 }
@@ -188,9 +196,10 @@ class _WishlistsPageState extends State<WishlistsPage> {
                           ),
                           const SizedBox(height: 8.0),
                           Text(
-                            (wishlist.description!.length > 48) // Adjust the character limit as needed
-                            ? '${wishlist.description!.substring(0, 48)}...' // Truncate and add ellipsis
-                            : wishlist.description!,
+                            (wishlist.description!.length >
+                                    48) // Adjust the character limit as needed
+                                ? '${wishlist.description!.substring(0, 48)}...' // Truncate and add ellipsis
+                                : wishlist.description!,
                             style: const TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.bold,

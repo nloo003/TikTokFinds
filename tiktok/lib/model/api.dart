@@ -166,3 +166,40 @@ Future<void> addItemToWishlist(String wishListId, String itemId) async {
     throw Exception('Error: $e');
   }
 }
+
+Future<void> addWishlist(String wishListName, String wishListDesc, String wishListCreatorId, String wishListCreatorName, String wishListImage) async {
+  final url = Uri.parse('http://10.0.2.2:4000/api/wishList');
+  
+  // Create a map containing the request data
+  final Map<String, dynamic> requestData = {
+    "name": wishListName,
+    "description": wishListDesc,
+    "creatorId": wishListCreatorId,
+    "creatorName": wishListCreatorName,
+    "wishListImage": wishListImage,
+  };
+
+  // Encode the map to JSON
+  final jsonData = jsonEncode(requestData);
+
+  try {
+    final response = await http.post(
+      url,
+      headers: <String, String>{
+        'Content-Type': 'application/json',
+      },
+      body: jsonData,
+    );
+
+    if (response.statusCode == 200) {
+      return;
+
+    } else {
+      // If the server did not return a 200 OK response, throw an exception
+      throw Exception('Failed to update wishlist');
+    }
+  } catch (e) {
+    // Handle any exceptions that may occur
+    throw Exception('Error: $e');
+  }
+}
