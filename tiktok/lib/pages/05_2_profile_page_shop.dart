@@ -101,7 +101,7 @@ class _ProfilePageSelfState extends State<ProfilePageShop> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                user.handle!,
+                "@${widget.shopName!.replaceFirst(' ', '_')}",
                 style: const TextStyle(color: Colors.white),
               ),
               const Icon(

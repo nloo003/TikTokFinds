@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tiktok/model/user_model.dart';
+import 'package:tiktok/model/wishlist_model.dart';
+import 'package:tiktok/pages/06_1_wishlists_page.dart';
 import 'package:tiktok/widgets/back_icon.dart';
 import '../model/item_model.dart';
 import '../model/api.dart';
@@ -26,7 +29,9 @@ class ItemPage extends StatefulWidget {
 }
 
 class _ItemPageState extends State<ItemPage> {
+  String userId = "64fbf5b43c612b13b658d6eb";
   ItemModel item = ItemModel("", "", 0.0, "", "");
+  List<WishlistModel> allWishlist = [];
 
   @override
   void initState() {
@@ -35,6 +40,11 @@ class _ItemPageState extends State<ItemPage> {
     getItem(widget.itemId!).then((e) {
       setState(() {
         item = e;
+      });
+    });
+    getUserWishList(userId).then((wishlists) {
+      setState(() {
+        allWishlist = wishlists;
       });
     });
   }
@@ -198,6 +208,27 @@ class _ItemPageState extends State<ItemPage> {
                   ElevatedButton(
                     onPressed: (){
                       debugPrint("clicked");
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text("Add to"),
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                for (WishlistModel wl in allWishlist)
+                                  ListTile(
+                                    title: Text("•  ${wl.name!}"),
+                                    onTap: () {
+                                      // handle
+                                      Navigator.of(context).pop();
+                                    },
+                                  )
+                              ]
+                            )
+                          );
+                        }
+                      );
                     }, 
                     child: const Text("Add to Finds")
                   ),
