@@ -8,7 +8,7 @@ import 'dart:convert';
 
 Future<List<WishlistModel>> getWishList() async {
   try {
-    var url = Uri.parse('http://10.0.2.2:4000/api/wishList/all');
+    var url = Uri.parse('http://172.20.10.2:4000/api/wishList/all');
     final response = await http.get(url);
 
       if (response.statusCode == 200) {
@@ -33,7 +33,7 @@ Future<List<WishlistModel>> getWishList() async {
 Future<List<WishlistModel>> getUserWishList(String userId) async {
   try {
     var url =
-        Uri.parse('http://10.0.2.2:4000/api/wishList/userWishLists/$userId');
+        Uri.parse('http://172.20.10.2:4000/api/wishList/userWishLists/$userId');
     final response = await http.get(url);
 
     if (response.statusCode == 200) {
@@ -55,7 +55,7 @@ Future<List<WishlistModel>> getUserWishList(String userId) async {
 
 Future<UserModel> getUser(String userId) async {
     try {
-      var url = Uri.parse('http://10.0.2.2:4000/api/user/profile/${userId}');
+      var url = Uri.parse('http://172.20.10.2:4000/api/user/profile/${userId}');
       final response = await http.get(url);
 
       if (response.statusCode == 200) {
@@ -77,7 +77,7 @@ Future<UserModel> getUser(String userId) async {
 
   Future<ItemModel> getItem(String itemId) async {
     try {
-      var url = Uri.parse('http://10.0.2.2:4000/api/shopItem/${itemId}');
+      var url = Uri.parse('http://172.20.10.2:4000/api/shopItem/${itemId}');
       final response = await http.get(url);
 
       if (response.statusCode == 200) {
@@ -98,7 +98,7 @@ Future<UserModel> getUser(String userId) async {
   }
 
 Future<List<ItemModel>> getShopItemsByStoreName(String storeName) async {
-  final url = Uri.parse('http://10.0.2.2:4000/api/shopItem/getByStoreName');
+  final url = Uri.parse('http://172.20.10.2:4000/api/shopItem/getByStoreName');
   
   // Create a map containing the request data
   final Map<String, dynamic> requestData = {
@@ -134,7 +134,7 @@ Future<List<ItemModel>> getShopItemsByStoreName(String storeName) async {
 }
 
 Future<void> addItemToWishlist(String wishListId, String itemId) async {
-  final url = Uri.parse('http://10.0.2.2:4000/api/wishList/add');
+  final url = Uri.parse('http://172.20.10.2:4000/api/wishList/add');
   
   // Create a map containing the request data
   final Map<String, dynamic> requestData = {
@@ -168,7 +168,7 @@ Future<void> addItemToWishlist(String wishListId, String itemId) async {
 }
 
 Future<void> addWishlist(String wishListName, String wishListDesc, String wishListCreatorId, String wishListCreatorName, String wishListImage) async {
-  final url = Uri.parse('http://10.0.2.2:4000/api/wishList');
+  final url = Uri.parse('http://172.20.10.2:4000/api/wishList');
   
   // Create a map containing the request data
   final Map<String, dynamic> requestData = {
