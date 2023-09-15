@@ -38,6 +38,8 @@ class WishlistsPage extends StatefulWidget {
 }
 
 class _WishlistsPageState extends State<WishlistsPage> {
+  int descriptionLimit = 40;
+  int nameLimit = 30;
   List<WishlistModel> allWishlist = [];
   WishlistModel indivWishlist = WishlistModel("", "", "", [], "", "", "");
   ItemModel iter_item = ItemModel("", "", 0.0, "", "");
@@ -197,7 +199,10 @@ class _WishlistsPageState extends State<WishlistsPage> {
                           const SizedBox(height: 8.0),
                           Text(
                             overflow: TextOverflow.ellipsis,
-                            wishlistName!,
+                            (wishlistName!.length >
+                                    nameLimit) // Adjust the character limit as needed
+                                ? '${wishlistName.substring(0, nameLimit)}...' // Truncate and add ellipsis
+                                : wishlistName,
                             style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -206,8 +211,8 @@ class _WishlistsPageState extends State<WishlistsPage> {
                           const SizedBox(height: 8.0),
                           Text(
                             (wishlist.description!.length >
-                                    48) // Adjust the character limit as needed
-                                ? '${wishlist.description!.substring(0, 48)}...' // Truncate and add ellipsis
+                                    descriptionLimit) // Adjust the character limit as needed
+                                ? '${wishlist.description!.substring(0, descriptionLimit)}...' // Truncate and add ellipsis
                                 : wishlist.description!,
                             style: const TextStyle(
                               fontSize: 12,
@@ -360,7 +365,10 @@ class _WishlistsPageState extends State<WishlistsPage> {
                         ),
                         const SizedBox(height: 10.0),
                         Text(
-                          wishlistName!,
+                          (wishlistName!.length >
+                                  nameLimit) // Adjust the character limit as needed
+                              ? '${wishlistName.substring(0, nameLimit)}...' // Truncate and add ellipsis
+                              : wishlistName,
                           style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
