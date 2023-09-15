@@ -74,13 +74,13 @@ class _DiscoverPageState extends State<DiscoverPage> {
             padding: const EdgeInsets.only(top: 30.0, right: 16.0, left: 10.0),
             child: Row(
               children: <Widget>[
-                IconButton(
-                  icon: const Icon(Icons.arrow_back_ios,
-                      color: Colors.grey), // Back button icon
-                  onPressed: () {
-                    Navigator.pop(context); // Add navigation logic here
-                  },
-                ),
+                // IconButton(
+                //   icon: const Icon(Icons.arrow_back_ios,
+                //       color: Colors.grey), // Back button icon
+                //   onPressed: () {
+                //     Navigator.pop(context); // Add navigation logic here
+                //   },
+                // ),
                 const SizedBox(
                     width: 5.0), // Gap between back button and search bar
                 Expanded(

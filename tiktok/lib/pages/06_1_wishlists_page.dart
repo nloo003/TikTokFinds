@@ -39,7 +39,7 @@ class WishlistsPage extends StatefulWidget {
 
 class _WishlistsPageState extends State<WishlistsPage> {
   int descriptionLimit = 40;
-  int nameLimit = 30;
+  int nameLimit = 25;
   List<WishlistModel> allWishlist = [];
   WishlistModel indivWishlist = WishlistModel("", "", "", [], "", "", "");
   ItemModel iter_item = ItemModel("", "", 0.0, "", "");
